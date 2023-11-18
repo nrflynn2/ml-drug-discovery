@@ -1,0 +1,7 @@
+jupyterlab
+rdkit
+numpy
+pandas
+seaborn
+PyTDC
+matplotlib
