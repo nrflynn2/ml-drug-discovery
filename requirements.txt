@@ -1,0 +1,10 @@
+imbalanced-learn==0.10.1
+jupyterlab==4.0.9
+matplotlib==3.7.1
+numpy==1.23.5
+pandas==1.5.3
+PyTDC==0.4.1
+rdkit==2023.9.2
+scikit-learn==1.2.2
+scikit-multilearn==0.2.0
+seaborn==0.12.2

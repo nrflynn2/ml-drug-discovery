@@ -1,0 +1,56 @@
+,rule_set,description,smarts
+0,Glaxo,Reactive alkyl halides,"[Br,Cl,I][CX4;CH,CH2]"
+1,Glaxo,Acid halides,"[S,C](=[O,S])[F,Br,Cl,I]"
+2,Glaxo,Carbazides,O=CN=[N+]=[N-]
+3,Glaxo,Sulphate esters,"COS(=O)O[C,c]"
+4,Glaxo,Sulphonates,"COS(=O)(=O)[C,c]"
+5,Glaxo,Acid anhydrides,C(=O)OC(=O)
+6,Glaxo,Peroxides,OO
+7,Glaxo,Pentafluorophenyl esters,C(=O)Oc1c(F)c(F)c(F)c(F)c1(F)
+8,Glaxo,Paranitrophenyl esters,C(=O)Oc1ccc(N(=O)~[OX1])cc1
+9,Glaxo,esters of HOBT,C(=O)Onnn
+10,Glaxo,Isocyanates & Isothiocyanates,"N=C=[S,O]"
+11,Glaxo,Triflates,OS(=O)(=O)C(F)(F)F
+12,Glaxo,lawesson's reagent and derivatives,P(=S)(S)S
+13,Glaxo,phosphoramides,NP(=O)(N)N
+14,Glaxo,Aromatic azides,cN=[N+]=[N-]
+15,Glaxo,beta carbonyl quaternary Nitrogen,"C(=O)C[N+,n+]"
+16,Glaxo,acylhydrazide,[N;R0][N;R0]C(=O)
+17,Glaxo,"Quaternary C, Cl, I, P or S","[C+,Cl+,I+,P+,S+]"
+18,Glaxo,Phosphoranes,C=P
+19,Glaxo,Chloramidines,[Cl]C([C&R0])=N
+20,Glaxo,Nitroso,[N&D2](=O)
+21,Glaxo,P/S Halides,"[P,S][Cl,Br,F,I]"
+22,Glaxo,Carbodiimide,N=C=N
+23,Glaxo,Isonitrile,[N+]#[C-]
+24,Glaxo,Triacyloximes,C(=O)N(C(=O))OC(=O)
+25,Glaxo,Cyanohydrins,N#CC[OH]
+26,Glaxo,Acyl cyanides,N#CC(=O)
+27,Glaxo,Sulfonyl cyanides,S(=O)(=O)C#N
+28,Glaxo,Cyanophosphonates,P(OCC)(OCC)(=O)C#N
+29,Glaxo,Azocyanamides,[N;R0]=[N;R0]C#N
+30,Glaxo,Azoalkanals,[N;R0]=[N;R0]CC=O
+31,Glaxo,Aliphatic methylene chains 7 or more long,[CD2;R0][CD2;R0][CD2;R0][CD2;R0][CD2;R0][CD2;R0][CD2;R0]
+32,Glaxo,Compounds with 4 or more acidic groups,"[C,S,P](=O)[OH].[C,S,P](=O)[OH].[C,S,P](=O)[OH].[C,S,P](=O)[OH]"
+33,Glaxo,Crown ethers,[O;R1][C;R1][C;R1][O;R1][C;R1][C;R1][O;R1]
+34,Glaxo,Disulphides,SS
+35,Glaxo,Thiols,[SH]
+36,Glaxo,"Epoxides, Thioepoxides, Aziridines","C1[O,S,N]C1"
+37,Glaxo,"2,4,5 trihydroxyphenyl",c([OH])c([OH])c([OH])
+38,Glaxo,"2,3,4 trihydroxyphenyl",c([OH])c([OH])cc([OH])
+39,Glaxo,Hydrazothiourea,N=NC(=S)N
+40,Glaxo,Thiocyanate,SC#N
+41,Glaxo,Benzylic quaternary Nitrogen,cC[N+]
+42,Glaxo,Thioesters,"C[O,S;R0][C;R0](=S)"
+43,Glaxo,Cyanamides,N[CH2]C#N
+44,Glaxo,Four membered lactones,C1(=O)OCC1
+45,Glaxo,Di and Triphosphates,P(=O)([OH])OP(=O)[OH]
+46,Glaxo,Betalactams,N1CCC1=O
+47,Glaxo,Quinones,O=C1[#6]~[#6]C(=O)[#6]~[#6]1
+48,Glaxo,Polyenes,C=CC=CC=CC=C
+49,Glaxo,Saponin derivatives,O1CCCCC1OC2CCC3CCCCC3C2
+50,Glaxo,Cytochalasin derivatives,O=C1NCC2CCCCC21
+51,Glaxo,Cycloheximide derivatives,O=C1CCCC(N1)=O
+52,Glaxo,Monensin derivatives,O1CCCCC1C2CCCO2
+53,Glaxo,Cyanidin derivatives,[OH]c1cc([OH])cc2=[O+]C(=C([OH])Cc21)c3cc([OH])c([OH])cc3
+54,Glaxo,Squalestatin derivatives,C12OCCC(O1)CC2
