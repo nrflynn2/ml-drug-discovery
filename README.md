@@ -8,7 +8,7 @@ The first edition is a work in progress and notebooks will be released as they a
 
 ### 💻 Getting Started
 
-Open the repository in Colab to walk through the notebooks without needing to install anything! <a href="https://colab.research.google.com/github/nrflynn2/ml-drug-discovery/blob/main/" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> (recommended)
+Open the repository in Colab to walk through the notebooks without needing to install anything! <a href="https://colab.research.google.com/github/nrflynn2/ml-drug-discovery/blob/main/" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 If you want to run and modify the code locally, install [Anaconda](https://www.anaconda.com/products/distribution) (or [Miniconda](https://docs.conda.io/en/latest/miniconda.html)) and [git](https://git-scm.com/downloads) if you don't already have access to them. Clone this repository by typing the following within a terminal (ignoring the first `$` character):
 
@@ -26,7 +26,7 @@ Finally, start Jupyter in the terminal via `jupyter notebook` or through your fa
 ### 📚 Table of Contents
 
 #### Part 1: Fundamentals of Cheminformatics & Machine Learning
-* Chapter 1: The Drug Discovery Process
+* [Chapter 1: The Drug Discovery Process](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH01_FLYNN_ML4DD.ipynb)
 * [Chapter 2: Ligand-based Screening: Filtering & Similarity Searching](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH02_FLYNN_ML4DD.ipynb)
 * [Chapter 3: Ligand-based Screening: Machine Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH03_FLYNN_ML4DD.ipynb)
 * [Chapter 4: Solubility Deep Dives with Linear Models](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH04_FLYNN_ML4DD.ipynb)
