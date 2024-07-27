@@ -33,8 +33,8 @@ Finally, start Jupyter in the terminal via `jupyter notebook` or through your fa
 * [Chapter 3: Ligand-based Screening: Machine Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH03_FLYNN_ML4DD.ipynb)
 * [Chapter 4: Solubility Deep Dives with Linear Models](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH04_FLYNN_ML4DD.ipynb)
 * [Chapter 5: Classification: Cytochrome P450 Inhibition](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH05_FLYNN_ML4DD.ipynb)
-* Chapter 6: Searching in Chemical Space
-* Chapter 7: Curating Diverse Compounds
+* [Chapter 6: Case Study: Small Molecule Binding to an RNA Target](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH06_FLYNN_ML4DD.ipynb)
+* [Chapter 7: Unsupervised Learning: Repurposing Drugs, Curating Compounds, & Screening Fragments](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH07_FLYNN_ML4DD.ipynb)
 
 #### Part 2: Deep Learning for Molecules & Structural Biology
 * Chapter 8: Introduction to Deep Learning
