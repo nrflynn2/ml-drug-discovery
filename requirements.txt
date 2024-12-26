@@ -5,8 +5,10 @@ jupyterlab==4.0.9
 lightgbm==4.3.0
 matplotlib==3.7.1
 minisom==2.3.2
+mdtraj==1.10.0
 mordred==1.2.0
 numpy==1.23.5
+openbabel-wheel==3.1.1.20
 pandas==1.5.3
 py3Dmol==2.1.0
 PyTDC==0.4.1
@@ -16,5 +18,6 @@ scikit-multilearn==0.2.0
 seaborn==0.12.2
 shap==0.45.0
 statsmodels==0.14.2
+torch==2.4.1
 umap-learn==0.5.6
 xgboost==2.0.3
