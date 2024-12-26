@@ -13,7 +13,7 @@ pandas==1.5.3
 py3Dmol==2.1.0
 PyTDC==0.4.1
 rdkit==2023.9.2
-scikit-learn==1.2.2
+scikit-learn==1.5.0
 scikit-multilearn==0.2.0
 seaborn==0.12.2
 shap==0.45.0
