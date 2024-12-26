@@ -1,7 +1,7 @@
 catboost==1.2.3
 dimorphite-dl==1.3.2
 imbalanced-learn==0.10.1
-jupyterlab==4.0.9
+jupyterlab==4.3.4
 lightgbm==4.3.0
 matplotlib==3.7.1
 minisom==2.3.2
