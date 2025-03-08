@@ -21,11 +21,16 @@ If you want to run and modify the code locally, install [Anaconda](https://www.a
     $ git clone https://github.com/nrflynn2/ml-drug-discovery.git
     $ cd ml-drug-discovery
 
-Set up a conda environment with prerequisite installs:
+Set up a conda environment with prerequisite installs, we recommend:
+
+    $ conda env create -f ml4dd2025.yml
+
+An alternative method is:
 
     $ conda create --name ml-drug-discovery python=3.10 pip
     $ conda activate ml-drug-discovery
     $ pip install -r requirements.txt
+    $ conda install -c conda-forge vina openmm pdbfixer
 
 Finally, start Jupyter in the terminal via `jupyter notebook` or through your favorite IDE to embark on an exciting journey. Happy learning!
 
