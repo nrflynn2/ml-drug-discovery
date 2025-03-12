@@ -30,7 +30,7 @@ def save_molecular_dataframe(df, filename, chapter="ch01", compress=True):
         Path to the saved file
     """
     # Create the artifacts directory if it doesn't exist
-    save_dir = Path(f"data/{chapter}/artifacts")
+    save_dir = Path(f"artifacts/{chapter}/")
     save_dir.mkdir(parents=True, exist_ok=True)
     
     # Add .pkl or .pkl.gz extension if not present
@@ -73,7 +73,7 @@ def load_molecular_dataframe(filename, chapter="ch01"):
         The loaded DataFrame
     """
     # Create the full file path
-    file_dir = Path(f"data/{chapter}/artifacts")
+    file_dir = Path(f"artifacts/{chapter}/")
     
     # Handle different possible file extensions
     if not (filename.endswith('.pkl') or filename.endswith('.pkl.gz')):
@@ -118,7 +118,7 @@ def list_saved_dataframes(chapter="ch01"):
     list
         List of available dataframe filenames
     """
-    save_dir = Path(f"data/{chapter}/artifacts")
+    save_dir = Path(f"artifacts/{chapter}/")
     
     if not save_dir.exists():
         print(f"No artifacts directory found for chapter {chapter}")
