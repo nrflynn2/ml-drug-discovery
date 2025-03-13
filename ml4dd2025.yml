@@ -156,6 +156,7 @@ dependencies:
       - nvidia-nvjitlink-cu12==12.6.85
       - nvidia-nvtx-cu12==12.1.105
       - openbabel-wheel==3.1.1.20
+      - openpyxl==3.1.5
       - overrides==7.7.0
       - packaging==24.2
       - pandas==2.2.3

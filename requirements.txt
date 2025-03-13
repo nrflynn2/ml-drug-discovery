@@ -11,10 +11,10 @@ mdtraj==1.10.2
 mordred==1.2.0
 numpy==1.23.5
 openbabel-wheel==3.1.1.20
+openpyxl==3.1.5
 pandas==1.5.3
 prolif==2.0.3
 py3Dmol==2.1.0
-PyTDC==0.4.1
 rdkit==2023.9.2
 scikit-learn==1.5.0
 scikit-multilearn==0.2.0
