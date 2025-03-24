@@ -1,0 +1,6 @@
+,importance_score,best_value,mean_performance
+budget_per_iteration,87.0,100,56.5
+n_initial_samples,54.0,1000,26.0
+initial_selection_method,0.0,random,34.75
+acquisition_function,0.0,greedy,34.75
+n_iterations,0.0,20,34.75

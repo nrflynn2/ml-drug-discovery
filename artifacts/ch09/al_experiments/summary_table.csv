@@ -1,0 +1,5 @@
+experiment_id,n_initial_samples,initial_selection_method,acquisition_function,budget_per_iteration,n_iterations,final_top_molecules_found,top_molecules_found_efficiency,final_best_score,best_score_efficiency,final_time_per_iteration,final_total_runtime
+init1000_ran_acqgre_bud100_iter20_0323_1758,1000,random,greedy,100,20,100,0.03333333333333333,-20.660721,0.006886906999999999,2.159532070159912,249.84523963928223
+init1000_ran_acqgre_bud20_iter20_0323_1738,1000,random,greedy,20,20,22,0.015714285714285715,-20.572157,0.014694397857142858,2.7345170974731445,281.9747815132141
+init100_ran_acqgre_bud20_iter20_0323_1642,100,random,greedy,20,20,10,0.02,-20.596266,0.041192532,3.1028387546539307,208.2878270149231
+init500_ran_acqgre_bud20_iter20_0323_1709,500,random,greedy,20,20,7,0.0077777777777777776,-20.026234,0.02225137111111111,2.8955156803131104,199.07674932479856

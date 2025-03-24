@@ -1,0 +1,7 @@
+{
+    "n_initial_samples": 100,
+    "n_iterations": 20,
+    "budget_per_iteration": 50,
+    "initial_selection_method": "diverse",
+    "acquisition_function": "greedy"
+}
