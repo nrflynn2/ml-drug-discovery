@@ -47,13 +47,11 @@ Finally, start Jupyter in the terminal via `jupyter notebook` or through your fa
 
 #### 🧬 Part 2: Deep Learning for Molecules & Structural Biology
 * [Chapter 8: Introduction to Deep Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH08_FLYNN_ML4DD.ipynb)
-* Chapter 9: Generative Models for Library Design
-* Chapter 10: Molecules as a Language
-* Chapter 11: Drug-Target Binding Affinity with Transformers
-* Chapter 12: Graph Neural Networks for Molecules
-* Chapter 13: GNN Applications in Drug Discovery
+* [Chapter 9: Structure-based Drug Design & Active Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH09_FLYNN_ML4DD.ipynb)
+* Chapter 10: Generative Models for Library Design
+* Chapter 11: Protein Language Models
+* Chapter 12: Graph Neural Networks
 * Chapter 14: Diffusion Models
-* Chapter 15: Closing Remarks & Next Steps
 
 ### 👥 Contribution & Support
 
