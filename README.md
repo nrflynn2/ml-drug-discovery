@@ -47,11 +47,14 @@ Finally, start Jupyter in the terminal via `jupyter notebook` or through your fa
 
 #### 🧬 Part 2: Deep Learning for Molecules & Structural Biology
 * [Chapter 8: Introduction to Deep Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH08_FLYNN_ML4DD.ipynb)
-* [Chapter 9: Structure-based Drug Design & Active Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH09_FLYNN_ML4DD.ipynb)
-* Chapter 10: Generative Models for Library Design
-* Chapter 11: Protein Language Models
-* Chapter 12: Graph Neural Networks
-* Chapter 14: Diffusion Models
+* [Chapter 9: Structure-based Drug Design with Active Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH09_FLYNN_ML4DD.ipynb)
+* Chapter 10: Generative Models for De Novo Design
+* Chapter 11: Graph Neural Networks for Molecular Representation & Interaction Prediction
+* Chapter 12: Transformer Architectures for Protein Structure Prediction
+* Chapter 13: Multimodal AI Systems for End-to-End Drug Discovery Pipelines
+
+#### Appendices
+* Appendix C: Agentic Systems in Drug Discovery
 
 ### 👥 Contribution & Support
 
