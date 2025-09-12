@@ -8,7 +8,7 @@ For readability, the chapter notebooks only contain runnable code blocks and sec
 
 ### 🚧 Under Construction
 
-Note that this project is a work in progress and notebooks will be released as they are drafted. We anticipate a full release of the book in Summer 2025. We recommend interacting with notebooks through Colab.
+Note that this project is a work in progress and notebooks will be released as they are drafted. We anticipate a full release of the book in Winter 2025. We recommend interacting with notebooks through Colab.
 
 Purchase of the book through Manning's Early Access Program (MEAP) guarantees access to current and future chapters. I appreciate your patience and support!
 
@@ -48,12 +48,14 @@ Finally, start Jupyter in the terminal via `jupyter notebook` or through your fa
 #### 🧬 Part 2: Deep Learning for Molecules & Structural Biology
 * [Chapter 8: Introduction to Deep Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH08_FLYNN_ML4DD.ipynb)
 * [Chapter 9: Structure-based Drug Design with Active Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH09_FLYNN_ML4DD.ipynb)
-* Chapter 10: Generative Models for De Novo Design
+* [Chapter 10: Generative Models for De Novo Design](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH10_FLYNN_ML4DD.ipynb)
 * Chapter 11: Graph Neural Networks for Molecular Representation & Interaction Prediction
 * Chapter 12: Transformer Architectures for Protein Structure Prediction
 * Chapter 13: Multimodal AI Systems for End-to-End Drug Discovery Pipelines
 
 #### Appendices
+* [Appendix A: Glossary](https://livebook.manning.com/book/machine-learning-for-drug-discovery/appendix-a)
+* [Appendix B: Chemical Data Repositories](https://livebook.manning.com/book/machine-learning-for-drug-discovery/appendix-b/v-8)
 * Appendix C: Agentic Systems in Drug Discovery
 
 ### 👥 Contribution & Support
