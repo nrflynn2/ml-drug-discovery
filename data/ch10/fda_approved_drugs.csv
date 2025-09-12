@@ -1,0 +1,344 @@
+Name,#RO5 Violations (Lipinski),Smiles,USAN Stem
+ARTICAINE HYDROCHLORIDE,0,CCCNC(C)C(=O)Nc1c(C)csc1C(=O)OC.Cl,-caine
+ETIDOCAINE HYDROCHLORIDE,0,CCCN(CC)C(CC)C(=O)Nc1c(C)cccc1C.Cl,-caine
+ROPIVACAINE HYDROCHLORIDE,0,CCCN1CCCC[C@H]1C(=O)Nc1c(C)cccc1C.Cl,-caine
+PROCAINE,0,CCN(CC)CCOC(=O)c1ccc(N)cc1,-caine
+DIBUCAINE,0,CCCCOc1cc(C(=O)NCCN(CC)CC)c2ccccc2n1,-caine
+MEPIVACAINE HYDROCHLORIDE,0,Cc1cccc(C)c1NC(=O)C1CCCCN1C.Cl,-caine
+LEVOBUPIVACAINE HYDROCHLORIDE,0,CCCCN1CCCC[C@H]1C(=O)Nc1c(C)cccc1C.Cl,-caine
+ROPIVACAINE,0,CCCN1CCCC[C@H]1C(=O)Nc1c(C)cccc1C,-caine
+ARTICAINE,0,CCCNC(C)C(=O)Nc1c(C)csc1C(=O)OC,-caine
+PROCAINE HYDROCHLORIDE,0,CCN(CC)CCOC(=O)c1ccc(N)cc1.Cl,-caine
+CHLOROPROCAINE HYDROCHLORIDE,0,CCN(CC)CCOC(=O)c1ccc(N)cc1Cl.Cl,-caine
+BUPIVACAINE,0,CCCCN1CCCCC1C(=O)Nc1c(C)cccc1C,-caine
+PROPARACAINE HYDROCHLORIDE,0,CCCOc1ccc(C(=O)OCCN(CC)CC)cc1N.Cl,-caine
+PROPOXYCAINE,0,CCCOc1cc(N)ccc1C(=O)OCCN(CC)CC,-caine
+PROPARACAINE,0,CCCOc1ccc(C(=O)OCCN(CC)CC)cc1N,-caine
+COCAINE HYDROCHLORIDE,0,COC(=O)[C@H]1[C@@H](OC(=O)c2ccccc2)C[C@@H]2CC[C@H]1N2C.Cl,-caine
+HEXYLCAINE HYDROCHLORIDE,0,CC(CNC1CCCCC1)OC(=O)c1ccccc1.Cl,-caine
+BUPIVACAINE HYDROCHLORIDE,0,CCCCN1CCCCC1C(=O)Nc1c(C)cccc1C.Cl,-caine
+MEPIVACAINE,0,Cc1cccc(C)c1NC(=O)C1CCCCN1C,-caine
+LIDOCAINE HYDROCHLORIDE,0,CCN(CC)CC(=O)Nc1c(C)cccc1C.Cl.O,-caine
+DIBUCAINE HYDROCHLORIDE,0,CCCCOc1cc(C(=O)NCCN(CC)CC)c2ccccc2n1.Cl,-caine
+CHLOROPROCAINE,0,CCN(CC)CCOC(=O)c1ccc(N)cc1Cl,-caine
+PROPOXYCAINE HYDROCHLORIDE,0,CCCOc1cc(N)ccc1C(=O)OCCN(CC)CC.Cl,-caine
+HEXYLCAINE,0,CC(CNC1CCCCC1)OC(=O)c1ccccc1,-caine
+BENZOCAINE,0,CCOC(=O)c1ccc(N)cc1,-caine
+LIDOCAINE,0,CCN(CC)CC(=O)Nc1c(C)cccc1C,-caine
+LEVOBUPIVACAINE,0,CCCCN1CCCC[C@H]1C(=O)Nc1c(C)cccc1C,-caine
+TETRACAINE,0,CCCCNc1ccc(C(=O)OCCN(C)C)cc1,-caine
+COCAINE,0,COC(=O)[C@H]1[C@@H](OC(=O)c2ccccc2)C[C@@H]2CC[C@H]1N2C,-caine
+PRILOCAINE HYDROCHLORIDE,0,CCCNC(C)C(=O)Nc1ccccc1C.Cl,-caine
+ETIDOCAINE,0,CCCN(CC)C(CC)C(=O)Nc1c(C)cccc1C,-caine
+TETRACAINE HYDROCHLORIDE,0,CCCCNc1ccc(C(=O)OCCN(C)C)cc1.Cl,-caine
+PRILOCAINE,0,CCCNC(C)C(=O)Nc1ccccc1C,-caine
+TALAMPICILLIN HYDROCHLORIDE,0,CC1(C)S[C@@H]2[C@H](NC(=O)[C@H](N)c3ccccc3)C(=O)N2[C@H]1C(=O)OC1OC(=O)c2ccccc21.Cl,-cillin
+PHENETHICILLIN POTASSIUM,0,CC(Oc1ccccc1)C(=O)N[C@@H]1C(=O)N2[C@@H]1SC(C)(C)[C@@H]2C(=O)[O-].[K+],-cillin
+AMOXICILLIN SODIUM,0,CC1(C)S[C@@H]2[C@H](NC(=O)[C@H](N)c3ccc(O)cc3)C(=O)N2[C@H]1C(=O)[O-].[Na+],-cillin
+CARBENICILLIN PHENYL SODIUM,0,CC1(C)S[C@@H]2[C@H](NC(=O)C(C(=O)Oc3ccccc3)c3ccccc3)C(=O)N2[C@H]1C(=O)[O-].[Na+],-cillin
+BACAMPICILLIN HYDROCHLORIDE,0,CCOC(=O)OC(C)OC(=O)[C@@H]1N2C(=O)[C@@H](NC(=O)[C@H](N)c3ccccc3)[C@H]2SC1(C)C.Cl,-cillin
+CARBENICILLIN INDANYL SODIUM,0,CC1(C)S[C@@H]2[C@H](NC(=O)C(C(=O)Oc3ccc4c(c3)CCC4)c3ccccc3)C(=O)N2[C@H]1C(=O)[O-].[Na+],-cillin
+TALAMPICILLIN,0,CC1(C)S[C@@H]2[C@H](NC(=O)[C@H](N)c3ccccc3)C(=O)N2[C@H]1C(=O)OC1OC(=O)c2ccccc21,-cillin
+PENAMECILLIN,0,CC(=O)OCOC(=O)[C@@H]1N2C(=O)[C@@H](NC(=O)Cc3ccccc3)[C@H]2SC1(C)C,-cillin
+OXACILLIN,0,Cc1onc(-c2ccccc2)c1C(=O)N[C@@H]1C(=O)N2[C@@H]1SC(C)(C)[C@@H]2C(=O)O,-cillin
+BACAMPICILLIN,0,CCOC(=O)OC(C)OC(=O)[C@@H]1N2C(=O)[C@@H](NC(=O)[C@H](N)c3ccccc3)[C@H]2SC1(C)C,-cillin
+DICLOXACILLIN,0,Cc1onc(-c2c(Cl)cccc2Cl)c1C(=O)N[C@@H]1C(=O)N2[C@@H]1SC(C)(C)[C@@H]2C(=O)O,-cillin
+PIVAMPICILLIN,0,CC(C)(C)C(=O)OCOC(=O)[C@@H]1N2C(=O)[C@@H](NC(=O)[C@H](N)c3ccccc3)[C@H]2SC1(C)C,-cillin
+OXACILLIN SODIUM,0,Cc1onc(-c2ccccc2)c1C(=O)N[C@@H]1C(=O)N2[C@@H]1SC(C)(C)[C@@H]2C(=O)[O-].O.[Na+],-cillin
+HETACILLIN POTASSIUM,0,CC1(C)S[C@@H]2[C@H](N3C(=O)[C@@H](c4ccccc4)NC3(C)C)C(=O)N2[C@H]1C(=O)[O-].[K+],-cillin
+CARBENICILLIN PHENYL,0,CC1(C)S[C@@H]2[C@H](NC(=O)C(C(=O)Oc3ccccc3)c3ccccc3)C(=O)N2[C@H]1C(=O)O,-cillin
+AMDINOCILLIN PIVOXIL,0,CC(C)(C)C(=O)OCOC(=O)[C@@H]1N2C(=O)[C@@H](/N=C/N3CCCCCC3)[C@H]2SC1(C)C,-cillin
+AZLOCILLIN,1,CC1(C)S[C@@H]2[C@H](NC(=O)[C@H](NC(=O)N3CCNC3=O)c3ccccc3)C(=O)N2[C@H]1C(=O)O,-cillin
+CLOXACILLIN SODIUM,0,Cc1onc(-c2ccccc2Cl)c1C(=O)N[C@@H]1C(=O)N2[C@@H]1SC(C)(C)[C@@H]2C(=O)[O-].O.[Na+],-cillin
+CLOXACILLIN,0,Cc1onc(-c2ccccc2Cl)c1C(=O)N[C@@H]1C(=O)N2[C@@H]1SC(C)(C)[C@@H]2C(=O)O,-cillin
+CYCLACILLIN,0,CC1(C)S[C@@H]2[C@H](NC(=O)C3(N)CCCCC3)C(=O)N2[C@H]1C(=O)O,-cillin
+AMDINOCILLIN,0,CC1(C)S[C@@H]2[C@H](/N=C/N3CCCCCC3)C(=O)N2[C@H]1C(=O)O,-cillin
+AZLOCILLIN SODIUM,1,CC1(C)S[C@@H]2[C@H](NC(=O)[C@H](NC(=O)N3CCNC3=O)c3ccccc3)C(=O)N2[C@H]1C(=O)[O-].[Na+],-cillin
+PENICILLIN G SODIUM,0,CC1(C)S[C@@H]2[C@H](NC(=O)Cc3ccccc3)C(=O)N2[C@H]1C(=O)[O-].[Na+],-cillin
+METHICILLIN SODIUM,0,COc1cccc(OC)c1C(=O)N[C@@H]1C(=O)N2[C@@H]1SC(C)(C)[C@@H]2C(=O)[O-].O.[Na+],-cillin
+METHICILLIN,0,COc1cccc(OC)c1C(=O)N[C@@H]1C(=O)N2[C@@H]1SC(C)(C)[C@@H]2C(=O)O,-cillin
+CARBENICILLIN DISODIUM,0,CC1(C)S[C@@H]2[C@H](NC(=O)C(C(=O)[O-])c3ccccc3)C(=O)N2[C@H]1C(=O)[O-].[Na+].[Na+],-cillin
+HETACILLIN,0,CC1(C)S[C@@H]2[C@H](N3C(=O)[C@@H](c4ccccc4)NC3(C)C)C(=O)N2[C@H]1C(=O)O,-cillin
+FLOXACILLIN,0,Cc1onc(-c2c(F)cccc2Cl)c1C(=O)N[C@@H]1C(=O)N2[C@@H]1SC(C)(C)[C@@H]2C(=O)O,-cillin
+PHENETHICILLIN,0,CC(Oc1ccccc1)C(=O)N[C@@H]1C(=O)N2[C@@H]1SC(C)(C)[C@@H]2C(=O)O,-cillin
+TICARCILLIN DISODIUM,0,CC1(C)S[C@@H]2[C@H](NC(=O)[C@H](C(=O)[O-])c3ccsc3)C(=O)N2[C@H]1C(=O)[O-].[Na+].[Na+],-cillin
+NAFCILLIN,0,CCOc1ccc2ccccc2c1C(=O)N[C@@H]1C(=O)N2[C@@H]1SC(C)(C)[C@@H]2C(=O)O,-cillin
+AMPICILLIN,0,CC1(C)S[C@@H]2[C@H](NC(=O)[C@H](N)c3ccccc3)C(=O)N2[C@H]1C(=O)O,-cillin
+PENICILLIN V POTASSIUM,0,CC1(C)S[C@@H]2[C@H](NC(=O)COc3ccccc3)C(=O)N2[C@H]1C(=O)[O-].[K+],-cillin
+CARBENICILLIN INDANYL,0,CC1(C)S[C@@H]2[C@H](NC(=O)C(C(=O)Oc3ccc4c(c3)CCC4)c3ccccc3)C(=O)N2[C@H]1C(=O)O,-cillin
+PROPICILLIN,0,CCC(Oc1ccccc1)C(=O)N[C@@H]1C(=O)N2[C@@H]1SC(C)(C)[C@@H]2C(=O)O,-cillin
+DICLOXACILLIN SODIUM,0,Cc1onc(-c2c(Cl)cccc2Cl)c1C(=O)N[C@@H]1C(=O)N2[C@@H]1SC(C)(C)[C@@H]2C(=O)[O-].O.[Na+],-cillin
+BENZYLPENICILLIN,0,CC1(C)S[C@@H]2[C@H](NC(=O)Cc3ccccc3)C(=O)N2[C@H]1C(=O)O,-cillin
+AMOXICILLIN,0,CC1(C)S[C@@H]2[C@H](NC(=O)[C@H](N)c3ccc(O)cc3)C(=O)N2[C@H]1C(=O)O,-cillin
+AMPICILLIN SODIUM,0,CC1(C)S[C@@H]2[C@H](NC(=O)[C@H](N)c3ccccc3)C(=O)N2[C@H]1C(=O)[O-].[Na+],-cillin
+NAFCILLIN SODIUM,0,CCOc1ccc2ccccc2c1C(=O)N[C@@H]1C(=O)N2[C@@H]1SC(C)(C)[C@@H]2C(=O)[O-].O.[Na+],-cillin
+TICARCILLIN,0,CC1(C)S[C@@H]2[C@H](NC(=O)[C@H](C(=O)O)c3ccsc3)C(=O)N2[C@H]1C(=O)O,-cillin
+PENICILLIN V,0,CC1(C)S[C@@H]2[C@H](NC(=O)COc3ccccc3)C(=O)N2[C@H]1C(=O)O,-cillin
+CARBENICILLIN,0,CC1(C)S[C@@H]2[C@H](NC(=O)C(C(=O)O)c3ccccc3)C(=O)N2[C@H]1C(=O)O,-cillin
+BENETHAMINE PENICILLIN,0,CC1(C)S[C@@H]2[C@H](NC(=O)Cc3ccccc3)C(=O)N2[C@H]1C(=O)O.c1ccc(CCNCc2ccccc2)cc1,-cillin
+PENICILLIN G POTASSIUM,0,CC1(C)S[C@@H]2[C@H](NC(=O)Cc3ccccc3)C(=O)N2[C@H]1C(=O)[O-].[K+],-cillin
+PENICILLIN G BENZATHINE,0,CC1(C)S[C@@H]2[C@H](NC(=O)Cc3ccccc3)C(=O)N2[C@H]1C(=O)O.CC1(C)S[C@@H]2[C@H](NC(=O)Cc3ccccc3)C(=O)N2[C@H]1C(=O)O.O.O.O.O.c1ccc(CNCCNCc2ccccc2)cc1,-cillin
+FENTICONAZOLE,1,Clc1ccc(C(Cn2ccnc2)OCc2ccc(Sc3ccccc3)cc2)c(Cl)c1,-conazole
+FENTICONAZOLE NITRATE,1,Clc1ccc(C(Cn2ccnc2)OCc2ccc(Sc3ccccc3)cc2)c(Cl)c1.O=[N+]([O-])O,-conazole
+ISOCONAZOLE,1,Clc1ccc(C(Cn2ccnc2)OCc2c(Cl)cccc2Cl)c(Cl)c1,-conazole
+VORICONAZOLE,0,C[C@@H](c1ncncc1F)[C@](O)(Cn1cncn1)c1ccc(F)cc1F,-conazole
+TERCONAZOLE,1,CC(C)N1CCN(c2ccc(OC[C@H]3CO[C@](Cn4cncn4)(c4ccc(Cl)cc4Cl)O3)cc2)CC1,-conazole
+LULICONAZOLE,1,N#C/C(=C1/SC[C@@H](c2ccc(Cl)cc2Cl)S1)n1ccnc1,-conazole
+SERTACONAZOLE,1,Clc1ccc(C(Cn2ccnc2)OCc2csc3c(Cl)cccc23)c(Cl)c1,-conazole
+SULCONAZOLE,1,Clc1ccc(CSC(Cn2ccnc2)c2ccc(Cl)cc2Cl)cc1,-conazole
+BUTOCONAZOLE,1,Clc1ccc(CCC(Cn2ccnc2)Sc2c(Cl)cccc2Cl)cc1,-conazole
+OXICONAZOLE,1,Clc1ccc(CO/N=C(\Cn2ccnc2)c2ccc(Cl)cc2Cl)c(Cl)c1,-conazole
+OXICONAZOLE NITRATE,1,Clc1ccc(CO/N=C(\Cn2ccnc2)c2ccc(Cl)cc2Cl)c(Cl)c1.O=[N+]([O-])O,-conazole
+OTESECONAZOLE,1,O[C@@](Cn1cnnn1)(c1ccc(F)cc1F)C(F)(F)c1ccc(-c2ccc(OCC(F)(F)F)cc2)cn1,-conazole
+SERTACONAZOLE NITRATE,1,Clc1ccc(C(Cn2ccnc2)OCc2csc3c(Cl)cccc23)c(Cl)c1.O=[N+]([O-])O,-conazole
+TIOCONAZOLE,1,Clc1ccc(C(Cn2ccnc2)OCc2ccsc2Cl)c(Cl)c1,-conazole
+ECONAZOLE NITRATE,1,Clc1ccc(COC(Cn2ccnc2)c2ccc(Cl)cc2Cl)cc1.O=[N+]([O-])O,-conazole
+ECONAZOLE,1,Clc1ccc(COC(Cn2ccnc2)c2ccc(Cl)cc2Cl)cc1,-conazole
+KETOCONAZOLE,1,CC(=O)N1CCN(c2ccc(OCC3COC(Cn4ccnc4)(c4ccc(Cl)cc4Cl)O3)cc2)CC1,-conazole
+MICONAZOLE NITRATE,1,Clc1ccc(COC(Cn2ccnc2)c2ccc(Cl)cc2Cl)c(Cl)c1.O=[N+]([O-])O,-conazole
+FLUCONAZOLE,0,OC(Cn1cncn1)(Cn1cncn1)c1ccc(F)cc1F,-conazole
+BUTOCONAZOLE NITRATE,1,Clc1ccc(CCC(Cn2ccnc2)Sc2c(Cl)cccc2Cl)cc1.O=[N+]([O-])O,-conazole
+LEVOKETOCONAZOLE,1,CC(=O)N1CCN(c2ccc(OC[C@@H]3CO[C@@](Cn4ccnc4)(c4ccc(Cl)cc4Cl)O3)cc2)CC1,-conazole
+ISAVUCONAZOLE,0,C[C@@H](c1nc(-c2ccc(C#N)cc2)cs1)[C@](O)(Cn1cncn1)c1cc(F)ccc1F,-conazole
+MICONAZOLE,1,Clc1ccc(COC(Cn2ccnc2)c2ccc(Cl)cc2Cl)c(Cl)c1,-conazole
+SULCONAZOLE NITRATE,1,Clc1ccc(CSC(Cn2ccnc2)c2ccc(Cl)cc2Cl)cc1.O=[N+]([O-])O,-conazole
+CELIPROLOL HYDROCHLORIDE,0,CCN(CC)C(=O)Nc1ccc(OCC(O)CNC(C)(C)C)c(C(C)=O)c1.Cl,-olol
+METIPRANOLOL,0,CC(=O)Oc1c(C)cc(OCC(O)CNC(C)C)c(C)c1C,-olol
+NEBIVOLOL,0,OC(CNCC(O)C1CCc2cc(F)ccc2O1)C1CCc2cc(F)ccc2O1,-olol
+LEVOBUNOLOL HYDROCHLORIDE,0,CC(C)(C)NC[C@H](O)COc1cccc2c1CCCC2=O.Cl,-olol
+METIPRANOLOL HYDROCHLORIDE,0,CC(=O)Oc1c(C)cc(OCC(O)CNC(C)C)c(C)c1C.Cl,-olol
+METOPROLOL FUMARATE,0,COCCc1ccc(OCC(O)CNC(C)C)cc1.COCCc1ccc(OCC(O)CNC(C)C)cc1.O=C(O)/C=C/C(=O)O,-olol
+PINDOLOL,0,CC(C)NCC(O)COc1cccc2[nH]ccc12,-olol
+LEVOBUNOLOL,0,CC(C)(C)NC[C@H](O)COc1cccc2c1CCCC2=O,-olol
+CARTEOLOL HYDROCHLORIDE,0,CC(C)(C)NCC(O)COc1cccc2c1CCC(=O)N2.Cl,-olol
+ESMOLOL,0,COC(=O)CCc1ccc(OCC(O)CNC(C)C)cc1,-olol
+CARTEOLOL,0,CC(C)(C)NCC(O)COc1cccc2c1CCC(=O)N2,-olol
+LEVOBETAXOLOL HYDROCHLORIDE,0,CC(C)NC[C@H](O)COc1ccc(CCOCC2CC2)cc1.Cl,-olol
+CELIPROLOL,0,CCN(CC)C(=O)Nc1ccc(OCC(O)CNC(C)(C)C)c(C(C)=O)c1,-olol
+PROPRANOLOL HYDROCHLORIDE,0,CC(C)NCC(O)COc1cccc2ccccc12.Cl,-olol
+TIMOLOL MALEATE,0,CC(C)(C)NC[C@H](O)COc1nsnc1N1CCOCC1.O=C(O)/C=C\C(=O)O,-olol
+LEVOBETAXOLOL,0,CC(C)NC[C@H](O)COc1ccc(CCOCC2CC2)cc1,-olol
+PRACTOLOL,0,CC(=O)Nc1ccc(OCC(O)CNC(C)C)cc1,-olol
+OXPRENOLOL,0,C=CCOc1ccccc1OCC(O)CNC(C)C,-olol
+TERTATOLOL,0,CC(C)(C)NCC(O)COc1cccc2c1SCCC2,-olol
+ESMOLOL HYDROCHLORIDE,0,COC(=O)CCc1ccc(OCC(O)CNC(C)C)cc1.Cl,-olol
+PENBUTOLOL,0,CC(C)(C)NC[C@H](O)COc1ccccc1C1CCCC1,-olol
+ATENOLOL,0,CC(C)NCC(O)COc1ccc(CC(N)=O)cc1,-olol
+PENBUTOLOL SULFATE,0,CC(C)(C)NC[C@H](O)COc1ccccc1C1CCCC1.CC(C)(C)NC[C@H](O)COc1ccccc1C1CCCC1.O=S(=O)(O)O,-olol
+OXPRENOLOL HYDROCHLORIDE,0,C=CCOc1ccccc1OCC(O)CNC(C)C.Cl,-olol
+METOPROLOL SUCCINATE,0,COCCc1ccc(OCC(O)CNC(C)C)cc1.COCCc1ccc(OCC(O)CNC(C)C)cc1.O=C(O)CCC(=O)O,-olol
+BISOPROLOL FUMARATE,0,CC(C)NCC(O)COc1ccc(COCCOC(C)C)cc1.CC(C)NCC(O)COc1ccc(COCCOC(C)C)cc1.O=C(O)/C=C/C(=O)O,-olol
+ACEBUTOLOL,0,CCCC(=O)Nc1ccc(OCC(O)CNC(C)C)c(C(C)=O)c1,-olol
+NEBIVOLOL HYDROCHLORIDE,0,Cl.OC(CNCC(O)C1CCc2cc(F)ccc2O1)C1CCc2cc(F)ccc2O1,-olol
+METOPROLOL TARTRATE,0,COCCc1ccc(OCC(O)CNC(C)C)cc1.COCCc1ccc(OCC(O)CNC(C)C)cc1.O=C(O)C(O)C(O)C(=O)O,-olol
+ACEBUTOLOL HYDROCHLORIDE,0,CCCC(=O)Nc1ccc(OCC(O)CNC(C)C)c(C(C)=O)c1.Cl,-olol
+STANOZOLOL,0,C[C@]12Cc3c[nH]nc3C[C@@H]1CC[C@@H]1[C@@H]2CC[C@@]2(C)[C@H]1CC[C@]2(C)O,-olol
+BETAXOLOL HYDROCHLORIDE,0,CC(C)NCC(O)COc1ccc(CCOCC2CC2)cc1.Cl,-olol
+METOPROLOL,0,COCCc1ccc(OCC(O)CNC(C)C)cc1,-olol
+PROPRANOLOL,0,CC(C)NCC(O)COc1cccc2ccccc12,-olol
+BETAXOLOL,0,CC(C)NCC(O)COc1ccc(CCOCC2CC2)cc1,-olol
+TIMOLOL,0,CC(C)(C)NC[C@H](O)COc1nsnc1N1CCOCC1,-olol
+BISOPROLOL,0,CC(C)NCC(O)COc1ccc(COCCOC(C)C)cc1,-olol
+TROVAFLOXACIN MESYLATE,0,CS(=O)(=O)O.N[C@@H]1[C@H]2CN(c3nc4c(cc3F)c(=O)c(C(=O)O)cn4-c3ccc(F)cc3F)C[C@@H]12,-oxacin
+GREPAFLOXACIN,0,Cc1c(F)c(N2CCNC(C)C2)cc2c1c(=O)c(C(=O)O)cn2C1CC1,-oxacin
+OFLOXACIN,0,CC1COc2c(N3CCN(C)CC3)c(F)cc3c(=O)c(C(=O)O)cn1c23,-oxacin
+NORFLOXACIN,0,CCn1cc(C(=O)O)c(=O)c2cc(F)c(N3CCNCC3)cc21,-oxacin
+GEMIFLOXACIN MESYLATE,0,CO/N=C1\CN(c2nc3c(cc2F)c(=O)c(C(=O)O)cn3C2CC2)CC1CN.CS(=O)(=O)O,-oxacin
+GREPAFLOXACIN HYDROCHLORIDE,0,Cc1c(F)c(N2CCNC(C)C2)cc2c1c(=O)c(C(=O)O)cn2C1CC1.Cl,-oxacin
+BESIFLOXACIN HYDROCHLORIDE,0,Cl.N[C@@H]1CCCCN(c2c(F)cc3c(=O)c(C(=O)O)cn(C4CC4)c3c2Cl)C1,-oxacin
+SPARFLOXACIN,0,C[C@@H]1CN(c2c(F)c(N)c3c(=O)c(C(=O)O)cn(C4CC4)c3c2F)C[C@H](C)N1,-oxacin
+ENOXACIN,0,CCn1cc(C(=O)O)c(=O)c2cc(F)c(N3CCNCC3)nc21,-oxacin
+LEVOFLOXACIN,0,C[C@H]1COc2c(N3CCN(C)CC3)c(F)cc3c(=O)c(C(=O)O)cn1c23,-oxacin
+DELAFLOXACIN,0,Nc1nc(-n2cc(C(=O)O)c(=O)c3cc(F)c(N4CC(O)C4)c(Cl)c32)c(F)cc1F,-oxacin
+FINAFLOXACIN,0,N#Cc1c(N2C[C@@H]3NCCO[C@H]3C2)c(F)cc2c(=O)c(C(=O)O)cn(C3CC3)c12,-oxacin
+ROSOXACIN,0,CCn1cc(C(=O)O)c(=O)c2ccc(-c3ccncc3)cc21,-oxacin
+PEFLOXACIN,0,CCn1cc(C(=O)O)c(=O)c2cc(F)c(N3CCN(C)CC3)cc21,-oxacin
+OZENOXACIN,0,CNc1ncc(-c2ccc3c(=O)c(C(=O)O)cn(C4CC4)c3c2C)cc1C,-oxacin
+TROVAFLOXACIN,0,N[C@@H]1[C@H]2CN(c3nc4c(cc3F)c(=O)c(C(=O)O)cn4-c3ccc(F)cc3F)C[C@@H]12,-oxacin
+BESIFLOXACIN,0,N[C@@H]1CCCCN(c2c(F)cc3c(=O)c(C(=O)O)cn(C4CC4)c3c2Cl)C1,-oxacin
+TEMAFLOXACIN,0,CC1CN(c2cc3c(cc2F)c(=O)c(C(=O)O)cn3-c2ccc(F)cc2F)CCN1,-oxacin
+GATIFLOXACIN,0,COc1c(N2CCNC(C)C2)c(F)cc2c(=O)c(C(=O)O)cn(C3CC3)c12,-oxacin
+MOXIFLOXACIN,0,COc1c(N2C[C@@H]3CCCN[C@@H]3C2)c(F)cc2c(=O)c(C(=O)O)cn(C3CC3)c12,-oxacin
+CIPROFLOXACIN HYDROCHLORIDE,0,Cl.O=C(O)c1cn(C2CC2)c2cc(N3CCNCC3)c(F)cc2c1=O,-oxacin
+TEMAFLOXACIN HYDROCHLORIDE,0,CC1CN(c2cc3c(cc2F)c(=O)c(C(=O)O)cn3-c2ccc(F)cc2F)CCN1.Cl,-oxacin
+MOXIFLOXACIN HYDROCHLORIDE,0,COc1c(N2C[C@@H]3CCCN[C@@H]3C2)c(F)cc2c(=O)c(C(=O)O)cn(C3CC3)c12.Cl,-oxacin
+CINOXACIN,0,CCn1nc(C(=O)O)c(=O)c2cc3c(cc21)OCO3,-oxacin
+GEMIFLOXACIN,0,CO/N=C1\CN(c2nc3c(cc2F)c(=O)c(C(=O)O)cn3C2CC2)CC1CN,-oxacin
+DELAFLOXACIN MEGLUMINE,0,CNC[C@H](O)[C@@H](O)[C@H](O)[C@H](O)CO.Nc1nc(-n2cc(C(=O)O)c(=O)c3cc(F)c(N4CC(O)C4)c(Cl)c32)c(F)cc1F,-oxacin
+LOMEFLOXACIN HYDROCHLORIDE,0,CCn1cc(C(=O)O)c(=O)c2cc(F)c(N3CCNC(C)C3)c(F)c21.Cl,-oxacin
+LOMEFLOXACIN,0,CCn1cc(C(=O)O)c(=O)c2cc(F)c(N3CCNC(C)C3)c(F)c21,-oxacin
+CIPROFLOXACIN,0,O=C(O)c1cn(C2CC2)c2cc(N3CCNCC3)c(F)cc2c1=O,-oxacin
+PIRENZEPINE,0,CN1CCN(CC(=O)N2c3ccccc3C(=O)Nc3cccnc32)CC1,-pine
+INDALPINE,0,c1ccc2c(CCC3CCNCC3)c[nH]c2c1,-pine
+ASENAPINE,0,CN1CC2c3ccccc3Oc3ccc(Cl)cc3C2C1,-pine
+OXCARBAZEPINE,0,NC(=O)N1c2ccccc2CC(=O)c2ccccc21,-pine
+CLOZAPINE,0,CN1CCN(C2=Nc3cc(Cl)ccc3Nc3ccccc32)CC1,-pine
+MIRTAZAPINE,0,CN1CCN2c3ncccc3Cc3ccccc3C2C1,-pine
+LOXAPINE HYDROCHLORIDE,0,CN1CCN(C2=Nc3ccccc3Oc3ccc(Cl)cc32)CC1.Cl,-pine
+CLOTHIAPINE,0,CN1CCN(C2=Nc3ccccc3Sc3ccc(Cl)cc32)CC1,-pine
+ESLICARBAZEPINE ACETATE,0,CC(=O)O[C@H]1Cc2ccccc2N(C(N)=O)c2ccccc21,-pine
+ESLICARBAZEPINE,0,NC(=O)N1c2ccccc2C[C@H](O)c2ccccc21,-pine
+ZOTEPINE,0,CN(C)CCOC1=Cc2ccccc2Sc2ccc(Cl)cc21,-pine
+LOXAPINE SUCCINATE,0,CN1CCN(C2=Nc3ccccc3Oc3ccc(Cl)cc32)CC1.O=C(O)CCC(=O)O,-pine
+PILOCARPINE NITRATE,0,CC[C@@H]1C(=O)OC[C@@H]1Cc1cncn1C.O=[N+]([O-])O,-pine
+NOSCAPINE,0,COc1ccc2c(c1OC)C(=O)O[C@@H]2[C@H]1c2c(cc3c(c2OC)OCO3)CCN1C,-pine
+OLANZAPINE,0,Cc1cc2c(s1)Nc1ccccc1N=C2N1CCN(C)CC1,-pine
+AMOXAPINE,0,Clc1ccc2c(c1)C(N1CCNCC1)=Nc1ccccc1O2,-pine
+OLANZAPINE PAMOATE,0,Cc1cc2c(s1)Nc1ccccc1N=C2N1CCN(C)CC1.O.O=C(O)c1cc2ccccc2c(Cc2c(O)c(C(=O)O)cc3ccccc23)c1O,-pine
+LOXAPINE,0,CN1CCN(C2=Nc3ccccc3Oc3ccc(Cl)cc32)CC1,-pine
+PILOCARPINE,0,CC[C@@H]1C(=O)OC[C@@H]1Cc1cncn1C,-pine
+ASENAPINE MALEATE,0,CN1CC2c3ccccc3Oc3ccc(Cl)cc3C2C1.O=C(O)/C=C\C(=O)O,-pine
+PILOCARPINE HYDROCHLORIDE,0,CC[C@@H]1C(=O)OC[C@@H]1Cc1cncn1C.Cl,-pine
+CARBAMAZEPINE,0,NC(=O)N1c2ccccc2C=Cc2ccccc21,-pine
+SULFACARBAMIDE,0,NC(=O)NS(=O)(=O)c1ccc(N)cc1,sulfa-
+SULFAGUANIDINE,1,N=C(N)NS(=O)(=O)c1ccc(N)cc1,sulfa-
+SULFANILAMIDE,0,Nc1ccc(S(N)(=O)=O)cc1,sulfa-
+SULFACETAMIDE SODIUM,0,CC(=O)[N-]S(=O)(=O)c1ccc(N)cc1.O.[Na+],sulfa-
+SULFADIMETHOXINE SODIUM,0,COc1cc([N-]S(=O)(=O)c2ccc(N)cc2)nc(OC)n1.[Na+],sulfa-
+"SULFADIAZINE, SILVER",0,Nc1ccc(S(=O)(=O)[N-]c2ncccn2)cc1.[Ag+],sulfa-
+SULFACETAMIDE,0,CC(=O)NS(=O)(=O)c1ccc(N)cc1,sulfa-
+SULFAMETHOXAZOLE,0,Cc1cc(NS(=O)(=O)c2ccc(N)cc2)no1,sulfa-
+SULFAMERAZINE,0,Cc1ccnc(NS(=O)(=O)c2ccc(N)cc2)n1,sulfa-
+SULFADIAZINE SODIUM,0,Nc1ccc(S(=O)(=O)[N-]c2ncccn2)cc1.[Na+],sulfa-
+SULFATHIAZOLE,0,Nc1ccc(S(=O)(=O)Nc2nccs2)cc1,sulfa-
+SULFAMETHAZINE,0,Cc1cc(C)nc(NS(=O)(=O)c2ccc(N)cc2)n1,sulfa-
+SULFAPHENAZOLE,0,Nc1ccc(S(=O)(=O)Nc2ccnn2-c2ccccc2)cc1,sulfa-
+SULFADIMETHOXINE,0,COc1cc(NS(=O)(=O)c2ccc(N)cc2)nc(OC)n1,sulfa-
+SULFAMETHOXYPYRIDAZINE,0,COc1ccc(NS(=O)(=O)c2ccc(N)cc2)nn1,sulfa-
+SULFACYTINE,0,CCn1ccc(NS(=O)(=O)c2ccc(N)cc2)nc1=O,sulfa-
+SULFADIAZINE,0,Nc1ccc(S(=O)(=O)Nc2ncccn2)cc1,sulfa-
+SULFABENZAMIDE,0,Nc1ccc(S(=O)(=O)NC(=O)c2ccccc2)cc1,sulfa-
+SULFADOXINE,0,COc1ncnc(NS(=O)(=O)c2ccc(N)cc2)c1OC,sulfa-
+SULFAMETHIZOLE,0,Cc1nnc(NS(=O)(=O)c2ccc(N)cc2)s1,sulfa-
+SULFALENE,0,COc1nccnc1NS(=O)(=O)c1ccc(N)cc1,sulfa-
+SULFAPYRIDINE,0,Nc1ccc(S(=O)(=O)Nc2ccccn2)cc1,sulfa-
+SULFAMETER,0,COc1cnc(NS(=O)(=O)c2ccc(N)cc2)nc1,sulfa-
+REPROTEROL HYDROCHLORIDE,0,Cl.Cn1c(=O)c2c(ncn2CCCNCC(O)c2cc(O)cc(O)c2)n(C)c1=O,-terol
+OLODATEROL,0,COc1ccc(CC(C)(C)NC[C@H](O)c2cc(O)cc3c2OCC(=O)N3)cc1,-terol
+RIMITEROL HYDROBROMIDE,0,Br.Oc1ccc(C(O)C2CCCCN2)cc1O,-terol
+CLENBUTEROL HYDROCHLORIDE,0,CC(C)(C)NCC(O)c1cc(Cl)c(N)c(Cl)c1.Cl,-terol
+TULOBUTEROL,0,CC(C)(C)NCC(O)c1ccccc1Cl,-terol
+XAMOTEROL FUMARATE,0,O=C(NCCNCC(O)COc1ccc(O)cc1)N1CCOCC1.O=C(NCCNCC(O)COc1ccc(O)cc1)N1CCOCC1.O=C(O)/C=C/C(=O)O,-terol
+OLODATEROL HYDROCHLORIDE,0,COc1ccc(CC(C)(C)NC[C@H](O)c2cc(O)cc3c2OCC(=O)N3)cc1.Cl,-terol
+CLENBUTEROL,0,CC(C)(C)NCC(O)c1cc(Cl)c(N)c(Cl)c1,-terol
+BITOLTEROL MESYLATE,1,CS(=O)(=O)O.Cc1ccc(C(=O)Oc2ccc(C(O)CNC(C)(C)C)cc2OC(=O)c2ccc(C)cc2)cc1,-terol
+RIMITEROL,0,Oc1ccc(C(O)C2CCCCN2)cc1O,-terol
+FENOTEROL,0,CC(Cc1ccc(O)cc1)NCC(O)c1cc(O)cc(O)c1,-terol
+XAMOTEROL,0,O=C(NCCNCC(O)COc1ccc(O)cc1)N1CCOCC1,-terol
+BITOLTEROL,1,Cc1ccc(C(=O)Oc2ccc(C(O)CNC(C)(C)C)cc2OC(=O)c2ccc(C)cc2)cc1,-terol
+INDACATEROL MALEATE,0,CCc1cc2c(cc1CC)CC(NC[C@H](O)c1ccc(O)c3[nH]c(=O)ccc13)C2.O=C(O)/C=C\C(=O)O,-terol
+INDACATEROL,0,CCc1cc2c(cc1CC)CC(NC[C@H](O)c1ccc(O)c3[nH]c(=O)ccc13)C2,-terol
+ALBUTEROL,0,CC(C)(C)NCC(O)c1ccc(O)c(CO)c1,-terol
+REPROTEROL,0,Cn1c(=O)c2c(ncn2CCCNCC(O)c2cc(O)cc(O)c2)n(C)c1=O,-terol
+LEVALBUTEROL HYDROCHLORIDE,0,CC(C)(C)NC[C@H](O)c1ccc(O)c(CO)c1.Cl,-terol
+VILANTEROL,0,OCc1cc([C@@H](O)CNCCCCCCOCCOCc2c(Cl)cccc2Cl)ccc1O,-terol
+PIRBUTEROL,0,CC(C)(C)NCC(O)c1ccc(O)c(CO)n1,-terol
+LEVALBUTEROL TARTRATE,0,CC(C)(C)NC[C@H](O)c1ccc(O)c(CO)c1.CC(C)(C)NC[C@H](O)c1ccc(O)c(CO)c1.O=C(O)C(O)C(O)C(=O)O,-terol
+ARFORMOTEROL TARTRATE,0,COc1ccc(C[C@@H](C)NC[C@H](O)c2ccc(O)c(NC=O)c2)cc1.O=C(O)C(O)C(O)C(=O)O,-terol
+FORMOTEROL,0,COc1ccc(CC(C)NCC(O)c2ccc(O)c(NC=O)c2)cc1,-terol
+ALBUTEROL SULFATE,0,CC(C)(C)NCC(O)c1ccc(O)c(CO)c1.CC(C)(C)NCC(O)c1ccc(O)c(CO)c1.O=S(=O)(O)O,-terol
+PIRBUTEROL ACETATE,0,CC(=O)O.CC(C)(C)NCC(O)c1ccc(O)c(CO)n1,-terol
+FORMOTEROL FUMARATE,0,COc1ccc(CC(C)NCC(O)c2ccc(O)c(NC=O)c2)cc1.COc1ccc(CC(C)NCC(O)c2ccc(O)c(NC=O)c2)cc1.O.O.O=C(O)/C=C/C(=O)O,-terol
+PIRBUTEROL HYDROCHLORIDE,0,CC(C)(C)NCC(O)c1ccc(O)c(CO)n1.Cl.Cl,-terol
+ARFORMOTEROL,0,COc1ccc(C[C@@H](C)NC[C@H](O)c2ccc(O)c(NC=O)c2)cc1,-terol
+VILANTEROL TRIFENATATE,0,O=C(O)C(c1ccccc1)(c1ccccc1)c1ccccc1.OCc1cc([C@@H](O)CNCCCCCCOCCOCc2c(Cl)cccc2Cl)ccc1O,-terol
+GEFITINIB,0,COc1cc2ncnc(Nc3ccc(F)c(Cl)c3)c2cc1OCCCN1CCOCC1,-tinib
+MASITINIB,1,Cc1ccc(NC(=O)c2ccc(CN3CCN(C)CC3)cc2)cc1Nc1nc(-c2cccnc2)cs1,-tinib
+DACOMITINIB,1,COc1cc2ncnc(Nc3ccc(F)c(Cl)c3)c2cc1NC(=O)/C=C/CN1CCCCC1.O,-tinib
+ACALABRUTINIB MALEATE,0,CC#CC(=O)N1CCC[C@H]1c1nc(-c2ccc(C(=O)Nc3ccccn3)cc2)c2c(N)nccn12.O=C(O)/C=C\C(=O)O,-tinib
+IMATINIB,0,Cc1ccc(NC(=O)c2ccc(CN3CCN(C)CC3)cc2)cc1Nc1nccc(-c2cccnc2)n1,-tinib
+PACRITINIB,0,C1=N/C2=N/c3ccc(OCCN4CCCC4)c(c3)COC/C=C/COCc3cccc(c3)C(=C1)N2,-tinib
+IBRUTINIB,0,C=CC(=O)N1CCC[C@@H](n2nc(-c3ccc(Oc4ccccc4)cc3)c3c(N)ncnc32)C1,-tinib
+SELPERCATINIB,1,COc1ccc(CN2C3CC2CN(c2ccc(-c4cc(OCC(C)(C)O)cn5ncc(C#N)c45)cn2)C3)cn1,-tinib
+LAROTRECTINIB SULFATE,0,O=C(Nc1cnn2ccc(N3CCC[C@@H]3c3cc(F)ccc3F)nc12)N1CC[C@H](O)C1.O=S(=O)(O)O,-tinib
+COBIMETINIB,1,O=C(c1ccc(F)c(F)c1Nc1ccc(I)cc1F)N1CC(O)([C@@H]2CCCCN2)C1,-tinib
+FEDRATINIB,1,Cc1cnc(Nc2ccc(OCCN3CCCC3)cc2)nc1Nc1cccc(S(=O)(=O)NC(C)(C)C)c1,-tinib
+ERLOTINIB,0,C#Cc1cccc(Nc2ncnc3cc(OCCOC)c(OCCOC)cc23)c1,-tinib
+PEXIDARTINIB HYDROCHLORIDE,1,Cl.FC(F)(F)c1ccc(CNc2ccc(Cc3c[nH]c4ncc(Cl)cc34)cn2)cn1,-tinib
+RUXOLITINIB,0,N#CC[C@H](C1CCCC1)n1cc(-c2ncnc3[nH]ccc23)cn1,-tinib
+PEMIGATINIB,0,CCN1C(=O)N(c2c(F)c(OC)cc(OC)c2F)Cc2cnc3[nH]c(CN4CCOCC4)cc3c21,-tinib
+CAPMATINIB HYDROCHLORIDE,0,CNC(=O)c1ccc(-c2cnc3ncc(Cc4ccc5ncccc5c4)n3n2)cc1F.Cl.Cl.O,-tinib
+PONATINIB HYDROCHLORIDE,1,Cc1ccc(C(=O)Nc2ccc(CN3CCN(C)CC3)c(C(F)(F)F)c2)cc1C#Cc1cnc2cccnn12.Cl,-tinib
+LORLATINIB,0,C[C@H]1Oc2cc(cnc2N)-c2c(nn(C)c2C#N)CN(C)C(=O)c2ccc(F)cc21,-tinib
+DACOMITINIB,1,COc1cc2ncnc(Nc3ccc(F)c(Cl)c3)c2cc1NC(=O)/C=C/CN1CCCCC1,-tinib
+CAPMATINIB,0,CNC(=O)c1ccc(-c2cnc3ncc(Cc4ccc5ncccc5c4)n3n2)cc1F,-tinib
+PONATINIB,1,Cc1ccc(C(=O)Nc2ccc(CN3CCN(C)CC3)c(C(F)(F)F)c2)cc1C#Cc1cnc2cccnn12,-tinib
+BARICITINIB,0,CCS(=O)(=O)N1CC(CC#N)(n2cc(-c3ncnc4[nH]ccc34)cn2)C1,-tinib
+UPADACITINIB,0,CC[C@@H]1CN(C(=O)NCC(F)(F)F)C[C@@H]1c1cnc2cnc3[nH]ccc3n12,-tinib
+SELUMETINIB SULFATE,0,Cn1cnc2c(F)c(Nc3ccc(Br)cc3Cl)c(C(=O)NOCCO)cc21.O=S(=O)(O)O,-tinib
+AFATINIB,0,CN(C)C/C=C/C(=O)Nc1cc2c(Nc3ccc(F)c(Cl)c3)ncnc2cc1O[C@H]1CCOC1,-tinib
+IMATINIB MESYLATE,0,CS(=O)(=O)O.Cc1ccc(NC(=O)c2ccc(CN3CCN(C)CC3)cc2)cc1Nc1nccc(-c2cccnc2)n1,-tinib
+FEDRATINIB HYDROCHLORIDE,1,Cc1cnc(Nc2ccc(OCCN3CCCC3)cc2)nc1Nc1cccc(S(=O)(=O)NC(C)(C)C)c1.Cl.Cl.O,-tinib
+ERLOTINIB HYDROCHLORIDE,0,C#Cc1cccc(Nc2ncnc3cc(OCCOC)c(OCCOC)cc23)c1.Cl,-tinib
+CRIZOTINIB,1,C[C@@H](Oc1cc(-c2cnn(C3CCNCC3)c2)cnc1N)c1c(Cl)ccc(F)c1Cl,-tinib
+TOFACITINIB CITRATE,0,C[C@@H]1CCN(C(=O)CC#N)C[C@@H]1N(C)c1ncnc2[nH]ccc12.O=C(O)CC(O)(CC(=O)O)C(=O)O,-tinib
+ABROCITINIB,0,CCCS(=O)(=O)N[C@H]1C[C@@H](N(C)c2ncnc3[nH]ccc23)C1,-tinib
+LAROTRECTINIB,0,O=C(Nc1cnn2ccc(N3CCC[C@@H]3c3cc(F)ccc3F)nc12)N1CC[C@H](O)C1,-tinib
+BINIMETINIB,0,Cn1cnc2c(F)c(Nc3ccc(Br)cc3F)c(C(=O)NOCCO)cc21,-tinib
+PACRITINIB CITRATE,0,C1=C/COCc2cc(ccc2OCCN2CCCC2)Nc2nccc(n2)-c2cccc(c2)COC/1.O=C(O)CC(O)(CC(=O)O)C(=O)O,-tinib
+ZANUBRUTINIB,0,C=CC(=O)N1CCC([C@@H]2CCNc3c(C(N)=O)c(-c4ccc(Oc5ccccc5)cc4)nn32)CC1,-tinib
+FUTIBATINIB,0,C=CC(=O)N1CC[C@H](n2nc(C#Cc3cc(OC)cc(OC)c3)c3c(N)ncnc32)C1,-tinib
+SELUMETINIB,0,Cn1cnc2c(F)c(Nc3ccc(Br)cc3Cl)c(C(=O)NOCCO)cc21,-tinib
+TEPOTINIB,0,CN1CCC(COc2cnc(-c3cccc(Cn4nc(-c5cccc(C#N)c5)ccc4=O)c3)nc2)CC1,-tinib
+AFATINIB DIMALEATE,0,CN(C)C/C=C/C(=O)Nc1cc2c(Nc3ccc(F)c(Cl)c3)ncnc2cc1O[C@H]1CCOC1.O=C(O)/C=C\C(=O)O.O=C(O)/C=C\C(=O)O,-tinib
+FILGOTINIB,0,O=C(Nc1nc2cccc(-c3ccc(CN4CCS(=O)(=O)CC4)cc3)n2n1)C1CC1,-tinib
+ALECTINIB,0,CCc1cc2c(cc1N1CCC(N3CCOCC3)CC1)C(C)(C)c1[nH]c3cc(C#N)ccc3c1C2=O,-tinib
+LENVATINIB MESYLATE,0,COc1cc2nccc(Oc3ccc(NC(=O)NC4CC4)c(Cl)c3)c2cc1C(N)=O.CS(=O)(=O)O,-tinib
+TEPOTINIB HYDROCHLORIDE,0,CN1CCC(COc2cnc(-c3cccc(Cn4nc(-c5cccc(C#N)c5)ccc4=O)c3)nc2)CC1.Cl.O,-tinib
+COBIMETINIB FUMARATE,1,O=C(O)/C=C/C(=O)O.O=C(c1ccc(F)c(F)c1Nc1ccc(I)cc1F)N1CC(O)([C@@H]2CCCCN2)C1.O=C(c1ccc(F)c(F)c1Nc1ccc(I)cc1F)N1CC(O)([C@@H]2CCCCN2)C1,-tinib
+TUCATINIB,1,Cc1cc(Nc2ncnc3ccc(NC4=NC(C)(C)CO4)cc23)ccc1Oc1ccn2ncnc2c1,-tinib
+AXITINIB,0,CNC(=O)c1ccccc1Sc1ccc2c(/C=C/c3ccccn3)n[nH]c2c1,-tinib
+DASATINIB,0,Cc1nc(Nc2ncc(C(=O)Nc3c(C)cccc3Cl)s2)cc(N2CCN(CCO)CC2)n1,-tinib
+PEXIDARTINIB,1,FC(F)(F)c1ccc(CNc2ccc(Cc3c[nH]c4ncc(Cl)cc34)cn2)cn1,-tinib
+ACALABRUTINIB,0,CC#CC(=O)N1CCC[C@H]1c1nc(-c2ccc(C(=O)Nc3ccccn3)cc2)c2c(N)nccn12,-tinib
+OSIMERTINIB MESYLATE,0,C=CC(=O)Nc1cc(Nc2nccc(-c3cn(C)c4ccccc34)n2)c(OC)cc1N(C)CCN(C)C.CS(=O)(=O)O,-tinib
+OSIMERTINIB,0,C=CC(=O)Nc1cc(Nc2nccc(-c3cn(C)c4ccccc34)n2)c(OC)cc1N(C)CCN(C)C,-tinib
+TOFACITINIB,0,C[C@@H]1CCN(C(=O)CC#N)C[C@@H]1N(C)c1ncnc2[nH]ccc12,-tinib
+TRAMETINIB,1,CC(=O)Nc1cccc(-n2c(=O)n(C3CC3)c(=O)c3c(Nc4ccc(I)cc4F)n(C)c(=O)c(C)c32)c1,-tinib
+ALECTINIB HYDROCHLORIDE,0,CCc1cc2c(cc1N1CCC(N3CCOCC3)CC1)C(C)(C)c1[nH]c3cc(C#N)ccc3c1C2=O.Cl,-tinib
+ERDAFITINIB,0,COc1cc(OC)cc(N(CCNC(C)C)c2ccc3ncc(-c4cnn(C)c4)nc3c2)c1,-tinib
+AVAPRITINIB,0,Cn1cc(-c2cc3c(N4CCN(c5ncc([C@@](C)(N)c6ccc(F)cc6)cn5)CC4)ncnn3c2)cn1,-tinib
+SUNITINIB,0,CCN(CC)CCNC(=O)c1c(C)[nH]c(/C=C2\C(=O)Nc3ccc(F)cc32)c1C,-tinib
+SUNITINIB MALATE,0,CCN(CC)CCNC(=O)c1c(C)[nH]c(/C=C2\C(=O)Nc3ccc(F)cc32)c1C.O=C(O)C[C@H](O)C(=O)O,-tinib
+RUXOLITINIB PHOSPHATE,0,N#CC[C@H](C1CCCC1)n1cc(-c2ncnc3[nH]ccc23)cn1.O=P(O)(O)O,-tinib
+LENVATINIB,0,COc1cc2nccc(Oc3ccc(NC(=O)NC4CC4)c(Cl)c3)c2cc1C(N)=O,-tinib
+DARUNAVIR ETHANOLATE,1,CC(C)CN(C[C@@H](O)[C@H](Cc1ccccc1)NC(=O)O[C@H]1CO[C@H]2OCC[C@H]21)S(=O)(=O)c1ccc(N)cc1.CCO,-vir
+DASABUVIR,0,COc1c(-c2ccc3cc(NS(C)(=O)=O)ccc3c2)cc(-n2ccc(=O)[nH]c2=O)cc1C(C)(C)C,-vir
+BICTEGRAVIR SODIUM,0,O=C(NCc1c(F)cc(F)cc1F)c1cn2c(c([O-])c1=O)C(=O)N1[C@H]3CC[C@H](C3)O[C@@H]1C2.[Na+],-vir
+AMPRENAVIR,1,CC(C)CN(C[C@@H](O)[C@H](Cc1ccccc1)NC(=O)O[C@H]1CCOC1)S(=O)(=O)c1ccc(N)cc1,-vir
+PERAMIVIR,1,CCC(CC)[C@H](NC(C)=O)[C@@H]1[C@H](O)[C@@H](C(=O)O)C[C@H]1NC(=N)N,-vir
+DOLUTEGRAVIR,0,C[C@@H]1CCO[C@H]2Cn3cc(C(=O)NCc4ccc(F)cc4F)c(=O)c(O)c3C(=O)N12,-vir
+PENCICLOVIR,0,Nc1nc(O)c2ncn(CCC(CO)CO)c2n1,-vir
+ELVITEGRAVIR,0,COc1cc2c(cc1Cc1cccc(Cl)c1F)c(=O)c(C(=O)O)cn2[C@H](CO)C(C)C,-vir
+BALOXAVIR MARBOXIL,1,COC(=O)OCOc1c2n(ccc1=O)N([C@@H]1c3ccccc3SCc3c1ccc(F)c3F)[C@@H]1COCCN1C2=O,-vir
+DASABUVIR SODIUM,0,COc1c(-c2ccc3cc(NS(C)(=O)=O)ccc3c2)cc(-n2ccc(=O)[n-]c2=O)cc1C(C)(C)C.O.[Na+],-vir
+DARUNAVIR,1,CC(C)CN(C[C@@H](O)[C@H](Cc1ccccc1)NC(=O)O[C@H]1CO[C@H]2OCC[C@H]21)S(=O)(=O)c1ccc(N)cc1,-vir
+BICTEGRAVIR,0,O=C(NCc1c(F)cc(F)cc1F)c1cn2c(c(O)c1=O)C(=O)N1[C@H]3CC[C@H](C3)O[C@@H]1C2,-vir
+CIDOFOVIR,0,Nc1ccn(C[C@@H](CO)OCP(=O)(O)O)c(=O)n1,-vir
+ACYCLOVIR,0,Nc1nc2c(ncn2COCCO)c(=O)[nH]1,-vir
+DOLUTEGRAVIR SODIUM,0,C[C@@H]1CCO[C@H]2Cn3cc(C(=O)NCc4ccc(F)cc4F)c(=O)c([O-])c3C(=O)N12.[Na+],-vir
+INDINAVIR SULFATE,1,CC(C)(C)NC(=O)[C@@H]1CN(Cc2cccnc2)CCN1C[C@@H](O)C[C@@H](Cc1ccccc1)C(=O)N[C@H]1c2ccccc2C[C@H]1O.O=S(=O)(O)O,-vir
+LOPINAVIR,1,Cc1cccc(C)c1OCC(=O)N[C@@H](Cc1ccccc1)[C@@H](O)C[C@H](Cc1ccccc1)NC(=O)[C@H](C(C)C)N1CCCNC1=O,-vir
+GANCICLOVIR SODIUM,0,Nc1nc([O-])c2ncn(COC(CO)CO)c2n1.[Na+],-vir
+ACYCLOVIR SODIUM,0,Nc1nc([O-])c2ncn(COCCO)c2n1.[Na+],-vir
+GANCICLOVIR,0,Nc1nc2c(ncn2COC(CO)CO)c(=O)[nH]1,-vir
+TENOFOVIR ALAFENAMIDE,1,CC(C)OC(=O)[C@H](C)N[P@](=O)(CO[C@H](C)Cn1cnc2c(N)ncnc21)Oc1ccccc1,-vir
+INDINAVIR,1,CC(C)(C)NC(=O)[C@@H]1CN(Cc2cccnc2)CCN1C[C@@H](O)C[C@@H](Cc1ccccc1)C(=O)N[C@H]1c2ccccc2C[C@H]1O,-vir
+TENOFOVIR ALAFENAMIDE FUMARATE,1,CC(C)OC(=O)[C@H](C)N[P@](=O)(CO[C@H](C)Cn1cnc2c(N)ncnc21)Oc1ccccc1.CC(C)OC(=O)[C@H](C)N[P@](=O)(CO[C@H](C)Cn1cnc2c(N)ncnc21)Oc1ccccc1.O=C(O)/C=C/C(=O)O,-vir
+VALACYCLOVIR,0,CC(C)[C@H](N)C(=O)OCCOCn1cnc2c(=O)nc(N)[nH]c21,-vir
+OSELTAMIVIR,0,CCOC(=O)C1=C[C@@H](OC(CC)CC)[C@H](NC(C)=O)[C@@H](N)C1,-vir
+MARIBAVIR,0,CC(C)Nc1nc2cc(Cl)c(Cl)cc2n1[C@H]1O[C@@H](CO)[C@H](O)[C@@H]1O,-vir
+NELFINAVIR,1,Cc1c(O)cccc1C(=O)N[C@@H](CSc1ccccc1)[C@H](O)CN1C[C@H]2CCCC[C@H]2C[C@H]1C(=O)NC(C)(C)C,-vir
+BOCEPREVIR,1,CC(C)(C)NC(=O)N[C@H](C(=O)N1C[C@H]2[C@@H]([C@H]1C(=O)NC(CC1CCC1)C(=O)C(N)=O)C2(C)C)C(C)(C)C,-vir
+PERAMIVIR,1,CCC(CC)[C@H](NC(C)=O)[C@@H]1[C@H](O)[C@@H](C(=O)O)C[C@H]1NC(=N)N.O.O.O,-vir
+RALTEGRAVIR POTASSIUM,1,Cc1nnc(C(=O)NC(C)(C)c2nc(C(=O)NCc3ccc(F)cc3)c([O-])c(=O)n2C)o1.[K+],-vir
+VALACYCLOVIR HYDROCHLORIDE,0,CC(C)[C@H](N)C(=O)OCCOCn1cnc2c(=O)nc(N)[nH]c21.Cl,-vir
+ENTECAVIR,0,C=C1[C@H](CO)[C@@H](O)C[C@@H]1n1cnc2c(=O)[nH]c(N)nc21,-vir
+CABOTEGRAVIR SODIUM,0,C[C@H]1CO[C@@H]2Cn3cc(C(=O)NCc4ccc(F)cc4F)c(=O)c([O-])c3C(=O)N12.[Na+],-vir
+NELFINAVIR MESYLATE,1,CS(=O)(=O)O.Cc1c(O)cccc1C(=O)N[C@@H](CSc1ccccc1)[C@H](O)CN1C[C@H]2CCCC[C@H]2C[C@H]1C(=O)NC(C)(C)C,-vir
+FAMCICLOVIR,0,CC(=O)OCC(CCn1cnc2cnc(N)nc21)COC(C)=O,-vir
+OSELTAMIVIR PHOSPHATE,0,CCOC(=O)C1=C[C@@H](OC(CC)CC)[C@H](NC(C)=O)[C@@H](N)C1.O=P(O)(O)O,-vir
+CABOTEGRAVIR,0,C[C@H]1CO[C@@H]2Cn3cc(C(=O)NCc4ccc(F)cc4F)c(=O)c(O)c3C(=O)N12,-vir
+ABACAVIR SULFATE,0,Nc1nc(NC2CC2)c2ncn([C@H]3C=C[C@@H](CO)C3)c2n1.Nc1nc(NC2CC2)c2ncn([C@H]3C=C[C@@H](CO)C3)c2n1.O=S(=O)(O)O,-vir
+ABACAVIR,0,Nc1nc(NC2CC2)c2ncn([C@H]3C=C[C@@H](CO)C3)c2n1,-vir
+RALTEGRAVIR,1,Cc1nnc(C(=O)NC(C)(C)c2nc(C(=O)NCc3ccc(F)cc3)c(O)c(=O)n2C)o1,-vir
