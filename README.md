@@ -1,38 +1,10 @@
-# "Machine Learning for Drug Discovery" - Code and Data Repository [Work In Progress]
+# "Machine Learning for Drug Discovery" - Code and Data Repository
 
-### 👋 Welcome to the Machine Learning for Drug Discovery Repository!!!
+### 👋 Welcome to the Machine Learning for Drug Discovery Repository
 
 This repository contains code and data for the first edition of [Machine Learning for Drug Discovery (Manning Publications)](http://mng.bz/DdVn). The companion material within this repository covers introductory topics at the intersection of machine learning, deep learning, and drug discovery applied to real world scenarios in each chapter. The code and notebooks are released under the Apache 2.0 license. 
 
 For readability, the chapter notebooks only contain runnable code blocks and section titles. They omit the rest of the material in the book, i.e., text paragraphs, figures (unless generated as part of one of the code blocks), equations, and pseudocode. **If you want to be able to follow what's going on, I recommend reading the notebooks side-by-side with your copy of the book!**
-
-### 🚧 Under Construction
-
-Note that this project is a work in progress and notebooks will be released as they are drafted. We anticipate a full release of the book in Winter 2025. We recommend interacting with notebooks through Colab.
-
-Purchase of the book through Manning's Early Access Program (MEAP) guarantees access to current and future chapters. I appreciate your patience and support!
-
-### 💻 Getting Started
-
-Open the repository in Colab to walk through the notebooks without needing to install anything! <a href="https://colab.research.google.com/github/nrflynn2/ml-drug-discovery/blob/main/" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-
-If you want to run and modify the code locally, install [Anaconda](https://www.anaconda.com/products/distribution) (or [Miniconda](https://docs.conda.io/en/latest/miniconda.html)) and [git](https://git-scm.com/downloads) if you don't already have access to them. Clone this repository by typing the following within a terminal (ignoring the first `$` character):
-
-    $ git clone https://github.com/nrflynn2/ml-drug-discovery.git
-    $ cd ml-drug-discovery
-
-Set up a conda environment with prerequisite installs, we recommend:
-
-    $ conda env create -f ml4dd2025.yml
-
-An alternative method is:
-
-    $ conda create --name ml-drug-discovery python=3.10 pip
-    $ conda activate ml-drug-discovery
-    $ pip install -r requirements.txt
-    $ conda install -c conda-forge vina openmm pdbfixer
-
-Finally, start Jupyter in the terminal via `jupyter notebook` or through your favorite IDE to embark on an exciting journey. Happy learning!
 
 ### 📚 Table of Contents
 
@@ -49,14 +21,74 @@ Finally, start Jupyter in the terminal via `jupyter notebook` or through your fa
 * [Chapter 8: Introduction to Deep Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH08_FLYNN_ML4DD.ipynb)
 * [Chapter 9: Structure-based Drug Design with Active Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH09_FLYNN_ML4DD.ipynb)
 * [Chapter 10: Generative Models for De Novo Design](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH10_FLYNN_ML4DD.ipynb)
-* Chapter 11: Graph Neural Networks for Molecular Representation & Interaction Prediction
+* [Chapter 11: Graph Neural Networks for Drug Target Affinity Prediction](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH11_FLYNN_ML4DD.ipynb)
 * Chapter 12: Transformer Architectures for Protein Structure Prediction
 * Chapter 13: Multimodal AI Systems for End-to-End Drug Discovery Pipelines
 
 #### Appendices
 * [Appendix A: Glossary](https://livebook.manning.com/book/machine-learning-for-drug-discovery/appendix-a)
 * [Appendix B: Chemical Data Repositories](https://livebook.manning.com/book/machine-learning-for-drug-discovery/appendix-b/v-8)
-* Appendix C: Agentic Systems in Drug Discovery
+* [Appendix C: Knowledge Distillation: Shrinking Models for Efficient, Hierarchical Molecular Generation](https://github.com/nrflynn2/ml-drug-discovery/blob/main/APPENDIX_C_FLYNN_ML4DD.ipynb)
+* Appendix D: Reinforcement Learning for Targeted Optimizations
+* Appendix E: Agentic Systems in Drug Discovery
+
+### 🚧 Under Construction
+
+Note that this project is a work in progress and notebooks will be released as they are drafted. We anticipate a full release of the book in Winter 2025. We recommend interacting with notebooks through Colab.
+
+Purchase of the book through Manning's Early Access Program (MEAP) guarantees access to current and future chapters. I appreciate your patience and support!
+
+Encounter any issues? Please let me know -- I can't fix a problem if I am not aware of its existence!
+
+### 💻 Getting Started
+
+#### Option 1: Google Colab (No Installation Required)
+
+Open the repository in Colab to walk through the notebooks without needing to install anything! <a href="https://colab.research.google.com/github/nrflynn2/ml-drug-discovery/blob/main/" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
+#### Option 2: Local Installation
+
+**Prerequisites**: Python 3.11+ and git
+
+Choose one of the following installation methods:
+
+**Quick Start with uv (Fastest)**
+
+```bash
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Clone and setup
+git clone https://github.com/nrflynn2/ml-drug-discovery.git
+cd ml-drug-discovery
+uv venv --python 3.11
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+uv pip install -r requirements.txt
+```
+
+**Complete Installation with Conda (Recommended for All Features)**
+
+```bash
+git clone https://github.com/nrflynn2/ml-drug-discovery.git
+cd ml-drug-discovery
+conda env create -f ml4dd2025.yml
+conda activate ml4dd2025
+```
+
+**Traditional pip Installation**
+
+```bash
+git clone https://github.com/nrflynn2/ml-drug-discovery.git
+cd ml-drug-discovery
+python3.11 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+
+# For molecular dynamics tools (optional except for chapter 9):
+# conda install -c conda-forge openmm pdbfixer vina
+```
+
+For detailed installation instructions and troubleshooting, see [INSTALL.md](INSTALL.md).
 
 ### 👥 Contribution & Support
 

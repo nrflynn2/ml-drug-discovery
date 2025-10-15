@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ml-drug-discovery"
+version = "1.0.0"
+description = "Machine Learning for Drug Discovery - Code and Data Repository"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "Noah Flynn"}
+]
+keywords = ["machine-learning", "drug-discovery", "cheminformatics", "deep-learning"]
+
+dependencies = [
+    "catboost>=1.2.7",
+    "dimorphite-dl>=2.0.0",
+    "gemmi>=0.7.0",
+    "imbalanced-learn>=0.13.0",
+    "jupyterlab>=4.3.0",
+    "lightgbm>=4.6.0",
+    "matplotlib>=3.10.0",
+    "meeko>=0.5.0",
+    "minisom>=2.3.5",
+    "mdtraj>=1.10.2",
+    "mordred>=1.2.0",
+    "numpy>=1.26.4,<2.0.0",
+    "openbabel-wheel>=3.1.1",
+    "openpyxl>=3.1.5",
+    "pandas>=2.2.3",
+    "prolif>=2.0.3",
+    "py3Dmol>=2.4.2",
+    "rdkit>=2024.3.2",
+    "scikit-learn>=1.6.0",
+    "scikit-multilearn>=0.2.0",
+    "seaborn>=0.13.2",
+    "selfies>=2.1.2",
+    "shap>=0.46.0",
+    "statsmodels>=0.14.4",
+    "SmilesPE>=0.0.3",
+    "tensorboard>=2.18.0",
+    "torch>=2.4.1",
+    "torch-geometric>=2.6.1",
+    "umap-learn>=0.5.7",
+    "xlrd>=2.0.1",
+    "xgboost>=2.1.4",
+    "networkx>=3.4.2",
+    "plotly>=5.24.1",
+    "scipy>=1.15.0",
+    "tqdm>=4.67.1",
+]
+
+[project.optional-dependencies]
+# Packages that require conda installation
+conda-only = [
+    "openmm>=8.2.0",
+    "pdbfixer>=1.10",
+    "vina>=1.2.5",
+]
+
+dev = [
+    "pytest>=8.0.0",
+    "black>=24.0.0",
+    "ruff>=0.6.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/nrflynn2/ml-drug-discovery"
+Repository = "https://github.com/nrflynn2/ml-drug-discovery"
+Documentation = "https://www.manning.com/books/machine-learning-for-drug-discovery"
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

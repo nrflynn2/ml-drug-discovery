@@ -1,29 +1,59 @@
-catboost
-dimorphite-dl
-gemmi
-imbalanced-learn
-jupyterlab
-lightgbm
-matplotlib
-meeko
-minisom
-mdtraj
-mordred
-numpy
-openbabel-wheel
-openpyxl
-pandas
-prolif
-py3Dmol
-rdkit
-scikit-learn
-scikit-multilearn
-seaborn
-selfies
-shap
-statsmodels
-tensorboard
-torch
-umap-learn
-xlrd
-xgboost
+# Machine Learning for Drug Discovery - Requirements
+# Python 3.11+
+# For full installation including molecular dynamics tools, use conda: conda env create -f ml4dd2025.yml
+# For faster installation, use uv: uv pip install -r requirements.txt
+
+# Core ML/DL Packages
+catboost>=1.2.7
+lightgbm>=4.6.0
+scikit-learn>=1.6.0
+scikit-multilearn>=0.2.0
+xgboost>=2.1.4
+torch>=2.4.1
+torch-geometric>=2.6.1
+
+# Chemistry & Cheminformatics
+rdkit>=2024.3.2
+openbabel-wheel>=3.1.1
+selfies>=2.1.2
+SmilesPE>=0.0.3
+mordred>=1.2.0
+dimorphite-dl>=2.0.0
+
+# Molecular Dynamics & Docking
+mdtraj>=1.10.2
+prolif>=2.0.3
+gemmi>=0.7.0
+meeko>=0.5.0
+# Note: openmm, pdbfixer, and vina require conda installation
+
+# Data Science & Visualization
+numpy>=1.26.4,<2.0.0
+pandas>=2.2.3
+scipy>=1.15.0
+matplotlib>=3.10.0
+seaborn>=0.13.2
+plotly>=5.24.1
+py3Dmol>=2.4.2
+
+# Unsupervised Learning & Explainability
+umap-learn>=0.5.7
+shap>=0.46.0
+minisom>=2.3.5
+
+# Statistical Analysis
+statsmodels>=0.14.4
+imbalanced-learn>=0.13.0
+
+# Deep Learning Utilities
+tensorboard>=2.18.0
+
+# Development & Notebooks
+jupyterlab>=4.3.0
+
+# Utilities
+networkx>=3.4.2
+tqdm>=4.67.1
+openpyxl>=3.1.5
+xlrd>=2.0.1
+pyyaml>=6.0.2
