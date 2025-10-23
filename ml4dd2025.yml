@@ -4,24 +4,22 @@ channels:
   - defaults
 dependencies:
   # System Libraries
-  - python=3.11
-  - pip>=24.0
+  - python=3.12
   
   # Scientific Computing (optimized via conda for performance)
   - numpy>=1.26.4,<2.0.0
   - scipy>=1.15.0
-  - openblas
   
   # Molecular Dynamics & Docking (conda-only packages)
   - openmm>=8.2.0
   - pdbfixer>=1.10
   - vina>=1.2.5
   
-  # Chemistry toolkit (better to install via conda for binary compatibility)
+  # Chemistry toolkit
   - rdkit>=2024.3.2
-  
-  # System dependencies
-  - cudatoolkit  # If using GPU
+  - mordred
+
+  - minisom
   
   # Install remaining packages via pip for latest versions
   - pip:
@@ -38,7 +36,6 @@ dependencies:
       - openbabel-wheel>=3.1.1
       - selfies>=2.1.2
       - SmilesPE>=0.0.3
-      - mordred>=1.2.0
       - dimorphite-dl>=2.0.0
       
       # Molecular Dynamics & Docking
@@ -57,7 +54,6 @@ dependencies:
       # Unsupervised Learning & Explainability
       - umap-learn>=0.5.7
       - shap>=0.46.0
-      - minisom>=2.3.5
       
       # Statistical Analysis
       - statsmodels>=0.14.4
