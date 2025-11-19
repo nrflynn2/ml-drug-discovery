@@ -1,0 +1,26 @@
+# Core Environment for ML4DD (Chapters 1-4)
+# Fast setup for basic ML, QSAR, and similarity-based screening
+# Estimated install time: 3-5 minutes on Google Colab
+
+# Scientific Computing
+numpy>=1.26.4,<2.0.0
+scipy>=1.15.0
+
+# Data Science & Visualization
+pandas>=2.2.3
+matplotlib>=3.10.0
+seaborn>=0.13.2
+
+# Chemistry Toolkit (note: may require conda on some systems)
+# For Colab/pip-only environments, rdkit-pypi can be used as alternative
+rdkit>=2024.3.2
+
+# Machine Learning
+scikit-learn>=1.6.0
+
+# Utilities
+tqdm>=4.67.1
+joblib>=1.4.0
+
+# Notebook Environment
+jupyterlab>=4.3.0
