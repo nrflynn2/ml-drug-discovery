@@ -44,49 +44,46 @@ Encounter any issues? Please let me know -- I can't fix a problem if I am not aw
 
 #### Option 1: Google Colab (No Installation Required)
 
-Open the repository in Colab to walk through the notebooks without needing to install anything! <a href="https://colab.research.google.com/github/nrflynn2/ml-drug-discovery/blob/main/" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+Open any notebook in Colab and run the installation cells at the top! <a href="https://colab.research.google.com/github/nrflynn2/ml-drug-discovery/blob/main/" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
+Each notebook includes two Colab installation options:
+- **Quick Install**: Fast pip-based setup (3-10 minutes) with only the packages needed for that chapter
+- **Full Install**: Complete conda environment (15-20 minutes) with all packages for all chapters
 
 #### Option 2: Local Installation
 
-**Prerequisites**: Python 3.11+ and git
+**Prerequisites**: Python 3.12+ and git
 
-Choose one of the following installation methods:
+We provide **tiered installation options** so you can install only what you need:
 
-**Quick Start with uv (Fastest)**
-
+**🟢 Core Environment (Chapters 1-4)** — Basic ML & QSAR
 ```bash
-# Install uv
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# Clone and setup
 git clone https://github.com/nrflynn2/ml-drug-discovery.git
 cd ml-drug-discovery
-uv venv --python 3.11
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-uv pip install -r requirements.txt
+pip install -r requirements-core.txt
 ```
+*Includes: numpy, pandas, matplotlib, seaborn, rdkit, scikit-learn*
 
-**Complete Installation with Conda (Recommended for All Features)**
-
+**🟡 Advanced Environment (Chapters 5-8)** — Gradient Boosting & Deep Learning
 ```bash
-git clone https://github.com/nrflynn2/ml-drug-discovery.git
-cd ml-drug-discovery
+pip install -r requirements-advanced.txt
+```
+*Adds: torch, xgboost, lightgbm, catboost, shap, umap, statsmodels*
+
+**🔴 Full Environment (Chapters 9-11)** — Molecular Docking & GNNs
+```bash
 conda env create -f ml4dd2025.yml
 conda activate ml4dd2025
 ```
+*Adds: openmm, vina, pdbfixer, torch-geometric, mdtraj, prolif, meeko*
 
-**Traditional pip Installation**
+**Note**: Chapters 9-11 require conda due to specialized packages (molecular dynamics, docking) that don't install reliably via pip.
 
-```bash
-git clone https://github.com/nrflynn2/ml-drug-discovery.git
-cd ml-drug-discovery
-python3.11 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-
-# For molecular dynamics tools (optional except for chapter 9):
-# conda install -c conda-forge openmm pdbfixer vina
-```
+**Quick Reference**:
+- **Chapter 1-4**: Use `requirements-core.txt`
+- **Chapter 5-8, Appendix C**: Use `requirements-advanced.txt`
+- **Chapter 9-11**: Use `ml4dd2025.yml` (conda required)
+- **All chapters**: Use `ml4dd2025.yml` for complete setup
 
 For detailed installation instructions and troubleshooting, see [INSTALL.md](INSTALL.md).
 

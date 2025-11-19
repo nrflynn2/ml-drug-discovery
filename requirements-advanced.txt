@@ -1,0 +1,45 @@
+# Advanced ML Environment for ML4DD (Chapters 5-8)
+# Includes core packages + advanced ML and deep learning
+# Estimated install time: 5-8 minutes on Google Colab
+
+# Include all core packages
+-r requirements-core.txt
+
+# Advanced Tree-based & Gradient Boosting Models
+catboost>=1.2.7
+lightgbm>=4.6.0
+xgboost>=2.1.4
+
+# Deep Learning
+torch>=2.4.1
+
+# Model Explainability & Feature Engineering
+shap>=0.46.0
+
+# Unsupervised Learning & Dimensionality Reduction
+umap-learn>=0.5.7
+minisom
+
+# Multi-label Classification
+scikit-multilearn>=0.2.0
+
+# Statistical Analysis
+statsmodels>=0.14.4
+imbalanced-learn>=0.13.0
+
+# Additional Visualization
+plotly>=5.24.1
+py3Dmol>=2.4.2
+
+# Chemistry additions
+mordred
+dimorphite-dl>=2.0.0
+
+# Deep Learning Utilities
+tensorboard>=2.18.0
+
+# Additional Utilities
+networkx>=3.4.2
+openpyxl>=3.1.5
+xlrd>=2.0.1
+pyyaml>=6.0.2

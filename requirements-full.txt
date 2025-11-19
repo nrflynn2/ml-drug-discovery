@@ -1,0 +1,31 @@
+# Full Environment for ML4DD (All Chapters)
+# Complete environment for structure-based screening, GNNs, and all advanced topics
+# Estimated install time: 15-20 minutes on Google Colab
+# Note: Some packages (openmm, vina, pdbfixer) may require conda for proper installation
+
+# Include all advanced packages
+-r requirements-advanced.txt
+
+# Graph Neural Networks
+torch-geometric>=2.6.1
+
+# Chemistry & Cheminformatics
+openbabel-wheel>=3.1.1
+selfies>=2.1.2
+SmilesPE>=0.0.3
+
+# Molecular Dynamics & Docking
+# WARNING: These packages may not install properly via pip on all systems
+# Consider using conda for openmm, pdbfixer, and vina
+# openmm>=8.2.0
+# pdbfixer>=1.10
+# vina>=1.2.5
+mdtraj>=1.10.2
+prolif>=2.0.3
+gemmi>=0.7.0
+meeko>=0.5.0
+
+# Note for pip users: If you need openmm, pdbfixer, or vina,
+# please use the conda environment file (ml4dd2025.yml) instead
+# or install these packages via conda separately:
+# conda install -c conda-forge openmm pdbfixer vina
