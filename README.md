@@ -22,15 +22,14 @@ For readability, the chapter notebooks only contain runnable code blocks and sec
 * [Chapter 9: Structure-based Drug Design with Active Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH09_FLYNN_ML4DD.ipynb)
 * [Chapter 10: Generative Models for De Novo Design](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH10_FLYNN_ML4DD.ipynb)
 * [Chapter 11: Graph Neural Networks for Drug Target Affinity Prediction](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH11_FLYNN_ML4DD.ipynb)
-* Chapter 12: Transformer Architectures for Protein Structure Prediction
-* Chapter 13: Multimodal AI Systems for End-to-End Drug Discovery Pipelines
+* [Chapter 12: Transformer Architectures for Protein Structure Prediction](https://github.com/nrflynn2/ml-drug-discovery/tree/main/CH12_FLYNN_ML4DD)
+* [Chapter 13: Multimodal AI Systems for End-to-End Drug Discovery Pipelines](https://www.manning.com/books/machine-learning-for-drug-discovery)
 
 #### Appendices
 * [Appendix A: Glossary](https://livebook.manning.com/book/machine-learning-for-drug-discovery/appendix-a)
 * [Appendix B: Chemical Data Repositories](https://livebook.manning.com/book/machine-learning-for-drug-discovery/appendix-b/v-8)
 * [Appendix C: Knowledge Distillation: Shrinking Models for Efficient, Hierarchical Molecular Generation](https://github.com/nrflynn2/ml-drug-discovery/blob/main/APPENDIX_C_FLYNN_ML4DD.ipynb)
-* Appendix D: Reinforcement Learning for Targeted Optimizations
-* Appendix E: Agentic Systems in Drug Discovery
+* Appendix D: Technical Deep Dive into Protein Structure Prediction
 
 ### 🚧 Under Construction
 
