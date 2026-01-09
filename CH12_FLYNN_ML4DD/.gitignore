@@ -32,7 +32,6 @@ env/
 # Jupyter Notebook
 .ipynb_checkpoints
 *.ipynb
-notebooks/*.ipynb
 
 # IDEs
 .vscode/
