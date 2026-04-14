@@ -157,7 +157,7 @@ terminado==0.18.1
 textual==0.57.1
 threadpoolctl==3.4.0
 tinycss2==1.3.0
-torch==2.2.2
+torch==2.8.0
 torchaudio==2.2.2
 torchvision==0.17.2
 tornado==6.3.3
