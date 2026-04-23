@@ -6,6 +6,8 @@ This repository contains code and data for the first edition of [Machine Learnin
 
 For readability, the chapter notebooks only contain runnable code blocks and section titles. They omit the rest of the material in the book, i.e., text paragraphs, figures (unless generated as part of one of the code blocks), equations, and pseudocode. **If you want to be able to follow what's going on, I recommend reading the notebooks side-by-side with your copy of the book!**
 
+Encounter any issues? Please let me know -- I can't fix a problem if I am not aware of its existence!
+
 ### 📚 Table of Contents
 
 #### 💊 Part 1: Fundamentals of Cheminformatics & Machine Learning
@@ -31,14 +33,6 @@ For readability, the chapter notebooks only contain runnable code blocks and sec
 * [Appendix C: Knowledge Distillation: Shrinking Models for Efficient, Hierarchical Molecular Generation](https://github.com/nrflynn2/ml-drug-discovery/blob/main/APPENDIX_C_FLYNN_ML4DD.ipynb)
 * Appendix D: Technical Deep Dive into Protein Structure Prediction
 
-### 🚧 Under Construction
-
-Note that this project is a work in progress and notebooks will be released as they are drafted. We anticipate a full release of the book in Winter 2025. We recommend interacting with notebooks through Colab.
-
-Purchase of the book through Manning's Early Access Program (MEAP) guarantees access to current and future chapters. I appreciate your patience and support!
-
-Encounter any issues? Please let me know -- I can't fix a problem if I am not aware of its existence!
-
 ### 💻 Getting Started
 
 #### Option 1: Google Colab (No Installation Required)
@@ -55,7 +49,7 @@ Each notebook includes two Colab installation options:
 
 We provide **tiered installation options** so you can install only what you need:
 
-**🟢 Core Environment (Chapters 1-4)** — Basic ML & QSAR
+**Core Environment (Chapters 1-4)** — Basic ML & QSAR
 ```bash
 git clone https://github.com/nrflynn2/ml-drug-discovery.git
 cd ml-drug-discovery
@@ -63,13 +57,13 @@ pip install -r requirements-core.txt
 ```
 *Includes: numpy, pandas, matplotlib, seaborn, rdkit, scikit-learn*
 
-**🟡 Advanced Environment (Chapters 5-8)** — Gradient Boosting & Deep Learning
+**Advanced Environment (Chapters 5-8)** — Gradient Boosting & Deep Learning
 ```bash
 pip install -r requirements-advanced.txt
 ```
 *Adds: torch, xgboost, lightgbm, catboost, shap, umap, statsmodels*
 
-**🔴 Full Environment (Chapters 9-11)** — Molecular Docking & GNNs
+**Full Environment (Chapters 9-11)** — Molecular Docking & GNNs
 ```bash
 conda env create -f ml4dd2025.yml
 conda activate ml4dd2025
@@ -82,6 +76,7 @@ conda activate ml4dd2025
 - **Chapter 1-4**: Use `requirements-core.txt`
 - **Chapter 5-8, Appendix C**: Use `requirements-advanced.txt`
 - **Chapter 9-11**: Use `ml4dd2025.yml` (conda required)
+- **Chaper 12**: Follow instructions and use the notebooks within `CH12_FLYNN_ML4DD`
 - **All chapters**: Use `ml4dd2025.yml` for complete setup
 
 For detailed installation instructions and troubleshooting, see [INSTALL.md](INSTALL.md).
