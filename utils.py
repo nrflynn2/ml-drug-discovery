@@ -72,8 +72,13 @@ def load_molecular_dataframe(filename, chapter="ch01"):
     pandas.DataFrame
         The loaded DataFrame
     """
-    # Create the full file path
-    file_dir = Path(f"artifacts/{chapter}/")
+    # Create the full file path, anchored to the repo root (the directory
+    # containing utils.py) so that it works regardless of the caller's CWD.
+    # The notebook kernel's CWD can land in arbitrary subdirectories (e.g.
+    # data/ch02/) when cells change directories mid-run, which previously
+    # caused a FileNotFoundError at runtime.
+    repo_root = Path(__file__).resolve().parent
+    file_dir = repo_root / "artifacts" / chapter
     
     # Handle different possible file extensions
     if not (filename.endswith('.pkl') or filename.endswith('.pkl.gz')):
