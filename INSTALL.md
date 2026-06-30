@@ -4,8 +4,9 @@ This repository provides multiple installation methods. Choose the one that best
 
 ## Prerequisites
 
-- Git
-- Python 3.11 or later
+- [Git](https://github.com/git-guides/install-git)
+- [Python 3.11 or later](https://www.python.org/downloads/)
+- [Conda](https://conda-forge.org/download/)
 
 ## Installation Methods
 
@@ -32,6 +33,8 @@ uv pip install -r requirements.txt
 ### Method 2: Using Conda (Complete Installation)
 
 This method installs all dependencies including molecular dynamics tools that require conda.
+
+**Note:** If you do not already have conda installed, [Miniforge3](https://conda-forge.org/download/) is recommended with native support to conda-forge for molecular dynamics tools.
 
 ```bash
 # Clone repository
