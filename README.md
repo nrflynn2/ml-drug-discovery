@@ -45,7 +45,7 @@ Each notebook includes two Colab installation options:
 
 #### Option 2: Local Installation
 
-**Prerequisites**: Python 3.12+ and git
+**Prerequisites**: Python 3.12+, conda, and git
 
 We provide **tiered installation options** so you can install only what you need:
 
