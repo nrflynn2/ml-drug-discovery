@@ -5,7 +5,7 @@ This repository provides multiple installation methods. Choose the one that best
 ## Prerequisites
 
 - [Git](https://github.com/git-guides/install-git)
-- [Python 3.11 or later](https://www.python.org/downloads/)
+- [Python 3.12+](https://www.python.org/downloads/)
 - [Conda](https://conda-forge.org/download/)
 
 ## Installation Methods
