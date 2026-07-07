@@ -17,7 +17,6 @@ from scripts.train import get_dataloaders, train_epoch, val_epoch
 from src.data import Tokenizer, load_data
 from typing import Any
 
-
 # create a typer app
 app = typer.Typer()
 
@@ -61,7 +60,9 @@ def train_loop(config: dict[str, Any], dataset_loc: str) -> None:
     checkpoint = train.get_checkpoint()
     if checkpoint:
         with checkpoint.as_directory() as checkpoint_dir:
-            checkpoint_dict = torch.load(Path(checkpoint_dir) / "checkpoint.pt")
+            checkpoint_dict = torch.load(
+                Path(checkpoint_dir) / "checkpoint.pt", map_location=device
+            )
             start = checkpoint_dict["epoch"] + 1
             model.load_state_dict(checkpoint_dict["model_state"])
 
@@ -97,9 +98,7 @@ def tune_model(
     val_size: Annotated[
         float, typer.Option(help="Proportion of the dataset to use for validation")
     ] = 0.15,
-    num_classes: Annotated[
-        int, typer.Option(help="Number of final output dimensions")
-    ] = 2,
+    num_classes: Annotated[int, typer.Option(help="Number of final output dimensions")] = 2,
     batch_size: Annotated[int, typer.Option(help="Number of samples per batch")] = 32,
     num_epochs: Annotated[int, typer.Option(help="Number of epochs for training")] = 30,
     num_samples: Annotated[int, typer.Option(help="Number of trials for tuning")] = 100,
@@ -167,11 +166,12 @@ def tune_model(
     # save best model and params
     best_result = results.get_best_result("val_loss", mode="min")
     with best_result.checkpoint.as_directory() as checkpoint_dir:
-        checkpoint_dict = torch.load(Path(checkpoint_dir) / "checkpoint.pt")
+        # Load onto CPU here: we only re-serialize the weights, no GPU needed.
+        checkpoint_dict = torch.load(Path(checkpoint_dir) / "checkpoint.pt", map_location="cpu")
 
         # save model_state to save_path
         model_state = checkpoint_dict["model_state"]
-        torch.save(model_state, save_path / f"best_model.pt")
+        torch.save(model_state, save_path / "best_model.pt")
 
         # save model parameters
         with open(save_path / "args.json", "w") as f:

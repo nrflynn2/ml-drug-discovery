@@ -1,6 +1,7 @@
-# Advanced ML Environment for ML4DD (Chapters 5-8)
+# Advanced ML Environment (Chapters 5-8 + Appendix C) — Python 3.12
 # Includes core packages + advanced ML and deep learning
 # Estimated install time: 5-8 minutes on Google Colab
+# Mirrors the [advanced] extra in pyproject.toml; keep the two in sync.
 
 # Include all core packages
 -r requirements-core.txt
@@ -11,7 +12,7 @@ lightgbm>=4.6.0
 xgboost>=2.1.4
 
 # Deep Learning
-torch>=2.4.1
+torch>=2.6.0
 
 # Model Explainability & Feature Engineering
 shap>=0.46.0
@@ -31,8 +32,8 @@ imbalanced-learn>=0.13.0
 plotly>=5.24.1
 py3Dmol>=2.4.2
 
-# Chemistry additions
-mordred
+# Chemistry additions (mordredcommunity = maintained mordred fork, networkx>=3)
+mordredcommunity>=2.0.6
 dimorphite-dl>=2.0.0
 
 # Deep Learning Utilities

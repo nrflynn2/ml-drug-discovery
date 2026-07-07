@@ -1,17 +1,27 @@
+import os
 import torch
 import random
 import numpy as np
 
 
-def set_seeds() -> None:
+def set_seeds(seed: int = 42) -> None:
     """
-    Sets random seeds for NumPy, Python's random module, and PyTorch
-    for reproducibility purposes.
+    Seed every RNG that affects reproducibility: Python's ``random``, NumPy,
+    PyTorch (CPU and all CUDA devices), the ``PYTHONHASHSEED`` env var, and
+    cuDNN's deterministic flags.
+
+    Args:
+        seed (int): The seed value to use everywhere. Defaults to 42 to match
+            the book-wide ``bookutils.set_seed`` convention.
     """
 
-    torch.manual_seed(0)
-    random.seed(0)
-    np.random.seed(0)
+    os.environ["PYTHONHASHSEED"] = str(seed)
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
 
 
 def scale_dot_product_attention(

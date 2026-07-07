@@ -1,7 +1,7 @@
-# Machine Learning for Drug Discovery - Requirements
-# Python 3.11+
-# For full installation including molecular dynamics tools, use conda: conda env create -f ml4dd2025.yml
-# For faster installation, use uv: uv pip install -r requirements.txt
+# Build AI Drug Discovery Pipelines - Requirements (pip-installable superset)
+# Python 3.12
+# Chapter 9 only (openmm/pdbfixer/vina) needs conda: conda env create -f ml4dd2025.yml
+# For a faster, locked install prefer: uv sync   (recommended, see INSTALL.md)
 
 # Core ML/DL Packages
 catboost>=1.2.7
@@ -9,23 +9,23 @@ lightgbm>=4.6.0
 scikit-learn>=1.6.0
 scikit-multilearn>=0.2.0
 xgboost>=2.1.4
-torch>=2.4.1
+torch>=2.6.0
 torch-geometric>=2.6.1
 
 # Chemistry & Cheminformatics
-rdkit>=2024.3.2
+rdkit>=2024.9.1
 openbabel-wheel>=3.1.1
 selfies>=2.1.2
 SmilesPE>=0.0.3
-mordred>=1.2.0
+mordredcommunity>=2.0.6
 dimorphite-dl>=2.0.0
 
-# Molecular Dynamics & Docking
+# Molecular Dynamics & Docking (Chapters 10-11; all pip-installable)
 mdtraj>=1.10.2
 prolif>=2.0.3
 gemmi>=0.7.0
 meeko>=0.5.0
-# Note: openmm, pdbfixer, and vina require conda installation
+# Note: Chapter 9 alone (openmm, pdbfixer, vina) requires conda — see ml4dd2025.yml
 
 # Data Science & Visualization
 numpy>=1.26.4,<2.0.0

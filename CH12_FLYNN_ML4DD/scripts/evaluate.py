@@ -1,9 +1,7 @@
-import datetime
 import torch
 import typer
 import json
 import functools
-import pandas as pd
 import numpy as np
 
 from pathlib import Path
@@ -84,7 +82,9 @@ class AntibodyPredictor:
             kwargs = json.load(f)
         model = AntibodyClassifier(**kwargs)
         best_model_path = run_dir / "best_model.pt"
-        model.load_state_dict(torch.load(best_model_path))
+        # map_location keeps loading portable across CPU/GPU; weights_only is the
+        # secure/forward-compatible default for pure state_dict files (torch>=2.6).
+        model.load_state_dict(torch.load(best_model_path, map_location=device, weights_only=True))
         return cls(model=model, device=device)
 
 
@@ -94,9 +94,7 @@ def evaluate(
         str,
         typer.Option(help="Path to the output directory for a training or tuning run"),
     ],
-    dataset_loc: Annotated[
-        str, typer.Option(help="Path to the test dataset in parquet format")
-    ],
+    dataset_loc: Annotated[str, typer.Option(help="Path to the test dataset in parquet format")],
     batch_size: Annotated[int, typer.Option(help="Number of samples per batch")] = 64,
 ) -> tuple[np.ndarray, np.ndarray, np.ndarray, dict]:
     """Evaluates a trained model on a test dataset.
@@ -124,9 +122,7 @@ def evaluate(
     device = get_device()
 
     # test dataloader
-    collate_fn_partial = functools.partial(
-        collate_fn, tokenizer=tokenizer, device=device
-    )
+    collate_fn_partial = functools.partial(collate_fn, tokenizer=tokenizer, device=device)
     test_dl = DataLoader(test_ds, collate_fn=collate_fn_partial, batch_size=batch_size)
 
     # load model
@@ -145,8 +141,8 @@ def evaluate(
         auc_score = roc_auc_score(y_true, y_prob[:, 1])
         metrics["auc_score"] = auc_score
 
-    metrics["precision"], metrics["recall"], metrics["f1"], _ = (
-        precision_recall_fscore_support(y_true, y_pred, average="weighted")
+    metrics["precision"], metrics["recall"], metrics["f1"], _ = precision_recall_fscore_support(
+        y_true, y_pred, average="weighted"
     )
 
     # Save evaluation metrics

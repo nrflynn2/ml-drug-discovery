@@ -1,8 +1,8 @@
-# "Machine Learning for Drug Discovery" - Code and Data Repository
+# "Build AI Drug Discovery Pipelines" - Code and Data Repository
 
-### 👋 Welcome to the Machine Learning for Drug Discovery Repository
+### 👋 Welcome to the Build AI Drug Discovery Pipelines Repository
 
-This repository contains code and data for the first edition of [Machine Learning for Drug Discovery (Manning Publications)](http://mng.bz/DdVn). The companion material within this repository covers introductory topics at the intersection of machine learning, deep learning, and drug discovery applied to real world scenarios in each chapter. The code and notebooks are released under the Apache 2.0 license. 
+This repository contains code and data for [Build AI Drug Discovery Pipelines (Manning Publications)](http://mng.bz/DdVn). The companion material within this repository covers introductory topics at the intersection of machine learning, deep learning, and drug discovery applied to real world scenarios in each chapter. The code and notebooks are released under the Apache 2.0 license. 
 
 For readability, the chapter notebooks only contain runnable code blocks and section titles. They omit the rest of the material in the book, i.e., text paragraphs, figures (unless generated as part of one of the code blocks), equations, and pseudocode. **If you want to be able to follow what's going on, I recommend reading the notebooks side-by-side with your copy of the book!**
 
@@ -45,39 +45,53 @@ Each notebook includes two Colab installation options:
 
 #### Option 2: Local Installation
 
-**Prerequisites**: Python 3.12+ and git
+**Prerequisites**: Python 3.12 and git. We recommend [uv](https://github.com/astral-sh/uv) for a fast, reproducible install (a committed `uv.lock` pins the full environment).
 
-We provide **tiered installation options** so you can install only what you need:
-
-**Core Environment (Chapters 1-4)** — Basic ML & QSAR
+**Recommended (uv):**
 ```bash
 git clone https://github.com/nrflynn2/ml-drug-discovery.git
 cd ml-drug-discovery
+uv venv --python 3.12
+uv sync                          # base = Chapters 1-4 (core)
+uv sync --extra advanced         # Chapters 5-8 + Appendix C
+uv sync --extra full             # Chapters 10-11 (adds GNN/docking-analysis, pip-only)
+```
+
+We also provide **tiered `requirements-*.txt`** files (used by the Colab cells) if you prefer pip:
+
+**Core (Chapters 1-4)** — Basic ML & QSAR
+```bash
 pip install -r requirements-core.txt
 ```
 *Includes: numpy, pandas, matplotlib, seaborn, rdkit, scikit-learn*
 
-**Advanced Environment (Chapters 5-8)** — Gradient Boosting & Deep Learning
+**Advanced (Chapters 5-8, Appendix C)** — Gradient Boosting & Deep Learning
 ```bash
 pip install -r requirements-advanced.txt
 ```
 *Adds: torch, xgboost, lightgbm, catboost, shap, umap, statsmodels*
 
-**Full Environment (Chapters 9-11)** — Molecular Docking & GNNs
+**Full (Chapters 10-11)** — Generative Models & GNNs
+```bash
+pip install -r requirements-full.txt
+```
+*Adds: torch-geometric, mdtraj, prolif, gemmi, meeko, openbabel — all pip-installable*
+
+**Chapter 9 only** — Structure-based Design (Docking & Molecular Dynamics)
 ```bash
 conda env create -f ml4dd2025.yml
 conda activate ml4dd2025
 ```
-*Adds: openmm, vina, pdbfixer, torch-geometric, mdtraj, prolif, meeko*
+*Adds the conda-only stack: openmm, vina, pdbfixer.*
 
-**Note**: Chapters 9-11 require conda due to specialized packages (molecular dynamics, docking) that don't install reliably via pip.
+**Note**: **Only Chapter 9** requires conda, for the docking/molecular-dynamics packages (openmm, vina, pdbfixer) that have no reliable pip wheels. Every other chapter — including 10 and 11 — installs under uv/pip.
 
 **Quick Reference**:
-- **Chapter 1-4**: Use `requirements-core.txt`
-- **Chapter 5-8, Appendix C**: Use `requirements-advanced.txt`
-- **Chapter 9-11**: Use `ml4dd2025.yml` (conda required)
-- **Chaper 12**: Follow instructions and use the notebooks within `CH12_FLYNN_ML4DD`
-- **All chapters**: Use `ml4dd2025.yml` for complete setup
+- **Chapters 1-4**: `uv sync` (or `requirements-core.txt`)
+- **Chapters 5-8, Appendix C**: `uv sync --extra advanced` (or `requirements-advanced.txt`)
+- **Chapters 10-11**: `uv sync --extra full` (or `requirements-full.txt`)
+- **Chapter 9**: `ml4dd2025.yml` (conda required)
+- **Chapter 12**: follow the notebooks within `CH12_FLYNN_ML4DD`
 
 For detailed installation instructions and troubleshooting, see [INSTALL.md](INSTALL.md).
 

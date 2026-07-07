@@ -16,8 +16,7 @@ dependencies:
   - vina>=1.2.5
   
   # Chemistry toolkit
-  - rdkit>=2024.3.2
-  - mordred
+  - rdkit>=2024.9.1
 
   - minisom
   
@@ -29,14 +28,16 @@ dependencies:
       - scikit-learn>=1.6.0
       - scikit-multilearn>=0.2.0
       - xgboost>=2.1.4
-      - torch>=2.4.1
+      - torch>=2.6.0
       - torch-geometric>=2.6.1
-      
+
       # Chemistry & Cheminformatics
       - openbabel-wheel>=3.1.1
       - selfies>=2.1.2
       - SmilesPE>=0.0.3
       - dimorphite-dl>=2.0.0
+      # mordredcommunity: maintained mordred fork (networkx>=3, Python 3.12)
+      - mordredcommunity>=2.0.6
       
       # Molecular Dynamics & Docking
       - mdtraj>=1.10.2
