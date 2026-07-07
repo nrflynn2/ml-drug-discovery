@@ -53,6 +53,9 @@ class MultiheadAttention(nn.Module):
             return mask[:, None, None, :]
         elif mask.ndim == 3:
             return mask[:, None, :, :]
+        # Already 4D (batch, num_heads, seq_len, seq_len): return unchanged so
+        # the mask is not silently dropped (which would leave attention unmasked).
+        return mask
 
     def forward(
         self, x: torch.Tensor, mask: torch.Tensor = None, return_attention: bool = False
@@ -95,14 +98,10 @@ class MultiheadAttention(nn.Module):
         values, attention = scale_dot_product_attention(q, k, v, mask=mask)
 
         # change dims
-        values = values.permute(
-            0, 2, 1, 3
-        )  # (batch_size, seq_len, num_heads, head_dim)
+        values = values.permute(0, 2, 1, 3)  # (batch_size, seq_len, num_heads, head_dim)
 
         # concat heads
-        values = values.reshape(
-            batch_size, seq_len, -1
-        )  # (batch_size, seq_len, embedding_dim)
+        values = values.reshape(batch_size, seq_len, -1)  # (batch_size, seq_len, embedding_dim)
 
         # output linear layer
         out = self.output(values)  # (batch_size, seq_len, embedding_dim)
@@ -202,10 +201,7 @@ class Encoder(nn.Module):
 
         # Encoder consists of a list of EncoderLayers
         self.layers = nn.ModuleList(
-            [
-                EncoderLayer(embedding_dim, num_heads, ffn_dim, dropout)
-                for _ in range(num_layers)
-            ]
+            [EncoderLayer(embedding_dim, num_heads, ffn_dim, dropout) for _ in range(num_layers)]
         )
 
     def forward(self, x: torch.Tensor, mask: torch.Tensor = None) -> torch.Tensor:
@@ -226,9 +222,7 @@ class Encoder(nn.Module):
 
         return x
 
-    def get_attentions(
-        self, x: torch.Tensor, mask: torch.Tensor = None
-    ) -> list[torch.Tensor]:
+    def get_attentions(self, x: torch.Tensor, mask: torch.Tensor = None) -> list[torch.Tensor]:
         """
         Retrieves the attention weights from each encoder layer.
 
@@ -282,9 +276,7 @@ class PositionalEncoding(nn.Module):
         position = torch.arange(max_length).float().unsqueeze(1)
 
         # div_term is of length embedding_dim//2:
-        div_term = torch.exp(
-            -torch.arange(0, embedding_dim, 2) / embedding_dim * np.log(1e4)
-        )
+        div_term = torch.exp(-torch.arange(0, embedding_dim, 2) / embedding_dim * np.log(1e4))
 
         # populate even and odd indices
         # position*div_term: (max_length, embedding_dim//2)
@@ -466,9 +458,7 @@ class AntibodyClassifier(nn.Module):
         """
 
         # Expand the mask for broadcasting
-        expanded_mask = (
-            attention_mask.unsqueeze(-1).expand(token_embeddings.shape).float()
-        )
+        expanded_mask = attention_mask.unsqueeze(-1).expand(token_embeddings.shape).float()
 
         # sum unmasked token embeddings
         sum_embeddings = torch.sum(token_embeddings * expanded_mask, dim=1)

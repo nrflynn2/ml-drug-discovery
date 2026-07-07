@@ -20,7 +20,6 @@ from sklearn.metrics import (
     precision_recall_fscore_support,
 )
 
-
 # create a typer app
 app = typer.Typer()
 
@@ -38,9 +37,7 @@ def get_dataloaders(df, val_size, tokenizer, device, batch_size):
     train_ds = BCRDataset(df_train)
     val_ds = BCRDataset(df_val)
 
-    collate_fn_partial = functools.partial(
-        collate_fn, tokenizer=tokenizer, device=device
-    )
+    collate_fn_partial = functools.partial(collate_fn, tokenizer=tokenizer, device=device)
 
     # dataloaders
     train_dl = DataLoader(
@@ -150,35 +147,21 @@ def val_epoch(
 @app.command()
 def train_model(
     run_id: Annotated[str, typer.Option(help="Name for the training run ID")],
-    dataset_loc: Annotated[
-        str, typer.Option(help="Path to the dataset in parquet format")
-    ],
+    dataset_loc: Annotated[str, typer.Option(help="Path to the dataset in parquet format")],
     val_size: Annotated[
         float, typer.Option(help="Proportion of the dataset to use for validation")
     ] = 0.15,
-    embedding_dim: Annotated[
-        int, typer.Option(help="Dimensionality of token embeddings")
-    ] = 64,
-    num_layers: Annotated[
-        int, typer.Option(help="Number of Transformer encoder layers")
-    ] = 8,
-    num_heads: Annotated[
-        int, typer.Option(help="Number of attention heads in the encoder")
-    ] = 2,
+    embedding_dim: Annotated[int, typer.Option(help="Dimensionality of token embeddings")] = 64,
+    num_layers: Annotated[int, typer.Option(help="Number of Transformer encoder layers")] = 8,
+    num_heads: Annotated[int, typer.Option(help="Number of attention heads in the encoder")] = 2,
     ffn_dim: Annotated[
         int,
         typer.Option(help="Dimensionality of the feed-forward layer in the encoder"),
     ] = 128,
-    dropout: Annotated[
-        float, typer.Option(help="Dropout probability for regularization")
-    ] = 0.05,
-    num_classes: Annotated[
-        int, typer.Option(help="Number of final output dimensions")
-    ] = 2,
+    dropout: Annotated[float, typer.Option(help="Dropout probability for regularization")] = 0.05,
+    num_classes: Annotated[int, typer.Option(help="Number of final output dimensions")] = 2,
     batch_size: Annotated[int, typer.Option(help="Number of samples per batch")] = 32,
-    lr: Annotated[
-        float, typer.Option(help="The learning rate for the optimizer")
-    ] = 2e-5,
+    lr: Annotated[float, typer.Option(help="The learning rate for the optimizer")] = 2e-5,
     num_epochs: Annotated[int, typer.Option(help="Number of epochs for training")] = 20,
     verbose: Annotated[
         bool, typer.Option(help="Whether to print verbose training messages")
@@ -276,12 +259,13 @@ def train_model(
         if val_loss < best_val_loss:
             best_val_loss = val_loss
             # save best model
-            torch.save(model.state_dict(), save_path / f"best_model.pt")
+            torch.save(model.state_dict(), save_path / "best_model.pt")
 
         # accuracy
         results["val_accuracy"].append(accuracy_score(y_true, y_pred))
 
-        # auc score
+        # auc score (only well-defined for binary classification)
+        auc_score = float("nan")
         if num_classes == 2:
             auc_score = roc_auc_score(y_true, y_prob[:, 1])
             results["val_auc"].append(auc_score)

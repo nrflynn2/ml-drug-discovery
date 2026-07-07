@@ -1,0 +1,94 @@
+name: QA
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+# Cancel superseded runs on the same ref.
+concurrency:
+  group: qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-and-guard:
+    name: Lint + callout guard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          python-version: "3.12"
+
+      - name: Sync dev environment
+        run: uv sync --extra dev
+
+      # HARD GATE: the reviewers' #1 concern. Fails on any Manning callout marker
+      # ([CA]/[CB], trailing #A/#B) that leaks into notebook *code* cells.
+      - name: Callout-leakage guard (all notebooks)
+        run: uv run python qa/check_callouts.py
+
+      # HARD GATE: lint/format the Python edit surface (shared modules, QA
+      # tooling, and the CH12 package). Legacy notebook code is covered by the
+      # advisory nbqa step below until each chapter is modernized.
+      - name: Ruff
+        run: >-
+          uv run ruff check
+          bookutils.py utils.py qa
+          CH12_FLYNN_ML4DD/src CH12_FLYNN_ML4DD/scripts
+          CH12_FLYNN_ML4DD/tests CH12_FLYNN_ML4DD/conftest.py
+
+      - name: Black (check)
+        run: >-
+          uv run black --check --line-length 100
+          bookutils.py utils.py qa
+          CH12_FLYNN_ML4DD/src CH12_FLYNN_ML4DD/scripts
+          CH12_FLYNN_ML4DD/tests CH12_FLYNN_ML4DD/conftest.py
+
+      # ADVISORY: notebook linting via nbqa. Not yet a gate — turns into one
+      # chapter-by-chapter as notebooks adopt bookutils and the template.
+      - name: nbqa ruff (advisory)
+        continue-on-error: true
+        run: uv run nbqa ruff CH01_FLYNN_ML4DD.ipynb CH09_FLYNN_ML4DD.ipynb
+
+  ch12-tests:
+    name: CH12 package unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          python-version: "3.12"
+
+      # CPU-only torch is enough for the CH12 unit tests (fixes #1/#2/#4/#6/#10).
+      - name: Install CH12 test dependencies
+        run: |
+          uv venv --python 3.12
+          uv pip install torch --index-url https://download.pytorch.org/whl/cpu
+          uv pip install numpy pandas scikit-learn pyarrow pytest
+
+      - name: Run CH12 unit tests
+        run: uv run pytest CH12_FLYNN_ML4DD -v
+
+  notebook-smoke:
+    name: Notebook execution smoke (advisory)
+    runs-on: ubuntu-latest
+    # Advisory until chapters ship reduced-config test fixtures; see AGENTS.md.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          python-version: "3.12"
+
+      - name: Sync advanced environment
+        run: uv sync --extra advanced --extra dev
+
+      - name: Execute CH01 (nbmake)
+        run: uv run pytest --nbmake --nbmake-timeout=1200 CH01_FLYNN_ML4DD.ipynb

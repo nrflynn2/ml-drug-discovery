@@ -1,6 +1,5 @@
 import torch
 import pandas as pd
-import numpy as np
 
 from torch.utils.data import Dataset
 from sklearn.preprocessing import LabelEncoder
@@ -68,9 +67,7 @@ class Tokenizer:
         """
         return self.token_to_index["<eos>"]
 
-    def __call__(
-        self, seqs: list[str], padding: bool = True
-    ) -> dict[str, list[list[int]]]:
+    def __call__(self, seqs: list[str], padding: bool = True) -> dict[str, list[list[int]]]:
         """
         Tokenizes a list of protein sequences and creates input representations with attention masks.
 
@@ -187,8 +184,8 @@ class BCRDataset(Dataset):
                 - y (int): Label associated with the BCR sample.
         """
 
-        x = self.df.loc[i, "sequence"]
-        y = self.df.loc[i, "label"]
+        x = self.df.iloc[i]["sequence"]
+        y = self.df.iloc[i]["label"]
 
         return x, y
 
@@ -275,8 +272,12 @@ def mask_sequences(
     labels = input_ids.clone()
     masked_input_ids = input_ids.clone()
 
+    # All helper tensors below must live on the same device as input_ids;
+    # otherwise masked_fill_/indexing raise a device-mismatch error on GPU.
+    device = input_ids.device
+
     # Create probability matrix
-    probability_matrix = torch.full(input_ids.shape, mask_prob)
+    probability_matrix = torch.full(input_ids.shape, mask_prob, device=device)
 
     # Don't mask special tokens
     special_tokens_mask = torch.zeros_like(input_ids, dtype=torch.bool)
@@ -293,14 +294,14 @@ def mask_sequences(
 
     # 80% of the time: replace with [MASK] token
     indices_replaced = (
-        torch.bernoulli(torch.full(input_ids.shape, mask_token_prob)).bool()
+        torch.bernoulli(torch.full(input_ids.shape, mask_token_prob, device=device)).bool()
         & mask_positions
     )
     masked_input_ids[indices_replaced] = mask_token_id
 
     # 10% of the time: replace with random amino acid
     indices_random = (
-        torch.bernoulli(torch.full(input_ids.shape, random_token_prob)).bool()
+        torch.bernoulli(torch.full(input_ids.shape, random_token_prob, device=device)).bool()
         & mask_positions
         & ~indices_replaced
     )
@@ -308,10 +309,10 @@ def mask_sequences(
     # Random tokens from vocabulary (excluding special tokens)
     # Create a list of valid token IDs (amino acids only)
     num_special = len(special_token_ids)
-    amino_acid_ids = torch.arange(num_special, vocab_size)
+    amino_acid_ids = torch.arange(num_special, vocab_size, device=device)
 
     random_tokens = amino_acid_ids[
-        torch.randint(len(amino_acid_ids), input_ids.shape)
+        torch.randint(len(amino_acid_ids), input_ids.shape, device=device)
     ]
     masked_input_ids[indices_random] = random_tokens[indices_random]
 
@@ -403,9 +404,7 @@ def mlm_collate_fn(
 
     # Convert to tensors
     input_ids = torch.tensor(tokenized["input_ids"], dtype=torch.long, device=device)
-    attention_mask = torch.tensor(
-        tokenized["attention_mask"], dtype=torch.long, device=device
-    )
+    attention_mask = torch.tensor(tokenized["attention_mask"], dtype=torch.long, device=device)
 
     # Apply masking
     special_token_ids = [

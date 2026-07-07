@@ -1,6 +1,7 @@
-# Core Environment for ML4DD (Chapters 1-4)
+# Core Environment (Chapters 1-4) — Python 3.12
 # Fast setup for basic ML, QSAR, and similarity-based screening
 # Estimated install time: 3-5 minutes on Google Colab
+# Mirrors the base dependencies in pyproject.toml; keep the two in sync.
 
 # Scientific Computing
 numpy>=1.26.4,<2.0.0
@@ -11,9 +12,8 @@ pandas>=2.2.3
 matplotlib>=3.10.0
 seaborn>=0.13.2
 
-# Chemistry Toolkit (note: may require conda on some systems)
-# For Colab/pip-only environments, rdkit-pypi can be used as alternative
-rdkit>=2024.3.2
+# Chemistry Toolkit (installs from PyPI wheels on Colab/pip; no conda needed)
+rdkit>=2024.9.1
 
 # Machine Learning
 scikit-learn>=1.6.0

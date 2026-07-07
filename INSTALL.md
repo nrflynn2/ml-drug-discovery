@@ -5,13 +5,16 @@ This repository provides multiple installation methods. Choose the one that best
 ## Prerequisites
 
 - Git
-- Python 3.11 or later
+- Python 3.12
 
-## Installation Methods
+> **Which chapters need what?** Chapters 1–8, 10–11, and Appendix C install entirely under uv/pip.
+> **Only Chapter 9** (structure-based design: docking + molecular dynamics) needs conda, for
+> `openmm`, `pdbfixer`, and `vina`, which have no reliable PyPI wheels.
 
-### Method 1: Using uv (Recommended - Fastest)
+## Method 1: Using uv (Recommended — fast + reproducible)
 
-[uv](https://github.com/astral-sh/uv) is a fast Python package installer that's significantly faster than pip.
+[uv](https://github.com/astral-sh/uv) is a fast Python package manager. A committed `uv.lock`
+pins the full pip-installable environment, so everyone resolves the same versions.
 
 ```bash
 # Install uv (if not already installed)
@@ -21,60 +24,60 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 git clone https://github.com/nrflynn2/ml-drug-discovery.git
 cd ml-drug-discovery
 
-# Create virtual environment and install dependencies
-uv venv --python 3.11
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-uv pip install -r requirements.txt
+# Create the environment and install the tier you need
+uv venv --python 3.12
+uv sync                       # Chapters 1-4 (core)
+uv sync --extra advanced      # Chapters 5-8 + Appendix C
+uv sync --extra full          # Chapters 10-11 (adds GNN + docking-analysis, pip-only)
+uv sync --extra dev           # Adds lint/test tooling (ruff, black, pytest, nbmake, nbqa, nbdime)
 
-# Note: For molecular dynamics tools (openmm, pdbfixer, vina), use conda method below. These tools are only necessary to complete chapter 9.
+# Run anything inside the environment without activating it:
+uv run python -c "import rdkit, pandas, sklearn; import bookutils"
 ```
 
-### Method 2: Using Conda (Complete Installation)
-
-This method installs all dependencies including molecular dynamics tools that require conda.
+To activate the environment directly instead of using `uv run`:
 
 ```bash
-# Clone repository
+source .venv/bin/activate     # Windows: .venv\Scripts\activate
+```
+
+## Method 2: Using Conda (Chapter 9 only)
+
+Chapter 9 needs the conda-forge docking/molecular-dynamics stack. Create its dedicated environment:
+
+```bash
 git clone https://github.com/nrflynn2/ml-drug-discovery.git
 cd ml-drug-discovery
 
-# Create and activate conda environment
 conda env create -f ml4dd2025.yml
 conda activate ml4dd2025
 ```
 
-### Method 3: Using pip + pyproject.toml
+This environment is self-contained (it also installs the ML/cheminformatics packages via pip), so
+you can run every chapter from it if you prefer a single conda environment.
+
+## Method 3: Using pip + requirements files
+
+If you would rather use plain pip, the tiered requirements files mirror the uv extras (and are what
+the Colab setup cells install from):
 
 ```bash
-# Clone repository
 git clone https://github.com/nrflynn2/ml-drug-discovery.git
 cd ml-drug-discovery
 
-# Create virtual environment
-python3.11 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+python3.12 -m venv venv
+source venv/bin/activate      # Windows: venv\Scripts\activate
 
-# Install package in development mode
-pip install -e .
-
-# Note: For molecular dynamics tools (openmm, pdbfixer, vina), install via conda:
-# conda install -c conda-forge openmm pdbfixer vina
+pip install -r requirements-core.txt        # Chapters 1-4
+pip install -r requirements-advanced.txt    # Chapters 5-8 + Appendix C
+pip install -r requirements-full.txt        # Chapters 10-11
+# Chapter 9: use the conda method above.
 ```
 
-### Method 4: Using pip + requirements.txt (Traditional)
+## Method 4: Editable install of the package
 
 ```bash
-# Clone repository
-git clone https://github.com/nrflynn2/ml-drug-discovery.git
-cd ml-drug-discovery
-
-# Create virtual environment
-python3.11 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Note: For molecular dynamics tools (openmm, pdbfixer, vina), install via conda:
-# conda install -c conda-forge openmm pdbfixer vina
+python3.12 -m venv venv
+source venv/bin/activate
+pip install -e ".[advanced]"   # or ".[full]", ".[dev]"
 ```

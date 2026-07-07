@@ -10,7 +10,6 @@ import typer
 import json
 import functools
 import pandas as pd
-import numpy as np
 import torch.nn as nn
 import math
 
@@ -23,7 +22,6 @@ from typing_extensions import Annotated
 from sklearn.model_selection import train_test_split
 from torch.utils.data import DataLoader
 from torch.optim.lr_scheduler import LambdaLR
-
 
 # Create a typer app
 app = typer.Typer()
@@ -92,9 +90,7 @@ def get_dataloaders(
     """
     # Split sequences (no stratification needed for unsupervised learning)
     sequences = df["sequence"].tolist()
-    train_seqs, val_seqs = train_test_split(
-        sequences, random_state=0, test_size=val_size
-    )
+    train_seqs, val_seqs = train_test_split(sequences, random_state=0, test_size=val_size)
 
     # Create datasets
     train_ds = ProteinSequenceDataset(train_seqs)
@@ -235,45 +231,27 @@ def val_epoch(
 @app.command()
 def train_model(
     run_id: Annotated[str, typer.Option(help="Name for the training run ID")],
-    dataset_loc: Annotated[
-        str, typer.Option(help="Path to the dataset in parquet or CSV format")
-    ],
+    dataset_loc: Annotated[str, typer.Option(help="Path to the dataset in parquet or CSV format")],
     val_size: Annotated[
         float, typer.Option(help="Proportion of the dataset to use for validation")
     ] = 0.15,
-    embedding_dim: Annotated[
-        int, typer.Option(help="Dimensionality of token embeddings")
-    ] = 128,
-    num_layers: Annotated[
-        int, typer.Option(help="Number of Transformer encoder layers")
-    ] = 4,
-    num_heads: Annotated[
-        int, typer.Option(help="Number of attention heads in the encoder")
-    ] = 4,
+    embedding_dim: Annotated[int, typer.Option(help="Dimensionality of token embeddings")] = 128,
+    num_layers: Annotated[int, typer.Option(help="Number of Transformer encoder layers")] = 4,
+    num_heads: Annotated[int, typer.Option(help="Number of attention heads in the encoder")] = 4,
     ffn_dim: Annotated[
         int,
         typer.Option(help="Dimensionality of the feed-forward layer in the encoder"),
     ] = 512,
-    dropout: Annotated[
-        float, typer.Option(help="Dropout probability for regularization")
-    ] = 0.1,
-    mask_prob: Annotated[
-        float, typer.Option(help="Probability of masking each token")
-    ] = 0.15,
+    dropout: Annotated[float, typer.Option(help="Dropout probability for regularization")] = 0.1,
+    mask_prob: Annotated[float, typer.Option(help="Probability of masking each token")] = 0.15,
     batch_size: Annotated[int, typer.Option(help="Number of samples per batch")] = 32,
-    lr: Annotated[
-        float, typer.Option(help="The learning rate for the optimizer")
-    ] = 5e-4,
-    weight_decay: Annotated[
-        float, typer.Option(help="Weight decay (L2 regularization)")
-    ] = 0.01,
+    lr: Annotated[float, typer.Option(help="The learning rate for the optimizer")] = 5e-4,
+    weight_decay: Annotated[float, typer.Option(help="Weight decay (L2 regularization)")] = 0.01,
     num_epochs: Annotated[int, typer.Option(help="Number of epochs for training")] = 50,
     warmup_steps: Annotated[
         int, typer.Option(help="Number of warmup steps for learning rate scheduler")
     ] = 500,
-    max_grad_norm: Annotated[
-        float, typer.Option(help="Maximum gradient norm for clipping")
-    ] = 1.0,
+    max_grad_norm: Annotated[float, typer.Option(help="Maximum gradient norm for clipping")] = 1.0,
     verbose: Annotated[
         bool, typer.Option(help="Whether to print verbose training messages")
     ] = True,
@@ -307,9 +285,7 @@ def train_model(
     device = get_device()
 
     # Create dataloaders
-    train_dl, val_dl = get_dataloaders(
-        df, val_size, tokenizer, device, batch_size, mask_prob
-    )
+    train_dl, val_dl = get_dataloaders(df, val_size, tokenizer, device, batch_size, mask_prob)
 
     # Calculate total training steps
     num_training_steps = len(train_dl) * num_epochs
@@ -369,9 +345,7 @@ def train_model(
         results["epoch"].append(epoch)
 
         # Train
-        train_loss, train_ppl = train_epoch(
-            model, train_dl, loss_fn, opt, scheduler, max_grad_norm
-        )
+        train_loss, train_ppl = train_epoch(model, train_dl, loss_fn, opt, scheduler, max_grad_norm)
 
         # Validation
         val_loss, val_ppl, val_acc = val_epoch(model, val_dl, loss_fn)

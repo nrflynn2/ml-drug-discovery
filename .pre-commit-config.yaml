@@ -1,0 +1,44 @@
+# Pre-commit hooks for Build AI Drug Discovery Pipelines.
+# Install with:  uv run pre-commit install
+# Run on demand: uv run pre-commit run --all-files
+repos:
+  - repo: local
+    hooks:
+      # The reviewers' #1 concern, pinned locally so it runs on every commit.
+      - id: callout-guard
+        name: callout-leakage guard
+        entry: python qa/check_callouts.py
+        language: system
+        types: [jupyter]
+        pass_filenames: true
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      # Lint the Python edit surface (shared modules, QA tooling, CH12 package).
+      - id: ruff
+        files: ^(bookutils\.py|utils\.py|qa/|CH12_FLYNN_ML4DD/(src|scripts|tests)/|CH12_FLYNN_ML4DD/conftest\.py)
+      # Lint notebook code cells natively via nbqa's ruff integration.
+      - id: ruff
+        alias: nbqa-ruff
+        name: ruff (notebooks)
+        types_or: [jupyter]
+        args: [--exit-zero]  # advisory until notebooks are modernized
+
+  - repo: https://github.com/psf/black
+    rev: 24.10.0
+    hooks:
+      - id: black
+        args: [--line-length, "100"]
+        files: ^(bookutils\.py|utils\.py|qa/|CH12_FLYNN_ML4DD/(src|scripts|tests)/|CH12_FLYNN_ML4DD/conftest\.py)
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: '\.ipynb$'
+      - id: end-of-file-fixer
+        exclude: '\.ipynb$'
+      - id: check-yaml
+      - id: check-added-large-files
+        args: [--maxkb, "12000"]
