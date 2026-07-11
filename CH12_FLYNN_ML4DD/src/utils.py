@@ -59,4 +59,4 @@ def get_device() -> torch.device:
                      PyTorch computations (either CUDA or CPU).
     """
 
-    return torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    return torch.device(torch.accelerator.current_accelerator() if torch.accelerator.is_available() else "cpu")
