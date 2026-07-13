@@ -43,43 +43,33 @@ Each notebook includes two Colab installation options:
 - **Quick Install**: Fast pip-based setup (3-10 minutes) with only the packages needed for that chapter
 - **Full Install**: Complete conda environment (15-20 minutes) with all packages for all chapters
 
-#### Option 2: Local Installation
+#### Option 2: Local Installation with uv (recommended)
 
-**Prerequisites**: Python 3.12+ and git
+**Prerequisites**: git and Python 3.12 — [uv](https://github.com/astral-sh/uv) installs and manages the interpreter for you.
 
-We provide **tiered installation options** so you can install only what you need:
-
-**Core Environment (Chapters 1-4)** — Basic ML & QSAR
 ```bash
+# Install uv if needed:  curl -LsSf https://astral.sh/uv/install.sh | sh
 git clone https://github.com/nrflynn2/ml-drug-discovery.git
 cd ml-drug-discovery
-pip install -r requirements-core.txt
+uv venv --python 3.12 && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 ```
-*Includes: numpy, pandas, matplotlib, seaborn, rdkit, scikit-learn*
 
-**Advanced Environment (Chapters 5-8)** — Gradient Boosting & Deep Learning
+We provide **tiered installs** so you install only what a chapter needs:
+
+| Tier | Chapters | Command |
+|------|----------|---------|
+| **Core** — basic ML & QSAR | 1–4 | `uv sync` |
+| **Advanced** — boosting, deep learning, GNNs | 5–8, 10, 11, Appendix C | `uv sync --extra advanced` |
+| **Full** — + pip-installable docking/MD helpers | adds Chapter 9 helpers | `uv sync --extra full` |
+
+**Chapter 9** additionally needs conda-only tools (openmm, vina, pdbfixer):
 ```bash
-pip install -r requirements-advanced.txt
+conda env create -f ml4dd2025.yml && conda activate ml4dd2025
 ```
-*Adds: torch, xgboost, lightgbm, catboost, shap, umap, statsmodels*
 
-**Full Environment (Chapters 9-11)** — Molecular Docking & GNNs
-```bash
-conda env create -f ml4dd2025.yml
-conda activate ml4dd2025
-```
-*Adds: openmm, vina, pdbfixer, torch-geometric, mdtraj, prolif, meeko*
+**Chapter 12** is a self-contained package — see [`CH12_FLYNN_ML4DD/`](CH12_FLYNN_ML4DD).
 
-**Note**: Chapters 9-11 require conda due to specialized packages (molecular dynamics, docking) that don't install reliably via pip.
-
-**Quick Reference**:
-- **Chapter 1-4**: Use `requirements-core.txt`
-- **Chapter 5-8, Appendix C**: Use `requirements-advanced.txt`
-- **Chapter 9-11**: Use `ml4dd2025.yml` (conda required)
-- **Chaper 12**: Follow instructions and use the notebooks within `CH12_FLYNN_ML4DD`
-- **All chapters**: Use `ml4dd2025.yml` for complete setup
-
-For detailed installation instructions and troubleshooting, see [INSTALL.md](INSTALL.md).
+Prefer classic pip? `pip install -e ".[advanced]"` works too. For detailed instructions and troubleshooting, see [INSTALL.md](INSTALL.md).
 
 ### 👥 Contribution & Support
 

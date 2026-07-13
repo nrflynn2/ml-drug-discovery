@@ -3,7 +3,7 @@ name = "ch12-protein-transformer"
 version = "0.1.0"
 description = "Production-quality implementations of Transformer-based protein models for educational purposes"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.12,<3.13"
 license = {text = "MIT"}
 authors = [
     {name = "Noah Flynn", email = "noahrflynn@gmail.com"}
@@ -15,45 +15,55 @@ classifiers = [
     "Intended Audience :: Science/Research",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Topic :: Scientific/Engineering :: Bio-Informatics",
 ]
 
+# Aligned with the book's root environment (Python 3.12). torchvision/torchaudio
+# are intentionally absent: no Chapter 12 code imports them. The old
+# requirements.txt pinned an inconsistent trio (torch 2.8.0 with torchvision
+# 0.17.2 / torchaudio 2.2.2 / triton 2.2.0), which cannot resolve together.
+# SECURITY: floors are set at-or-above the first patched version for every
+# Dependabot advisory raised against this package (see qa_reports/SECURITY.md):
+# torch >=2.10.0 (medium), pyarrow >=23.0.1 (high), jupyterlab >=4.5.9 (high),
+# ray >=2.54.0 (CRITICAL).
 dependencies = [
-    "torch>=2.0.0",
-    "numpy>=1.24.0",
-    "pandas>=2.0.0",
-    "scikit-learn>=1.4.0",
-    "matplotlib>=3.8.0",
-    "seaborn>=0.13.0",
+    "torch>=2.10.0",
+    "numpy>=1.26.4",
+    "pandas>=2.2.0",
+    "scikit-learn>=1.6.0",
+    "matplotlib>=3.10.0",
+    "seaborn>=0.13.2",
     "typer>=0.12.0",
-    "pyarrow>=16.0.0",
+    "pyarrow>=23.0.1",
     "typing-extensions>=4.0.0",
 ]
 
 [project.optional-dependencies]
-# For Jupyter notebook users
+# Interactive notebooks (Ch12 + Appendix D tutorials): pretrained ESM-2 via
+# Hugging Face transformers, BioPython for sequence handling, plus viz/widgets.
 notebooks = [
-    "jupyterlab>=4.0.0",
-    "ipykernel>=6.0.0",
-    "jupytext>=1.14.0",
+    "jupyterlab>=4.5.9",
+    "ipykernel>=6.29.0",
+    "jupytext>=1.16.0",
+    "transformers>=4.44.0",
+    "biopython>=1.83",
+    "tqdm>=4.67.1",
+    "ipywidgets>=8.1.0",
+    "cmocean>=4.0.3",
 ]
 
-# For hyperparameter tuning
+# Hyperparameter tuning (scripts/tune.py)
 tuning = [
-    "ray[tune]>=2.11.0",
+    "ray[tune]>=2.54.0",
 ]
 
 # Complete development environment
 dev = [
-    "jupyterlab>=4.0.0",
-    "ipykernel>=6.0.0",
-    "jupytext>=1.14.0",
-    "ray[tune]>=2.11.0",
+    "ch12-protein-transformer[notebooks,tuning]",
+    "black>=24.0.0",
+    "ruff>=0.6.0",
 ]
 
 [build-system]

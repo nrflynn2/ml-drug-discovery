@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=77.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,63 +7,113 @@ name = "ml-drug-discovery"
 version = "1.0.0"
 description = "Machine Learning for Drug Discovery - Code and Data Repository"
 readme = "README.md"
-requires-python = ">=3.11,<3.13"
-license = {text = "Apache-2.0"}
+requires-python = ">=3.12,<3.13"
+license = "Apache-2.0"
 authors = [
     {name = "Noah Flynn"}
 ]
 keywords = ["machine-learning", "drug-discovery", "cheminformatics", "deep-learning"]
 
+# ---------------------------------------------------------------------------
+# Tiered installs (managed with uv; see README/INSTALL). Base = "core" tier.
+#   uv sync                     -> core        (Chapters 1-4)
+#   uv sync --extra advanced    -> + Ch 5-8, 10, 11, Appendix C
+#   uv sync --extra full        -> + Ch 9 pip-installable docking/MD helpers
+#   Chapter 9 also needs the conda island (openmm/pdbfixer/vina); see ml4dd2025.yml
+#
+# Version notes (validated with `uv lock` on Python 3.12):
+#   * numpy: the old `<2.0.0` cap came solely from `mordred` (dropped, unused).
+#     numpy 2.x is now used, but capped `<2.3` because `numba` (pulled by shap
+#     and umap-learn) does not yet support numpy >=2.3 — letting numpy float to
+#     2.5 makes the resolver fall back to an ancient llvmlite that won't build.
+#   * pandas: capped `<3.0`. pandas 3.0 defaults to PyArrow-backed strings and
+#     copy-on-write-only semantics, which change behavior for this string-heavy
+#     cheminformatics code; stay on the 2.3.x line for reproducible outputs.
+#   Revisit both caps as numba/the notebooks catch up.
+# ---------------------------------------------------------------------------
 dependencies = [
-    "catboost>=1.2.7",
-    "dimorphite-dl>=2.0.0",
-    "gemmi>=0.7.0",
-    "imbalanced-learn>=0.13.0",
-    "jupyterlab>=4.3.0",
-    "lightgbm>=4.6.0",
-    "matplotlib>=3.10.0",
-    "meeko>=0.5.0",
-    "minisom>=2.3.5",
-    "mdtraj>=1.10.2",
-    "mordred>=1.2.0",
-    "numpy>=1.26.4,<2.0.0",
-    "openbabel-wheel>=3.1.1",
-    "openpyxl>=3.1.5",
-    "pandas>=2.2.3",
-    "prolif>=2.0.3",
-    "py3Dmol>=2.4.2",
-    "rdkit>=2024.3.2",
-    "scikit-learn>=1.6.0",
-    "scikit-multilearn>=0.2.0",
-    "seaborn>=0.13.2",
-    "selfies>=2.1.2",
-    "shap>=0.46.0",
-    "statsmodels>=0.14.4",
-    "SmilesPE>=0.0.3",
-    "tensorboard>=2.18.0",
-    "torch>=2.4.1",
-    "torch-geometric>=2.6.1",
-    "umap-learn>=0.5.7",
-    "xlrd>=2.0.1",
-    "xgboost>=2.1.4",
-    "networkx>=3.4.2",
-    "plotly>=5.24.1",
+    # Scientific computing
+    "numpy>=1.26.4,<2.3",
     "scipy>=1.15.0",
+    # Data & visualization
+    "pandas>=2.2.3,<3.0",
+    "matplotlib>=3.10.0",
+    "seaborn>=0.13.2",
+    # Chemistry toolkit
+    "rdkit>=2024.3.2",
+    # Machine learning
+    "scikit-learn>=1.6.0",
+    # Utilities & notebook environment
     "tqdm>=4.67.1",
+    "joblib>=1.4.0",
+    # jupyterlab floor >=4.5.9: below this admits a Dependabot-flagged advisory
+    # (see qa_reports/SECURITY.md).
+    "jupyterlab>=4.5.9",
+    "ipykernel>=6.29.0",
+    # ipywidgets so tqdm.notebook / interactive widgets don't hard-fail
+    # ("ImportError: IProgress not found") under headless nbconvert execution.
+    "ipywidgets>=8.1.0",
 ]
 
 [project.optional-dependencies]
-# Packages that require conda installation
-conda-only = [
-    "openmm>=8.2.0",
-    "pdbfixer>=1.10",
-    "vina>=1.2.5",
+# Advanced ML / DL (Chapters 5-8, 10, 11, Appendix C)
+advanced = [
+    "catboost>=1.2.7",
+    "lightgbm>=4.6.0",
+    "xgboost>=2.1.4",
+    # torch floor >=2.10.0: below this admits a Dependabot-flagged advisory, and
+    # >=2.6 is required anyway for the torch.accelerator API used by
+    # utils.get_device() (see qa_reports/SECURITY.md).
+    "torch>=2.10.0",
+    "torch-geometric>=2.6.1",
+    "shap>=0.46.0",
+    "umap-learn>=0.5.7",
+    # numba is a transitive dep of shap + umap-learn. Pin a Python-3.12-capable
+    # floor so the resolver can't fall back to numba 0.53 / llvmlite 0.36 (which
+    # only build on Python <3.10). numba 0.60+ ships 3.12 wheels.
+    "numba>=0.60.0",
+    "minisom>=2.3.5",
+    # NOTE: scikit-multilearn is unmaintained and imported only in Chapter 5.
+    # Validate it imports under scikit-learn >=1.6 / numpy 2; if broken, pin the
+    # last working combo for Ch5 or reimplement with sklearn MultiOutputClassifier.
+    "scikit-multilearn>=0.2.0",
+    "statsmodels>=0.14.4",
+    "imbalanced-learn>=0.13.0",
+    "plotly>=5.24.1",
+    "py3Dmol>=2.4.2",
+    "selfies>=2.1.2",
+    "SmilesPE>=0.0.3",
+    "dimorphite-dl>=2.0.0",
+    "tensorboard>=2.18.0",
+    "networkx>=3.4.2",
+    "openpyxl>=3.1.5",
+    "xlrd>=2.0.1",
+    "pyyaml>=6.0.2",
 ]
 
+# Full pip-installable set: advanced + Ch 9 docking/MD helpers that DO install via
+# pip. The hard conda-only trio (openmm/pdbfixer/vina) is separate (see below).
+full = [
+    "ml-drug-discovery[advanced]",
+    "openbabel-wheel>=3.1.1",
+    "mdtraj>=1.10.2",
+    "prolif>=2.0.3",
+    "gemmi>=0.7.0",
+    "meeko>=0.5.0",
+]
+
+# NOTE: Chapter 9 also needs openmm / pdbfixer / vina. Those are NOT pip-installable
+# (conda-forge only), so they are intentionally NOT declared as an extra here —
+# install them via the conda island in ml4dd2025.yml. Keeping them out lets
+# `uv lock` / `uv sync` resolve cleanly.
+
+# Authoring / QA tooling (jupytext pairing, notebook execution, linting).
 dev = [
     "pytest>=8.0.0",
     "black>=24.0.0",
     "ruff>=0.6.0",
+    "jupytext>=1.16.0",
+    "nbconvert>=7.16.0",
 ]
 
 [project.urls]
@@ -71,10 +121,16 @@ Homepage = "https://github.com/nrflynn2/ml-drug-discovery"
 Repository = "https://github.com/nrflynn2/ml-drug-discovery"
 Documentation = "https://www.manning.com/books/machine-learning-for-drug-discovery"
 
+# The repo is a collection of notebooks + data dirs, not a src-layout package.
+# Install only the top-level helper module (utils.py); do NOT auto-discover
+# data/ figures/ artifacts/ qa_reports/ CH12_FLYNN_ML4DD/ as packages.
+[tool.setuptools]
+py-modules = ["utils"]
+
 [tool.black]
 line-length = 100
-target-version = ['py311']
+target-version = ['py312']
 
 [tool.ruff]
 line-length = 100
-target-version = "py311"
+target-version = "py312"
