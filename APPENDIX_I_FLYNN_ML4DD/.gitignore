@@ -1,0 +1,11 @@
+# Large fetch-at-runtime assets (downloaded into artifacts/ on first run)
+artifacts/*.ckpt
+artifacts/*.a3m
+artifacts/*.pt
+artifacts/*.pth
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
