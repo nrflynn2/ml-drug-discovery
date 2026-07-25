@@ -37,8 +37,30 @@ class Tokenizer:
     def vocab_size(self):
         """
         Returns the size of the vocabulary (number of tokens).
+
+        This is 25 = 5 special tokens (`<cls>`, `<pad>`, `<eos>`, `<unk>`, `<mask>`,
+        occupying ids 0-4) + the 20 canonical amino acids (ids 5-24).
         """
         return len(self.token_to_index)
+
+    @property
+    def special_token_ids(self) -> list[int]:
+        """
+        Returns the ids of every special (non-amino-acid) token: ids 0-4.
+        """
+        return [self.token_to_index[t] for t in ("<cls>", "<pad>", "<eos>", "<unk>", "<mask>")]
+
+    @property
+    def amino_acid_ids(self) -> list[int]:
+        """
+        Returns the ids of the 20 canonical amino acids only (ids 5-24).
+
+        Use this wherever a *real residue* is required -- e.g. the "replace with a
+        random amino acid" branch of MLM masking, which must never emit `<unk>`
+        or `<mask>`.
+        """
+        specials = set(self.special_token_ids)
+        return [i for i in range(self.vocab_size) if i not in specials]
 
     @property
     def pad_token_id(self):
@@ -187,8 +209,13 @@ class BCRDataset(Dataset):
                 - y (int): Label associated with the BCR sample.
         """
 
-        x = self.df.loc[i, "sequence"]
-        y = self.df.loc[i, "label"]
+        # `i` is a POSITIONAL index supplied by the DataLoader sampler (0..len-1),
+        # so it must be resolved with .iloc. Using .loc here raised KeyError on any
+        # frame whose index is not a clean 0..n-1 RangeIndex -- which includes the
+        # shipped bcr_*.parquet files (their index is inherited from the source
+        # data and runs to ~8600 for only 364 rows).
+        x = self.df.iloc[i]["sequence"]
+        y = self.df.iloc[i]["label"]
 
         return x, y
 
@@ -242,6 +269,7 @@ def mask_sequences(
     mask_prob: float = 0.15,
     mask_token_prob: float = 0.8,
     random_token_prob: float = 0.1,
+    replacement_token_ids: list[int] | None = None,
 ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     """
     Creates masked sequences for masked language modeling (MLM).
@@ -264,6 +292,10 @@ def mask_sequences(
             Defaults to 0.8.
         random_token_prob (float, optional): Probability of replacing selected token with random token.
             Defaults to 0.1.
+        replacement_token_ids (list[int], optional): Token ids that may be used for the
+            "replace with a random amino acid" branch. Pass `tokenizer.amino_acid_ids`.
+            Defaults to None, which falls back to every id that is neither in
+            `special_token_ids` nor the mask token.
 
     Returns:
         tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
@@ -275,8 +307,15 @@ def mask_sequences(
     labels = input_ids.clone()
     masked_input_ids = input_ids.clone()
 
+    # Every tensor built here must live on the same device as `input_ids`.
+    # `mlm_collate_fn` moves input_ids to the accelerator *before* calling this
+    # function, so any tensor created without an explicit `device=` would land on
+    # the CPU and the first mixed-device op (masked_fill_ / boolean indexing)
+    # would raise. On a CPU-only box this was invisible.
+    device = input_ids.device
+
     # Create probability matrix
-    probability_matrix = torch.full(input_ids.shape, mask_prob)
+    probability_matrix = torch.full(input_ids.shape, mask_prob, device=device)
 
     # Don't mask special tokens
     special_tokens_mask = torch.zeros_like(input_ids, dtype=torch.bool)
@@ -293,25 +332,31 @@ def mask_sequences(
 
     # 80% of the time: replace with [MASK] token
     indices_replaced = (
-        torch.bernoulli(torch.full(input_ids.shape, mask_token_prob)).bool()
+        torch.bernoulli(torch.full(input_ids.shape, mask_token_prob, device=device)).bool()
         & mask_positions
     )
     masked_input_ids[indices_replaced] = mask_token_id
 
     # 10% of the time: replace with random amino acid
     indices_random = (
-        torch.bernoulli(torch.full(input_ids.shape, random_token_prob)).bool()
+        torch.bernoulli(torch.full(input_ids.shape, random_token_prob, device=device)).bool()
         & mask_positions
         & ~indices_replaced
     )
 
-    # Random tokens from vocabulary (excluding special tokens)
-    # Create a list of valid token IDs (amino acids only)
-    num_special = len(special_token_ids)
-    amino_acid_ids = torch.arange(num_special, vocab_size)
+    # Random tokens from vocabulary (amino acids ONLY).
+    # This used to be `torch.arange(len(special_token_ids), vocab_size)`, which
+    # assumed the special tokens are exactly the first `len(special_token_ids)`
+    # ids. They are not: the Tokenizer has FIVE special tokens (ids 0-4) but only
+    # three are passed in `special_token_ids`, so `<unk>` (3) and `<mask>` (4)
+    # leaked into the pool and were injected as if they were real residues.
+    if replacement_token_ids is None:
+        excluded = set(special_token_ids) | {mask_token_id}
+        replacement_token_ids = [i for i in range(vocab_size) if i not in excluded]
+    amino_acid_ids = torch.tensor(replacement_token_ids, device=device)
 
     random_tokens = amino_acid_ids[
-        torch.randint(len(amino_acid_ids), input_ids.shape)
+        torch.randint(len(amino_acid_ids), input_ids.shape, device=device)
     ]
     masked_input_ids[indices_random] = random_tokens[indices_random]
 
@@ -420,6 +465,8 @@ def mlm_collate_fn(
         vocab_size=tokenizer.vocab_size,
         special_token_ids=special_token_ids,
         mask_prob=mask_prob,
+        # Only the 20 canonical amino acids are valid "random residue" swaps.
+        replacement_token_ids=tokenizer.amino_acid_ids,
     )
 
     return {

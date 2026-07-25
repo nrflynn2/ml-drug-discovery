@@ -3,7 +3,7 @@
 # Estimated install time: 3-5 minutes on Google Colab
 
 # Scientific Computing
-numpy>=1.26.4,<2.0.0
+numpy>=1.26.4
 scipy>=1.15.0
 
 # Data Science & Visualization

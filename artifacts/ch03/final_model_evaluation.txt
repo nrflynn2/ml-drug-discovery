@@ -1,6 +1,6 @@
 Final Model Evaluation on Test Set
 ==================================
-F1 Score (macro): 0.7016
+F1 Score (macro): 0.7065
 
 Matthews Correlation Coefficient:
-0.4328
+0.4465

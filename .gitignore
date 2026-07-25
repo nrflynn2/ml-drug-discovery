@@ -158,3 +158,30 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+# ch06 Mordred descriptors: downloaded from Figshare by the notebook, not shipped.
+# https://figshare.com/articles/dataset/Machine_Learning_Informs_RNA-Binding_Chemical_Space/20401974
+data/ch06/Mordred_BindingDB_3D.csv
+data/ch06/Mordred_ROBIN_RNA_Binder_3D.csv
+
+# Monograph template pass debris (tools/monograph/apply_template.py):
+# apply_template.py --in-place writes .bak; without --in-place it writes *_monograph.ipynb.
+# Neither is ever committed. The proof-of-concept CH03 monograph is kept locally, untracked.
+*.ipynb.bak
+*_monograph.ipynb
+
+# Local QA / template-pass scaffolding — kept on disk for reference, never shipped with the book.
+# qa_reports/ is untracked as of the pre-merge cleanup; the builder tooling lives in tools/monograph/.
+/qa_reports/
+# validate_reports.py only validates the local qa_reports/, which aren't shipped:
+/tools/validate_reports.py
+chapter_summaries.txt
+# AUTHOR_REVIEW_NOTES.md — author's free-text local review notes (per AUTHOR_ANSWERS.md):
+AUTHOR_REVIEW_NOTES.md
+
+# Never commit the Dependabot export or any alert dump (see qa_reports/SECURITY.md).
+dependabot_alerts.json
+*_alerts.json
+
+# macOS Finder junk (public repo takes reader PRs).
+.DS_Store

@@ -56,6 +56,7 @@ def train_epoch(
     train_dl: DataLoader,
     loss_fn: nn.Module,
     opt: torch.optim.Optimizer,
+    max_grad_norm: float | None = 1.0,
 ) -> float:
     """
     Performs a training epoch on the model.
@@ -71,6 +72,9 @@ def train_epoch(
             It should take the model's output (logits) and the ground truth labels as input
             and return the loss value as a tensor.
         opt: A PyTorch optimizer object used for updating the model's weights.
+        max_grad_norm: Clip gradients to this global L2 norm before each step, the
+            standard stabiliser for Transformer training (`scripts/train_plm.py`
+            already does this). Pass None to disable clipping.
 
     Returns:
         The average loss value over the entire training epoch (float).
@@ -91,6 +95,11 @@ def train_epoch(
 
         # Backpropagation and update
         loss.backward()
+
+        # Gradient clipping
+        if max_grad_norm is not None:
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_grad_norm)
+
         opt.step()
 
         # total batch loss
@@ -276,12 +285,13 @@ def train_model(
         if val_loss < best_val_loss:
             best_val_loss = val_loss
             # save best model
-            torch.save(model.state_dict(), save_path / f"best_model.pt")
+            torch.save(model.state_dict(), save_path / "best_model.pt")
 
         # accuracy
         results["val_accuracy"].append(accuracy_score(y_true, y_pred))
 
-        # auc score
+        # auc score (only defined for the binary case)
+        auc_score = None
         if num_classes == 2:
             auc_score = roc_auc_score(y_true, y_prob[:, 1])
             results["val_auc"].append(auc_score)
@@ -295,10 +305,12 @@ def train_model(
         results["val_f1"].append(f1)
 
         if verbose:
+            # `auc_score` is only computed when num_classes == 2; referencing it
+            # unconditionally raised NameError on any multiclass run.
+            auc_msg = f", Valid AUC Score: {auc_score}" if auc_score is not None else ""
             print(
                 f"Epoch {epoch}: Train Loss: {train_loss}, "
-                f"Valid Loss: {val_loss}, "
-                f"Valid AUC Score: {auc_score}"
+                f"Valid Loss: {val_loss}{auc_msg}"
             )
 
     # Save training results as CSV

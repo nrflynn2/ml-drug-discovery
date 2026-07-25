@@ -84,7 +84,10 @@ class AntibodyPredictor:
             kwargs = json.load(f)
         model = AntibodyClassifier(**kwargs)
         best_model_path = run_dir / "best_model.pt"
-        model.load_state_dict(torch.load(best_model_path))
+        # map_location=device: a checkpoint saved on a GPU stores its tensors with
+        # a cuda device tag, so loading it on a CPU-only machine (or a different
+        # accelerator) raised RuntimeError without this.
+        model.load_state_dict(torch.load(best_model_path, map_location=device))
         return cls(model=model, device=device)
 
 

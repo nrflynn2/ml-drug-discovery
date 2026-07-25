@@ -152,9 +152,162 @@ def list_saved_dataframes(chapter="ch01"):
         
     # Sort by modification time (newest first)
     file_info.sort(key=lambda x: x['modified'], reverse=True)
-    
+
     # Display the information
     for info in file_info:
         print(f"  {info['filename']} ({info['size_mb']:.1f} MB, modified: {info['modified']})")
-    
+
     return [info['filename'] for info in file_info]
+
+
+def set_seed(seed=42, deterministic=False):
+    """
+    Seed Python, NumPy, and (if installed) PyTorch + CUDA for reproducibility.
+
+    Call once near the top of a notebook, e.g. ``SEED = set_seed(42)``. Seeding
+    every RNG the notebooks touch -- plus ``PYTHONHASHSEED`` -- is what makes the
+    printed outputs reproducible across runs and machines.
+
+    Parameters
+    ----------
+    seed : int
+        The seed applied to all random number generators.
+    deterministic : bool
+        If True, also force deterministic cuDNN / PyTorch kernels. This can slow
+        training and some ops have no deterministic implementation, so it is
+        opt-in (``warn_only=True`` avoids hard failures on those ops).
+
+    Returns
+    --------
+    int
+        The seed, so you can capture it in one line: ``SEED = set_seed(42)``.
+    """
+    import random
+
+    os.environ["PYTHONHASHSEED"] = str(seed)
+    random.seed(seed)
+
+    try:
+        import numpy as np
+        np.random.seed(seed)
+    except ImportError:
+        pass
+
+    try:
+        import torch
+        torch.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
+        if deterministic:
+            import torch.backends.cudnn as cudnn
+            cudnn.deterministic = True
+            cudnn.benchmark = False
+            torch.use_deterministic_algorithms(True, warn_only=True)
+    except ImportError:
+        pass
+
+    return seed
+
+
+def preview_df(df, name="df", n=3):
+    """
+    Print a compact before/after snapshot of a DataFrame and return its head.
+
+    Standardizes the "show shape + columns + head after each major transform"
+    pattern so readers can see exactly how the data changes from step to step
+    (raw -> parsed -> descriptors -> filters -> fingerprints -> hits).
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        The DataFrame to preview.
+    name : str
+        A label for the printout (e.g. "raw", "filtered", "with descriptors").
+    n : int
+        Number of head rows to return for display.
+
+    Returns
+    --------
+    pandas.DataFrame
+        ``df.head(n)`` so the call renders a preview as the cell's output.
+    """
+    print(f"{name}: {df.shape[0]:,} rows x {df.shape[1]} cols")
+    print(f"  columns: {list(df.columns)}")
+    return df.head(n)
+
+
+def check_env(packages=None):
+    """
+    Print the Python version and key package versions for reproducibility.
+
+    Several listings are version-sensitive (RDKit descriptor counts, scikit-learn
+    calibration APIs, PyTorch schedulers). Printing versions up front makes a
+    notebook's results self-documenting and much easier to debug across the
+    local, WSL2, and Colab environments the book supports.
+
+    Parameters
+    ----------
+    packages : list of str, optional
+        Import names to report. Defaults to the packages the book relies on.
+    """
+    import importlib
+    import platform
+
+    if packages is None:
+        packages = [
+            "numpy", "pandas", "scipy", "sklearn", "rdkit",
+            "torch", "torch_geometric", "xgboost", "matplotlib",
+        ]
+
+    print(f"Python {platform.python_version()} ({platform.system()})")
+    try:
+        import torch
+        if torch.cuda.is_available():
+            print(f"  CUDA available: {torch.cuda.get_device_name(0)}")
+        else:
+            print("  CUDA available: no (CPU only)")
+    except ImportError:
+        pass
+
+    for name in packages:
+        try:
+            mod = importlib.import_module(name)
+            version = getattr(mod, "__version__", "unknown")
+            print(f"  {name:16s} {version}")
+        except ImportError:
+            print(f"  {name:16s} (not installed)")
+
+
+def get_device():
+    """
+    Return the best available PyTorch device, hardware-agnostic (CUDA / Apple MPS /
+    other accelerator, else CPU).
+
+    Prefers ``torch.accelerator`` (PyTorch >= 2.6), which unifies detection across
+    CUDA, Apple MPS, Intel XPU, and others -- the pattern contributed by
+    thomas-to-bcheme (GitHub PRs #24-28). Falls back to explicit CUDA/MPS checks on
+    older PyTorch or if the accelerator query fails. Use alongside ``set_seed()`` in
+    the standardized setup cell so every deep-learning chapter runs on whatever
+    hardware the reader has (GPU, Mac, or CPU).
+
+    Returns
+    --------
+    torch.device
+        The selected device.
+    """
+    import torch
+
+    # torch.accelerator (>= 2.6) unifies CUDA / MPS / XPU / ... detection.
+    if hasattr(torch, "accelerator"):
+        try:
+            if torch.accelerator.is_available():
+                return torch.device(torch.accelerator.current_accelerator())
+        except Exception:
+            pass
+
+    # Fallback for older PyTorch (or if the accelerator query is unavailable).
+    if torch.cuda.is_available():
+        return torch.device("cuda")
+    mps = getattr(torch.backends, "mps", None)
+    if mps is not None and mps.is_available():
+        return torch.device("mps")
+    return torch.device("cpu")

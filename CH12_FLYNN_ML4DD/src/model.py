@@ -37,15 +37,22 @@ class MultiheadAttention(nn.Module):
         """
         Expands the attention mask to the required 4D shape for multi-head attention.
 
+        Mask semantics (this codebase uses **1/0 keep-or-drop masks**, not additive
+        `0/-inf` masks): an entry of ``1``/``True`` marks a position that MAY be
+        attended to, and ``0``/``False`` marks one that must be ignored. Any dtype
+        that compares correctly against 0 works (int, bool, float);
+        ``scale_dot_product_attention`` converts it to an additive mask internally
+        by filling the masked logits with the dtype's minimum.
+
         Args:
             mask (torch.Tensor): Attention mask with various possible shapes:
-                - (batch_size, seq_len)
-                - (batch_size, seq_len, seq_len)
-                - (batch, num_heads, seq_len, seq_len)
-                None: No mask is applied.
+                - (batch_size, seq_len)                       -- per-key padding mask
+                - (batch_size, seq_len, seq_len)              -- per-(query, key) mask
+                - (batch_size, num_heads, seq_len, seq_len)   -- already fully expanded
 
         Returns:
-            torch.Tensor: Expanded mask with 4D shape
+            torch.Tensor: The mask broadcast to 4D,
+                (batch_size, num_heads_or_1, query_len_or_1, seq_len).
         """
 
         assert 2 <= mask.ndim <= 4, "Wrong mask dimensionality"
@@ -53,6 +60,10 @@ class MultiheadAttention(nn.Module):
             return mask[:, None, None, :]
         elif mask.ndim == 3:
             return mask[:, None, :, :]
+        # ndim == 4: already expanded. This branch previously fell off the end of
+        # the function and returned None, which silently DISCARDED a 4D mask that
+        # the docstring says is supported.
+        return mask
 
     def forward(
         self, x: torch.Tensor, mask: torch.Tensor = None, return_attention: bool = False
@@ -251,7 +262,12 @@ class Encoder(nn.Module):
             _, attn = layer.attention(x, mask=mask, return_attention=True)
             attention_maps.append(attn)
 
-            x = layer(x)
+            # The mask must be forwarded here, exactly as `forward()` does. Calling
+            # `layer(x)` without it let every layer above the first attend to
+            # padding, so the hidden states fed to the next layer -- and therefore
+            # the attention maps reported for layers 1..N -- did not match the maps
+            # the model actually computes in `forward(x, mask)`.
+            x = layer(x, mask)
 
         return attention_maps
 
@@ -457,9 +473,17 @@ class AntibodyClassifier(nn.Module):
         This function averages the embedding vectors of all amino acids within a sequence,
         considering only the unmasked tokens based on the attention mask.
 
+        Note on special tokens: the Tokenizer emits an attention mask of 1 for
+        `<cls>` and `<eos>` (only `<pad>` gets 0), so those two positions ARE
+        included in the average. That matches the common "mean pooling over the
+        attention mask" recipe used for BERT-style encoders, and it is what the
+        chapter's reported accuracy was measured with -- it is called out here
+        because it is a deliberate choice rather than an oversight.
+
         Args:
             token_embeddings (torch.Tensor): Token embeddings from the encoder (batch_size, seq_len, embedding_dim).
-            attention_mask (torch.Tensor): Attention mask indicating valid tokens (batch_size, seq_len).
+            attention_mask (torch.Tensor): Attention mask indicating valid tokens (batch_size, seq_len),
+                using 1/0 keep-or-drop semantics.
 
         Returns:
             torch.Tensor: Mean-pooled embedding vectors of each sequence (batch_size, embedding_dim).

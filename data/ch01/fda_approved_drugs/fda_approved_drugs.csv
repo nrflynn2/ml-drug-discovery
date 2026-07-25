@@ -190,29 +190,29 @@ PILOCARPINE,0,CC[C@@H]1C(=O)OC[C@@H]1Cc1cncn1C,-pine
 ASENAPINE MALEATE,0,CN1CC2c3ccccc3Oc3ccc(Cl)cc3C2C1.O=C(O)/C=C\C(=O)O,-pine
 PILOCARPINE HYDROCHLORIDE,0,CC[C@@H]1C(=O)OC[C@@H]1Cc1cncn1C.Cl,-pine
 CARBAMAZEPINE,0,NC(=O)N1c2ccccc2C=Cc2ccccc21,-pine
-SULFACARBAMIDE,0,NC(=O)NS(=O)(=O)c1ccc(N)cc1,sulfa-
-SULFAGUANIDINE,1,N=C(N)NS(=O)(=O)c1ccc(N)cc1,sulfa-
-SULFANILAMIDE,0,Nc1ccc(S(N)(=O)=O)cc1,sulfa-
-SULFACETAMIDE SODIUM,0,CC(=O)[N-]S(=O)(=O)c1ccc(N)cc1.O.[Na+],sulfa-
-SULFADIMETHOXINE SODIUM,0,COc1cc([N-]S(=O)(=O)c2ccc(N)cc2)nc(OC)n1.[Na+],sulfa-
-"SULFADIAZINE, SILVER",0,Nc1ccc(S(=O)(=O)[N-]c2ncccn2)cc1.[Ag+],sulfa-
-SULFACETAMIDE,0,CC(=O)NS(=O)(=O)c1ccc(N)cc1,sulfa-
-SULFAMETHOXAZOLE,0,Cc1cc(NS(=O)(=O)c2ccc(N)cc2)no1,sulfa-
-SULFAMERAZINE,0,Cc1ccnc(NS(=O)(=O)c2ccc(N)cc2)n1,sulfa-
-SULFADIAZINE SODIUM,0,Nc1ccc(S(=O)(=O)[N-]c2ncccn2)cc1.[Na+],sulfa-
-SULFATHIAZOLE,0,Nc1ccc(S(=O)(=O)Nc2nccs2)cc1,sulfa-
-SULFAMETHAZINE,0,Cc1cc(C)nc(NS(=O)(=O)c2ccc(N)cc2)n1,sulfa-
-SULFAPHENAZOLE,0,Nc1ccc(S(=O)(=O)Nc2ccnn2-c2ccccc2)cc1,sulfa-
-SULFADIMETHOXINE,0,COc1cc(NS(=O)(=O)c2ccc(N)cc2)nc(OC)n1,sulfa-
-SULFAMETHOXYPYRIDAZINE,0,COc1ccc(NS(=O)(=O)c2ccc(N)cc2)nn1,sulfa-
-SULFACYTINE,0,CCn1ccc(NS(=O)(=O)c2ccc(N)cc2)nc1=O,sulfa-
-SULFADIAZINE,0,Nc1ccc(S(=O)(=O)Nc2ncccn2)cc1,sulfa-
-SULFABENZAMIDE,0,Nc1ccc(S(=O)(=O)NC(=O)c2ccccc2)cc1,sulfa-
-SULFADOXINE,0,COc1ncnc(NS(=O)(=O)c2ccc(N)cc2)c1OC,sulfa-
-SULFAMETHIZOLE,0,Cc1nnc(NS(=O)(=O)c2ccc(N)cc2)s1,sulfa-
-SULFALENE,0,COc1nccnc1NS(=O)(=O)c1ccc(N)cc1,sulfa-
-SULFAPYRIDINE,0,Nc1ccc(S(=O)(=O)Nc2ccccn2)cc1,sulfa-
-SULFAMETER,0,COc1cnc(NS(=O)(=O)c2ccc(N)cc2)nc1,sulfa-
+SULFACARBAMIDE,0,NC(=O)NS(=O)(=O)c1ccc(N)cc1,-sulfa
+SULFAGUANIDINE,1,N=C(N)NS(=O)(=O)c1ccc(N)cc1,-sulfa
+SULFANILAMIDE,0,Nc1ccc(S(N)(=O)=O)cc1,-sulfa
+SULFACETAMIDE SODIUM,0,CC(=O)[N-]S(=O)(=O)c1ccc(N)cc1.O.[Na+],-sulfa
+SULFADIMETHOXINE SODIUM,0,COc1cc([N-]S(=O)(=O)c2ccc(N)cc2)nc(OC)n1.[Na+],-sulfa
+"SULFADIAZINE, SILVER",0,Nc1ccc(S(=O)(=O)[N-]c2ncccn2)cc1.[Ag+],-sulfa
+SULFACETAMIDE,0,CC(=O)NS(=O)(=O)c1ccc(N)cc1,-sulfa
+SULFAMETHOXAZOLE,0,Cc1cc(NS(=O)(=O)c2ccc(N)cc2)no1,-sulfa
+SULFAMERAZINE,0,Cc1ccnc(NS(=O)(=O)c2ccc(N)cc2)n1,-sulfa
+SULFADIAZINE SODIUM,0,Nc1ccc(S(=O)(=O)[N-]c2ncccn2)cc1.[Na+],-sulfa
+SULFATHIAZOLE,0,Nc1ccc(S(=O)(=O)Nc2nccs2)cc1,-sulfa
+SULFAMETHAZINE,0,Cc1cc(C)nc(NS(=O)(=O)c2ccc(N)cc2)n1,-sulfa
+SULFAPHENAZOLE,0,Nc1ccc(S(=O)(=O)Nc2ccnn2-c2ccccc2)cc1,-sulfa
+SULFADIMETHOXINE,0,COc1cc(NS(=O)(=O)c2ccc(N)cc2)nc(OC)n1,-sulfa
+SULFAMETHOXYPYRIDAZINE,0,COc1ccc(NS(=O)(=O)c2ccc(N)cc2)nn1,-sulfa
+SULFACYTINE,0,CCn1ccc(NS(=O)(=O)c2ccc(N)cc2)nc1=O,-sulfa
+SULFADIAZINE,0,Nc1ccc(S(=O)(=O)Nc2ncccn2)cc1,-sulfa
+SULFABENZAMIDE,0,Nc1ccc(S(=O)(=O)NC(=O)c2ccccc2)cc1,-sulfa
+SULFADOXINE,0,COc1ncnc(NS(=O)(=O)c2ccc(N)cc2)c1OC,-sulfa
+SULFAMETHIZOLE,0,Cc1nnc(NS(=O)(=O)c2ccc(N)cc2)s1,-sulfa
+SULFALENE,0,COc1nccnc1NS(=O)(=O)c1ccc(N)cc1,-sulfa
+SULFAPYRIDINE,0,Nc1ccc(S(=O)(=O)Nc2ccccn2)cc1,-sulfa
+SULFAMETER,0,COc1cnc(NS(=O)(=O)c2ccc(N)cc2)nc1,-sulfa
 REPROTEROL HYDROCHLORIDE,0,Cl.Cn1c(=O)c2c(ncn2CCCNCC(O)c2cc(O)cc(O)c2)n(C)c1=O,-terol
 OLODATEROL,0,COc1ccc(CC(C)(C)NC[C@H](O)c2cc(O)cc3c2OCC(=O)N3)cc1,-terol
 RIMITEROL HYDROBROMIDE,0,Br.Oc1ccc(C(O)C2CCCCN2)cc1O,-terol

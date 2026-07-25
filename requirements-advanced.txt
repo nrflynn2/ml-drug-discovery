@@ -32,7 +32,6 @@ plotly>=5.24.1
 py3Dmol>=2.4.2
 
 # Chemistry additions
-mordred
 dimorphite-dl>=2.0.0
 
 # Deep Learning Utilities

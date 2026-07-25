@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ML4DD Monograph — template preview</title>
+<style>body{max-width:820px;margin:40px auto;padding:0 24px;background:#fff;}img{max-width:100%;}a{color:#A20025;}</style>
+</head>
+<body>
+<!-- Rendered preview of TEMPLATE_CHAPTER.ipynb. Regenerate, do not hand-edit. -->
+<table style="border:none;border-collapse:collapse;margin:0 0 8px;width:100%;">
+<tr style="border:none;">
+  <td style="border:none;padding:0;vertical-align:middle;">
+    <div style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#A20025;margin:0 0 7px;">Companion notebook</div>
+    <div style="font-family:Georgia,'Iowan Old Style',serif;font-size:18px;color:#1A1416;line-height:1.25;margin:0 0 7px;">
+      <a href="https://www.manning.com/books/build-ai-drug-discovery-pipelines" style="color:#1A1416;text-decoration:none;border-bottom:1px solid #A20025;padding-bottom:1px;">Build AI Drug Discovery Pipelines</a>
+    </div>
+    <div style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:12px;color:#6B6461;line-height:1.7;">
+      Noah Flynn&nbsp;&middot;&nbsp;Manning Publications<br>
+      Code&nbsp;&middot;&nbsp;<a href="https://github.com/nrflynn2/ml-drug-discovery" style="color:#A20025;text-decoration:none;">github.com/nrflynn2/ml-drug-discovery</a>
+    </div>
+  </td>
+  <td style="border:none;padding:0 0 0 22px;vertical-align:middle;width:104px;text-align:right;">
+    <a href="https://www.manning.com/books/build-ai-drug-discovery-pipelines">
+      <img src="https://raw.githubusercontent.com/nrflynn2/ml-drug-discovery/main/assets/cover-sm.png" width="88" alt="Build AI Drug Discovery Pipelines cover" style="border:1px solid #E7E2DF;border-radius:3px;display:inline-block;">
+    </a>
+  </td>
+</tr>
+</table>
+<hr style="border:0;border-top:1px solid #A20025;opacity:.55;margin:0 0 22px;">
+
+<div style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#A20025;margin:0 0 12px;">Chapter 3</div>
+
+<h1 style="font-family:Georgia,'Iowan Old Style','Palatino Linotype',serif;font-weight:500;font-size:33px;line-height:1.12;margin:0 0 16px;color:#1A1416;letter-spacing:-.01em;">Ligand-Based Screening: Machine Learning</h1>
+
+<hr style="border:0;border-top:1px solid #A20025;opacity:.55;margin:0 0 4px;">
+
+<em style="color:#6B6461;font-size:14.5px;">Runnable code for Chapter 3; read alongside the book.</em>
+&nbsp;
+<a href="https://colab.research.google.com/github/nrflynn2/ml-drug-discovery/blob/main/CH03_FLYNN_ML4DD.ipynb" target="_blank"><img src="https://img.shields.io/badge/Open%20in-Colab-A20025?logo=googlecolab&logoColor=white" alt="Open in Colab" style="height:20px;vertical-align:middle;"></a>
+
+<strong style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#A20025;">Objectives</strong>
+<ol style="margin:8px 0 0;padding-left:22px;font-size:15.5px;color:#241c1d;">
+<li style="margin:6px 0;">Curate and standardize a hERG blocker dataset from raw SMILES</li>
+<li style="margin:6px 0;">Generate fingerprints and descriptors as ML features</li>
+<li style="margin:6px 0;">Train and evaluate a cardiotoxicity classifier</li>
+<li style="margin:6px 0;">Prevent leakage with scaffold-based splits</li>
+</ol>
+
+<h2 style="font-family:Georgia,'Iowan Old Style','Palatino Linotype',serif;font-weight:500;font-size:23px;margin:34px 0 10px;color:#1A1416;"><span style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:13px;color:#A20025;font-weight:500;">§0&#8195;</span>Environment Setup</h2>
+
+<div style="font-size:14px;margin:0 0 6px;">
+<div style="display:flex;gap:14px;padding:9px 0;border-bottom:1px solid #EFEBE8;"><strong style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#A20025;min-width:96px;">Local&#8195;&#8195;</strong><span>Install <a href="https://docs.astral.sh/uv/" style="color:#A20025;">uv</a>, then run <code>uv sync</code> from the repo root (Python 3.12) and launch with <code>uv run jupyter lab</code>.</span></div>
+<div style="display:flex;gap:14px;padding:9px 0;"><strong style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#A20025;min-width:96px;">Colab&#8195;&#8195;</strong><span>Run the install cell below (same pinned versions), then restart the runtime.</span></div>
+</div>
+
+<pre style="background:#F7F5F3;border:1px solid #E7E2DF;border-radius:4px;padding:12px 14px;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;overflow-x:auto;line-height:1.5;color:#1A1416;">from pathlib import Path
+import urllib.request
+
+def fetch(url: str, dest, force: bool = False) -&gt; Path:
+    """Download `url` to `dest` if not already present. Cross-platform, no shell."""
+    dest = Path(dest)
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    if force or not dest.exists():
+        urllib.request.urlretrieve(url, dest)
+    return dest
+
+# Colab: pull the data files a local clone already has.
+# fetch("https://raw.githubusercontent.com/nrflynn2/ml-drug-discovery/main/data/ch03/hERG_blockers.csv",
+#       "data/ch03/hERG_blockers.csv")</pre>
+
+<h3 style="font-family:Georgia,'Iowan Old Style','Palatino Linotype',serif;font-weight:600;font-size:17px;color:#1A1416;margin:24px 0 8px;">Import Packages</h3>
+
+<pre style="background:#F7F5F3;border:1px solid #E7E2DF;border-radius:4px;padding:12px 14px;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;overflow-x:auto;line-height:1.5;color:#1A1416;">import pandas as pd
+from rdkit import Chem
+from sklearn.linear_model import LogisticRegression</pre>
+
+<h2 style="font-family:Georgia,'Iowan Old Style','Palatino Linotype',serif;font-weight:500;font-size:23px;margin:34px 0 10px;color:#1A1416;"><span style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:13px;color:#A20025;font-weight:500;">§1&#8195;</span>Problem Understanding</h2>
+
+Body prose stays ordinary Markdown. Only headers, the masthead, objectives, callouts, exercises, captions, and references use the styled blocks.
+
+<h2 style="font-family:Georgia,'Iowan Old Style','Palatino Linotype',serif;font-weight:500;font-size:23px;margin:34px 0 10px;color:#1A1416;"><span style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:13px;color:#A20025;font-weight:500;">§2&#8195;</span>Data Acquisition, Exploration &amp; Curation</h2>
+
+<h3 style="font-family:Georgia,'Iowan Old Style','Palatino Linotype',serif;font-weight:600;font-size:17px;color:#1A1416;margin:24px 0 8px;">Validating and Standardizing SMILES</h3>
+
+<pre style="background:#F7F5F3;border:1px solid #E7E2DF;border-radius:4px;padding:12px 14px;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;overflow-x:auto;line-height:1.5;color:#1A1416;">mols = [Chem.MolFromSmiles(s) for s in df["smiles"]]
+df = df[[m is not None for m in mols]].reset_index(drop=True)</pre>
+
+<div style="margin:0 0 16px;padding:2px 0 2px 18px;border-left:2px solid #A20025;">
+<strong style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#A20025;">Note</strong><br>
+<span style="color:#3d3436;font-size:14.5px;"><code>MolFromSmiles</code> returns <code>None</code> on a parse failure rather than raising. Drop those rows before featurizing or downstream code breaks on the nulls.</span>
+</div>
+
+<div style="margin:0 0 16px;padding:2px 0 2px 18px;border-left:2px solid #6B6461;">
+<strong style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#6B6461;">Runtime</strong><br>
+<span style="color:#3d3436;font-size:14.5px;">This cell takes about 20 minutes on the default Colab runtime. You can skip it and load the precomputed result from the cell below.</span>
+</div>
+
+<div style="margin:0 0 16px;padding:2px 0 2px 18px;border-left:2px solid #B4690E;">
+<strong style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#B4690E;">Caution</strong><br>
+<span style="color:#3d3436;font-size:14.5px;">A random train/test split scatters molecules from one scaffold across both sides, leaking structure and inflating AUROC. Split by scaffold instead.</span>
+</div>
+
+<div style="margin:0 0 16px;padding:12px 18px;border-left:2px solid #A20025;background:#FDF3F5;">
+<strong style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#A20025;">Key result</strong><br>
+<span style="color:#3d3436;font-size:14.5px;">A clean, deduplicated, scaffold-split dataset moves the needle more than the choice of model at this stage.</span>
+</div>
+
+<h4 style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-weight:600;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#A20025;margin:18px 0 6px;">Feature Generation and Exploration</h4>
+
+<div style="font-size:12.5px;color:#6B6461;margin:6px 0 14px;">Figure 3.1. ROC curves for the scaffold-split hold-out set.</div>
+
+<details style="margin:0 0 14px;border-top:1px solid #E7E2DF;border-bottom:1px solid #E7E2DF;">
+<summary style="cursor:pointer;padding:11px 0;font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#A20025;">Try it yourself &middot; Morgan radius 2 to 3</summary>
+<div style="padding:4px 0 14px;font-size:14.5px;color:#3d3436;">
+<p>Re-featurize with <code>radius=3</code>, retrain, and compare AUROC. What happens to the gap between train and test, and why?</p>
+</div>
+</details>
+
+<hr style="border:0;border-top:1px solid #A20025;opacity:.55;margin:34px 0 12px;">
+<h2 style="font-family:Georgia,'Iowan Old Style','Palatino Linotype',serif;font-weight:500;font-size:23px;margin:0 0 10px;color:#1A1416;">Summary</h2>
+
+SMILES standardization and deduplication are prerequisites, not optional cleanup. A scaffold split gives an honest estimate of prospective performance, and a regularized linear model is a strong, interpretable baseline before anything heavier.
+
+<hr style="border:0;border-top:1px solid #A20025;opacity:.55;margin:34px 0 12px;">
+<h2 style="font-family:Georgia,'Iowan Old Style','Palatino Linotype',serif;font-weight:500;font-size:23px;margin:0 0 10px;color:#1A1416;">References</h2>
+
+<ol style="font-size:13.5px;color:#6B6461;padding-left:20px;">
+<li style="margin:7px 0;">Wu, Z. et al. (2018). <em>MoleculeNet: A Benchmark for Molecular Machine Learning.</em> Chemical Science.</li>
+<li style="margin:7px 0;">Bemis, G. W. &amp; Murcko, M. A. (1996). <em>The Properties of Known Drugs: Molecular Frameworks.</em> J. Med. Chem.</li>
+<li style="margin:7px 0;">RDKit: Open-Source Cheminformatics. <a href="https://www.rdkit.org">rdkit.org</a></li>
+</ol>
+</body></html>
