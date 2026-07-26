@@ -185,3 +185,9 @@ dependabot_alerts.json
 
 # macOS Finder junk (public repo takes reader PRs).
 .DS_Store
+
+# Book-authoring tooling & internal QA notes — kept local, not shipped with the book.
+/tools/monograph/
+code_listing_feedback_for_qa.md
+# Jupytext .py exports of the root chapter notebooks aren't shipped (the .ipynb is source of truth).
+/*_FLYNN_ML4DD.py
