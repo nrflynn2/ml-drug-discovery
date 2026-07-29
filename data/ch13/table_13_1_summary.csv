@@ -1,0 +1,3 @@
+Ligand set,n,Experimental measurement,Measured range (log units),Spearman rho,95% CI,p,Mean signed error (log),Regression slope,n below binder gate
+TNIK (Case Study 1),18,"IC50, single radiometric assay",3.54,+0.80,"[+0.55, +0.91]",0.0001,+0.72,0.51,1
+TYK2 (FEP+ benchmark),15,"Ki, congeneric series",2.9,+0.69,"[+0.23, +0.91]",0.0048,-1.07,0.54,3
