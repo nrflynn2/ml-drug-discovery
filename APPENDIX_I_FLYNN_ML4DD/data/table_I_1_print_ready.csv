@@ -1,0 +1,10 @@
+Model,Task,Code,Weights,Observed runtime,Device
+FlowMol3,unconditional 3D molecule generation,MIT,**unstated**,1240 s (full timestep sweep total),local CPU
+DiffSBDD,pocket-conditioned ligand generation,MIT,CC-BY-4.0,286 s (denovo 20 ligands),local CPU
+RFdiffusion,protein backbone generation,BSD,BSD (covers weights explicitly),887 s (scaling 24 backbones 60 90 120 150res T50),Modal A100
+ProteinMPNN,inverse folding (sequence design),MIT,MIT (in-repo),not recorded,Modal A100
+ESMFold,single-sequence structure prediction,MIT,MIT,not recorded,Modal A100
+Boltz-2,complex structure + binding affinity,MIT,MIT,161 s (msa backed run recorded in artifact),Modal A100
+DiffDock,blind ligand docking,MIT,MIT (repo weights),not recorded,not run
+Boltz-2 (hosted NIM),complex structure + affinity (hosted),n/a (service),NVIDIA service terms,37 s (smoke test),NVIDIA-hosted
+DiffDock (hosted NIM),blind ligand docking (hosted),n/a (service),NVIDIA service terms,29 s (redock 20 ligands 10 poses each),NVIDIA-hosted

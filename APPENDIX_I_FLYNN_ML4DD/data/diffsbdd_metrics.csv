@@ -1,0 +1,25 @@
+# DiffSBDD pocket-conditioned SBDD — 3RFM adenosine A2A receptor (pocket = caffeine A:330)
+# checkpoint=crossdocked_fullatom_cond.ckpt | sampling_timesteps=100/500 | validity=100.0% (20/20) | connected=100.0% | diversity=0.809
+# reference (caffeine): smiles=Cn1c(=O)c2c(ncn2C)n(C)c1=O qed=0.538 sa_raw=2.298 mw=194.2
+# medians: QED=0.600 SA_raw=4.246 SA_norm=0.639 Lipinski_mean=5.00 | novelty: median_Tc=0.212 max_Tc=0.363
+mol_id,smiles,valid,qed,sa_score_raw,sa_norm,logp,mw,n_heavy_atoms,n_rings,lipinski_rules_passed,qed_ge_0.5,tanimoto_to_caffeine
+diffsbdd_3rfm_2,O=C(NC1=CCCCC1)N1SCc2scnc21,yes,0.7942,3.8611,0.682,3.279,267.38,17,3,5,yes,0.2691
+diffsbdd_3rfm_16,COC1C(=C=O)C(C#N)=NC2=C1C(c1ccc(Cl)cc1)N1CCCC1C2,yes,0.7524,4.4492,0.617,3.254,367.84,26,4,5,yes,0.3290
+diffsbdd_3rfm_18,Cc1cc(C)c2c(c1CN)C1C=NN=C1N2,yes,0.7465,4.2145,0.643,1.669,214.27,16,3,5,yes,0.2524
+diffsbdd_3rfm_0,CC1N=NC2=C1NC(=O)C(=O)N(c1ccco1)C2,yes,0.7435,4.2170,0.643,0.808,246.23,18,3,5,yes,0.2722
+diffsbdd_3rfm_4,C=C(C)C1CCC(CO)C1C1=NC=CC1,yes,0.7056,4.5281,0.608,2.556,205.30,15,2,5,yes,0.1279
+diffsbdd_3rfm_6,CC1CN2c3c(-c4ccccc4)cn(C(=O)CC#N)c3C3=CC(NC4CCOCC4)=CC=C(CO1)N32,yes,0.7024,4.3364,0.629,4.056,483.57,36,6,5,yes,0.3628
+diffsbdd_3rfm_13,CC1=CC2=NN3C=CC=C(N)C3N2C(Cl)=C1C,yes,0.6676,4.8522,0.572,2.044,248.72,17,3,5,yes,0.2953
+diffsbdd_3rfm_5,Fc1ccc(N2C(=S)CC3CC32)nc1,yes,0.6578,3.7051,0.699,2.147,208.26,14,3,5,yes,0.2028
+diffsbdd_3rfm_12,CC(=O)c1cc(C)nc2c1C(=O)CCC2,yes,0.6566,2.4949,0.834,2.112,203.24,15,2,5,yes,0.2214
+diffsbdd_3rfm_7,O=C1C=Cc2ccccc2C1O,yes,0.6210,2.9647,0.782,1.316,160.17,12,2,5,yes,0.1815
+diffsbdd_3rfm_10,CCC1C(C)=NC=CN=C1Cl,yes,0.5782,4.4587,0.616,2.596,170.64,11,1,5,yes,0.0950
+diffsbdd_3rfm_14,ClC1=CCCC2CCCCC(C1)C2,yes,0.5382,4.2741,0.636,4.490,198.74,13,2,5,yes,0.0547
+diffsbdd_3rfm_3,NCCCCCCCCO,yes,0.5300,1.8140,0.910,1.278,145.25,10,0,5,yes,0.0230
+diffsbdd_3rfm_8,CC1=c2nc(S(=O)(=O)CCCC(=O)O)c(O)cc2=C2C3CNCCC3C(=O)CC2N1C,yes,0.5284,4.5990,0.600,-0.783,449.53,31,4,5,yes,0.3238
+diffsbdd_3rfm_1,O=C1N=CCC=C1C1CN1,yes,0.5110,4.3888,0.623,-0.114,136.15,10,2,5,yes,0.1254
+diffsbdd_3rfm_9,CC1=C2CC=CC=C2N=C1,yes,0.4777,3.8807,0.680,2.231,131.18,10,2,5,no,0.1498
+diffsbdd_3rfm_15,O=C1C=CC=NS1(=O)=O,yes,0.4605,4.1674,0.648,-0.517,145.14,9,1,5,no,0.0931
+diffsbdd_3rfm_19,CCN1CC2C(C(=O)C(=NC=O)C3OCC(=O)N32)C1=O,yes,0.4386,4.8121,0.576,-1.802,279.25,20,3,5,no,0.2805
+diffsbdd_3rfm_11,ON1C23C=CC=C4CC=CC5C42C513,yes,0.4377,6.7530,0.361,1.255,171.20,13,5,5,no,0.2651
+diffsbdd_3rfm_17,N=C(N)c1ccccc1,yes,0.4208,1.4737,0.947,0.971,120.15,9,1,5,no,0.0655

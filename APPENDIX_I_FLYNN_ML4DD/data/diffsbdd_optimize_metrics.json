@@ -1,0 +1,39 @@
+{
+  "objective": "qed",
+  "seed_ligand": "caffeine (3rfm_B_CFF.sdf)",
+  "population_size": 8,
+  "evolution_steps": 3,
+  "top_k": 3,
+  "timesteps": 50,
+  "seed_qed": 0.5384628262372215,
+  "trajectory": [
+    {
+      "generation": 0,
+      "mean_qed": 0.5385,
+      "max_qed": 0.5385,
+      "n": 1
+    },
+    {
+      "generation": 1,
+      "mean_qed": 0.5556,
+      "max_qed": 0.5889,
+      "n": 8
+    },
+    {
+      "generation": 2,
+      "mean_qed": 0.5791,
+      "max_qed": 0.6255,
+      "n": 8
+    },
+    {
+      "generation": 3,
+      "mean_qed": 0.6314,
+      "max_qed": 0.7229,
+      "n": 8
+    }
+  ],
+  "best_qed": 0.7229067081355963,
+  "best_smiles": "Cc1c(O)c(Cl)c2c(=N)snc-2n1C",
+  "final_gen_mean_qed": 0.6314,
+  "qed_gain_vs_seed": 0.1844
+}

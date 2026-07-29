@@ -1,0 +1,29 @@
+{
+ "target": "Adenosine A2A receptor (ADORA2A, UniProt P29274, 412 aa)",
+ "ligand_smiles": "Cc1ccc(NC(=O)c2ccc(OC(F)(F)F)cc2)cc1",
+ "ligand_source": "FlowMol3 de novo output (CH10 \u00a710.4)",
+ "mode": "MSA-backed (precomputed AlphaFold DB a3m, 17819 sequences)",
+ "msa_source": "https://alphafold.ebi.ac.uk/files/msa/AF-P29274-F1-msa_v6.a3m",
+ "msa_depth": 17819,
+ "boltz_version": "2.2.1",
+ "diffusion_samples": 5,
+ "recycling_steps": 3,
+ "affinity_pred_value_log10_IC50_uM": 1.1656532287597656,
+ "affinity_IC50_uM_estimate": 14.64378111607829,
+ "affinity_probability_binary": 0.0927828997373581,
+ "top_model": {
+  "model": 0,
+  "confidence_score": 0.8638893365859985,
+  "ptm": 0.9230112433433533,
+  "ligand_iptm": 0.9491193294525146,
+  "complex_plddt": 0.8425817489624023
+ },
+ "gpu": "A100",
+ "job_wall_s": 161,
+ "comparison_single_sequence": {
+  "affinity_IC50_uM_estimate": 3.48321822317006,
+  "affinity_probability_binary": 0.14633017778396606,
+  "top_confidence_score": 0.8206512331962585,
+  "note": "prior \u00a710.7 run, ColabFold MSA server unavailable"
+ }
+}

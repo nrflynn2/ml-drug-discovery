@@ -1,0 +1,33 @@
+# PoseBusters validity - 20 DiffSBDD ligands vs full 3RFM receptor (adenosine A2A)
+# config='dock', mol_cond=assets/3rfm_protein.pdb (full 2250-atom receptor, NOT the 36-residue pocket shell)
+# 'dock' chosen over 'redock': redock adds Chemistry:identity + RMSD:rmsd, both of which require a
+#   mol_true reference pose. These ligands are de novo and have no reference, so those two modules are
+#   excluded by construction. Verified: the dock module list contains neither identity nor rmsd.
+# generated in-session; posebusters=0.6.5 rdkit=2024.09.6 python=3.11.15 seed=0 hardware=8-core CPU, no GPU, 8.2 GB RAM
+# pb_valid = conjunction of all EVALUATED checks (NaN excluded); pb_valid_strict_na_as_fail treats an unevaluable check as a failure
+# full_report=False (config's chosen columns only), so no mol_true_loaded column is emitted
+# LOADING THIS FILE: the metadata block above is 12 lines. Use pd.read_csv(path, skiprows=12).
+#   Do NOT use pd.read_csv(path, comment='#'): a '#' inside a SMILES string is a triple bond
+#   (e.g. C#N, nitrile) and pandas would truncate that field. The smiles column is placed LAST
+#   so that mistake can never corrupt a numeric column, but it would still mangle the SMILES.
+mol_id,mol_pred_loaded,mol_cond_loaded,sanitization,inchi_convertible,all_atoms_connected,no_radicals,bond_lengths,bond_angles,internal_steric_clash,aromatic_ring_flatness,non-aromatic_ring_non-flatness,double_bond_flatness,internal_energy,protein-ligand_maximum_distance,minimum_distance_to_protein,minimum_distance_to_organic_cofactors,minimum_distance_to_inorganic_cofactors,minimum_distance_to_waters,volume_overlap_with_protein,volume_overlap_with_organic_cofactors,volume_overlap_with_inorganic_cofactors,volume_overlap_with_waters,pb_valid,pb_valid_strict_na_as_fail,n_checks_na,smiles
+diffsbdd_3rfm_0,True,True,True,True,True,True,True,True,True,True,True,True,1.0,True,True,True,True,True,True,True,True,True,True,True,0,CC1N=NC2=C1NC(=O)C(=O)N(c1ccco1)C2
+diffsbdd_3rfm_1,True,True,True,True,True,True,True,True,True,True,False,True,1.0,True,True,True,True,True,True,True,True,True,False,False,0,O=C1N=CCC=C1C1CN1
+diffsbdd_3rfm_2,True,True,True,True,True,True,True,True,True,True,True,True,1.0,True,True,True,True,True,True,True,True,True,True,True,0,O=C(NC1=CCCCC1)N1SCc2scnc21
+diffsbdd_3rfm_3,True,True,True,True,True,True,True,True,True,True,True,True,1.0,True,True,True,True,True,True,True,True,True,True,True,0,NCCCCCCCCO
+diffsbdd_3rfm_4,True,True,True,True,True,True,False,True,True,True,True,True,1.0,True,True,True,True,True,True,True,True,True,False,False,0,C=C(C)C1CCC(CO)C1C1=NC=CC1
+diffsbdd_3rfm_5,True,True,True,True,True,True,True,True,True,True,True,True,1.0,True,True,True,True,True,True,True,True,True,True,True,0,Fc1ccc(N2C(=S)CC3CC32)nc1
+diffsbdd_3rfm_6,True,True,True,True,True,True,True,True,True,True,True,True,1.0,True,True,True,True,True,True,True,True,True,True,True,0,CC1CN2c3c(-c4ccccc4)cn(C(=O)CC#N)c3C3=CC(NC4CCOCC4)=CC=C(CO1)N32
+diffsbdd_3rfm_7,True,True,True,True,True,True,True,True,True,True,True,True,1.0,True,True,True,True,True,True,True,True,True,True,True,0,O=C1C=Cc2ccccc2C1O
+diffsbdd_3rfm_8,True,True,True,True,True,True,True,True,True,True,True,True,,True,True,True,True,True,True,True,True,True,True,False,1,CC1=c2nc(S(=O)(=O)CCCC(=O)O)c(O)cc2=C2C3CNCCC3C(=O)CC2N1C
+diffsbdd_3rfm_9,True,True,True,True,True,True,True,True,True,True,True,True,1.0,True,True,True,True,True,True,True,True,True,True,True,0,CC1=C2CC=CC=C2N=C1
+diffsbdd_3rfm_10,True,True,True,True,True,True,True,True,True,True,True,True,1.0,True,True,True,True,True,True,True,True,True,True,True,0,CCC1C(C)=NC=CN=C1Cl
+diffsbdd_3rfm_11,True,True,True,True,True,True,True,True,True,True,True,True,1.0,True,True,True,True,True,True,True,True,True,True,True,0,ON1C23C=CC=C4CC=CC5C42C513
+diffsbdd_3rfm_12,True,True,True,True,True,True,True,True,True,True,True,True,1.0,True,True,True,True,True,True,True,True,True,True,True,0,CC(=O)c1cc(C)nc2c1C(=O)CCC2
+diffsbdd_3rfm_13,True,True,True,True,True,True,True,True,True,True,True,True,1.0,True,True,True,True,True,True,True,True,True,True,True,0,CC1=CC2=NN3C=CC=C(N)C3N2C(Cl)=C1C
+diffsbdd_3rfm_14,True,True,True,True,True,True,True,False,True,True,True,True,1.0,True,True,True,True,True,True,True,True,True,False,False,0,ClC1=CCCC2CCCCC(C1)C2
+diffsbdd_3rfm_15,True,True,True,True,True,True,False,False,True,True,True,True,1.0,True,True,True,True,True,True,True,True,True,False,False,0,O=C1C=CC=NS1(=O)=O
+diffsbdd_3rfm_16,True,True,True,True,True,True,True,False,True,True,True,True,1.0,True,True,True,True,True,True,True,True,True,False,False,0,COC1C(=C=O)C(C#N)=NC2=C1C(c1ccc(Cl)cc1)N1CCCC1C2
+diffsbdd_3rfm_17,True,True,True,True,True,True,True,True,True,True,True,True,1.0,True,True,True,True,True,True,True,True,True,True,True,0,N=C(N)c1ccccc1
+diffsbdd_3rfm_18,True,True,True,True,True,True,True,True,True,True,True,True,,True,True,True,True,True,True,True,True,True,True,False,1,Cc1cc(C)c2c(c1CN)C1C=NN=C1N2
+diffsbdd_3rfm_19,True,True,True,True,True,True,True,True,True,True,True,True,1.0,True,True,True,True,True,True,True,True,True,True,True,0,CCN1CC2C(C(=O)C(=NC=O)C3OCC(=O)N32)C1=O

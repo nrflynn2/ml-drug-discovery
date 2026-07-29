@@ -1,0 +1,258 @@
+{
+ "all": [
+  {
+   "backbone": "rfd_backbone_0",
+   "seq_idx": 7,
+   "seq": "HMAAHIAEIEAMSDEELEEKVLKLAKEKLTPEQQKLFIEELEKLKKKDYEKYKELIRKILLEEEEAMEKIKEEIEKKLAA",
+   "length": 80,
+   "plddt": 90.2,
+   "scrmsd": 0.43,
+   "tm": 0.982
+  },
+  {
+   "backbone": "rfd_backbone_0",
+   "seq_idx": 5,
+   "seq": "AEEKKKKEIEEMSFEEKKKKVLELVKEKLSEEEQKLFEEELEKMLKEDKEKAEKFIKEILLNEEEAIKKLKEELKKKLEE",
+   "length": 80,
+   "plddt": 90.8,
+   "scrmsd": 0.44,
+   "tm": 0.982
+  },
+  {
+   "backbone": "rfd_backbone_0",
+   "seq_idx": 4,
+   "seq": "AAAAHVAAVEALSDEERRALVLELVAARLTPEEQKLFLELLAKLEKEDPAAAAALVREILLHEEEALAALAAALRALLAA",
+   "length": 80,
+   "plddt": 94.4,
+   "scrmsd": 0.47,
+   "tm": 0.979
+  },
+  {
+   "backbone": "rfd_backbone_4",
+   "seq_idx": 1,
+   "seq": "IKITVIGKKEVIEKVLELIKKYDKEKGKKYIKKVEIEELSPEKYKLIIEFEGISEEEVEAIVEKIKKEVAEEPVEFEIEK",
+   "length": 80,
+   "plddt": 88.0,
+   "scrmsd": 0.5,
+   "tm": 0.977
+  },
+  {
+   "backbone": "rfd_backbone_4",
+   "seq_idx": 2,
+   "seq": "IKIIAIGSKETIEEIEKEFKKIDKESGKNYIKKVEIEKLSEDEYKLIIELEGISLEEAKKIVEEIKEKFKDEPVKFEIEE",
+   "length": 80,
+   "plddt": 93.2,
+   "scrmsd": 0.51,
+   "tm": 0.976
+  },
+  {
+   "backbone": "rfd_backbone_4",
+   "seq_idx": 7,
+   "seq": "IKIIVIGSKEVIEEILKEFKEIDKKLGKNYIKEVKIEKLNEDTYKLIIELEGISLEEVKKICEEIKEKFKEEDIEIEIIE",
+   "length": 80,
+   "plddt": 91.6,
+   "scrmsd": 0.52,
+   "tm": 0.975
+  },
+  {
+   "backbone": "rfd_backbone_4",
+   "seq_idx": 6,
+   "seq": "IKIVVKGKKETIEKIEKEFKEIDKEKGKKYIKKVEKKKLDKDTYELIIELEGIKLEEVKEIVEKIKKKFKEEPVEFEIIE",
+   "length": 80,
+   "plddt": 89.5,
+   "scrmsd": 0.52,
+   "tm": 0.975
+  },
+  {
+   "backbone": "rfd_backbone_4",
+   "seq_idx": 8,
+   "seq": "IKIIVIGKKETIEEIEKYLKEIDKKKGKKYIEKVEFKQLDPDTWKLEVILKGISKEEVKKIAEEIKKKFKKEPIKIEIIE",
+   "length": 80,
+   "plddt": 89.1,
+   "scrmsd": 0.54,
+   "tm": 0.973
+  },
+  {
+   "backbone": "rfd_backbone_1",
+   "seq_idx": 7,
+   "seq": "SELLKKAEEAVKELEKAIKEGDKEKAKAYAEKLIKLLKELGAEELAKKVEELLKKFEEDPEKSVEEIKKEVEKYLKKLEE",
+   "length": 80,
+   "plddt": 90.9,
+   "scrmsd": 0.6,
+   "tm": 0.967
+  },
+  {
+   "backbone": "rfd_backbone_4",
+   "seq_idx": 5,
+   "seq": "IKIIVIGKKETIEKIKEEIEEIDKKKGKKYISKVEFEQLDKDTWKLTIELEGISLEEAKKIVEEIKEKFKDEPIKIEIEE",
+   "length": 80,
+   "plddt": 88.6,
+   "scrmsd": 0.6,
+   "tm": 0.968
+  },
+  {
+   "backbone": "rfd_backbone_0",
+   "seq_idx": 8,
+   "seq": "AAAEHRAEVEAMSFEELLARLLALVAARLSPEEQALFRARLAALLAADPEAAKELIRRFLLEEDAALAALAAALRAELAA",
+   "length": 80,
+   "plddt": 89.7,
+   "scrmsd": 0.68,
+   "tm": 0.959
+  },
+  {
+   "backbone": "rfd_backbone_4",
+   "seq_idx": 4,
+   "seq": "IKVIITGKKETIEKIKEKFLEIDKKSGKKYIKKIEIEELDKDTYKLIIELEGISKEEVKEIVEEIKKEFKDENIKIEIEE",
+   "length": 80,
+   "plddt": 92.2,
+   "scrmsd": 0.71,
+   "tm": 0.955
+  },
+  {
+   "backbone": "rfd_backbone_0",
+   "seq_idx": 2,
+   "seq": "SEEEKKEEIEKMSFEEKEKKLIELIKERLTPEEQALALALFEELKAKDPEKYKELVEEFLLNEEEALAKLKEELKALLAA",
+   "length": 80,
+   "plddt": 92.1,
+   "scrmsd": 0.72,
+   "tm": 0.952
+  },
+  {
+   "backbone": "rfd_backbone_1",
+   "seq_idx": 2,
+   "seq": "DELLARARAEMEAMVAALAAGDRAAALAHLEALVALAREMGAEELAKQLEALIAEFDADPAAAVAKARALMEAYLAELEA",
+   "length": 80,
+   "plddt": 94.0,
+   "scrmsd": 0.77,
+   "tm": 0.948
+  },
+  {
+   "backbone": "rfd_backbone_1",
+   "seq_idx": 4,
+   "seq": "SELLKQAKEAMAAMKAAAAAGDVEAAKAELEKLIEIAKQLGAEELAKKLEELLAKFPEDLAASVAAAEELVAKYLKELEE",
+   "length": 80,
+   "plddt": 91.6,
+   "scrmsd": 0.79,
+   "tm": 0.947
+  },
+  {
+   "backbone": "rfd_backbone_0",
+   "seq_idx": 3,
+   "seq": "SHMAHIEEINAMSLEEKKKKLLELVEKEFSEEEQKLFKERLEKLEKEDLEKYEKFIEYFLKNEEKALEKEKKRLRKELEK",
+   "length": 80,
+   "plddt": 92.7,
+   "scrmsd": 0.8,
+   "tm": 0.946
+  },
+  {
+   "backbone": "rfd_backbone_1",
+   "seq_idx": 6,
+   "seq": "EELLEELKREVEEAEEALKAGDYEELLRKLEELIELAKELGYEELAEKLEELKKKLPEDPEKSVKEVKELVEEFFEELEE",
+   "length": 80,
+   "plddt": 86.6,
+   "scrmsd": 0.81,
+   "tm": 0.944
+  },
+  {
+   "backbone": "rfd_backbone_4",
+   "seq_idx": 3,
+   "seq": "IKITIIGKKEVIEECKKYFEEIDKKSGKKYIEKVEIEQLSPDTWKLTIYLKGISKEEVEKIVEEIKEKFKEEPVKFEIEE",
+   "length": 80,
+   "plddt": 88.0,
+   "scrmsd": 0.83,
+   "tm": 0.941
+  },
+  {
+   "backbone": "rfd_backbone_0",
+   "seq_idx": 1,
+   "seq": "ERKKKIEKIEKMSFEELEKEFLKLIEEKLSEEEQKLAKKKLEEMKKKDKEKYKKFLREFLLNEEEAIEKLKKELRKELEE",
+   "length": 80,
+   "plddt": 90.6,
+   "scrmsd": 0.84,
+   "tm": 0.941
+  },
+  {
+   "backbone": "rfd_backbone_0",
+   "seq_idx": 6,
+   "seq": "MMAAKIERINAMSDEELEKELLKLVKERLSEEEQKLFIELMEKMKKEDPEKYKKFIREFLLNEEEAIEKLKEELRKKLAE",
+   "length": 80,
+   "plddt": 91.1,
+   "scrmsd": 0.86,
+   "tm": 0.938
+  },
+  {
+   "backbone": "rfd_backbone_1",
+   "seq_idx": 1,
+   "seq": "AELLARAREEVAALEAAVAAGDVAAARAELEALRELLRELGFEAEAAAVEALLAALPADLAAAVAAVKALWEELLKALEA",
+   "length": 80,
+   "plddt": 86.5,
+   "scrmsd": 0.94,
+   "tm": 0.926
+  },
+  {
+   "backbone": "rfd_backbone_1",
+   "seq_idx": 5,
+   "seq": "AALVAALREAVAAAVAAAAAGDLEALRAELRRAIALLKELGAEALAAEFEALLARLPEDPAAAVAAAEAAVAAYLAELEA",
+   "length": 80,
+   "plddt": 91.9,
+   "scrmsd": 0.95,
+   "tm": 0.922
+  },
+  {
+   "backbone": "rfd_backbone_1",
+   "seq_idx": 8,
+   "seq": "EELLEKAKEEMEKAVKYLKEGDKEKVIEEIKKLIELLKKLGFEEEAKKAEELLSKFDEDLEKSIKELKELMEEFYEELEE",
+   "length": 80,
+   "plddt": 85.5,
+   "scrmsd": 1.22,
+   "tm": 0.89
+  },
+  {
+   "backbone": "rfd_backbone_1",
+   "seq_idx": 3,
+   "seq": "EELIEEAKRLVKELVEAIKRGDRERALEYLKKLIEKLKELGFEELAKKMEELLKKFEEDPEKSVEEAVKLVKEFLEELEK",
+   "length": 80,
+   "plddt": 84.4,
+   "scrmsd": 2.05,
+   "tm": 0.757
+  }
+ ],
+ "best": {
+  "rfd_backbone_0": {
+   "backbone": "rfd_backbone_0",
+   "seq_idx": 7,
+   "seq": "HMAAHIAEIEAMSDEELEEKVLKLAKEKLTPEQQKLFIEELEKLKKKDYEKYKELIRKILLEEEEAMEKIKEEIEKKLAA",
+   "length": 80,
+   "plddt": 90.2,
+   "scrmsd": 0.43,
+   "tm": 0.982
+  },
+  "rfd_backbone_4": {
+   "backbone": "rfd_backbone_4",
+   "seq_idx": 1,
+   "seq": "IKITVIGKKEVIEKVLELIKKYDKEKGKKYIKKVEIEELSPEKYKLIIEFEGISEEEVEAIVEKIKKEVAEEPVEFEIEK",
+   "length": 80,
+   "plddt": 88.0,
+   "scrmsd": 0.5,
+   "tm": 0.977
+  },
+  "rfd_backbone_1": {
+   "backbone": "rfd_backbone_1",
+   "seq_idx": 7,
+   "seq": "SELLKKAEEAVKELEKAIKEGDKEKAKAYAEKLIKLLKELGAEELAKKVEELLKKFEEDPEKSVEEIKKEVEKYLKKLEE",
+   "length": 80,
+   "plddt": 90.9,
+   "scrmsd": 0.6,
+   "tm": 0.967
+  }
+ },
+ "winner": {
+  "backbone": "rfd_backbone_0",
+  "seq_idx": 7,
+  "seq": "HMAAHIAEIEAMSDEELEEKVLKLAKEKLTPEQQKLFIEELEKLKKKDYEKYKELIRKILLEEEEAMEKIKEEIEKKLAA",
+  "length": 80,
+  "plddt": 90.2,
+  "scrmsd": 0.43,
+  "tm": 0.982
+ }
+}

@@ -1,0 +1,50 @@
+# Appendix I companion notebooks: base environment
+#
+#   conda create -n appendix-i python=3.11 -y
+#   conda activate appendix-i
+#   pip install -r requirements.txt
+#
+# This covers Notebooks 1, 2 and 5 completely. Notebooks 3 and 4 need two extra
+# installs with their own torch pins; see the README sections on FlowMol3 and DiffSBDD.
+#
+# Versions are the ones that produced the results in data/, not floors.
+
+# --- core numerics -----------------------------------------------------------
+numpy==1.26.4
+pandas==2.2.3
+scipy==1.17.1
+matplotlib==3.10.9
+scikit-learn
+
+# --- deep learning (CPU is enough for the cached path) -----------------------
+torch
+torchcfm
+
+# --- cheminformatics ---------------------------------------------------------
+rdkit==2024.9.6
+
+# --- physical validity -------------------------------------------------------
+posebusters==0.6.5
+prolif==2.2.0
+hydride==1.2.3
+useful_rdkit_utils
+
+# PoseCheck pins pandas==2.0.0, which would downgrade the pin above and break
+# the other packages. Install it without dependencies:
+#
+#   pip install --no-deps posecheck==1.3.1
+#
+# Everything it needs is already listed here. Its docstring mentions a `reduce`
+# binary; the installed version calls the `hydride` CLI instead, so there is
+# nothing to compile.
+
+# --- structure handling ------------------------------------------------------
+biopython
+mdanalysis
+gemmi
+
+# --- notebook ----------------------------------------------------------------
+jupyterlab
+ipykernel
+nbformat
+py3Dmol

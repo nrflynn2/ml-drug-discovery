@@ -1,0 +1,93 @@
+{
+  "formula": "1 - mean pairwise Tanimoto over valid molecules",
+  "similarity": "RDKit DataStructs.TanimotoSimilarity over all unordered pairs i<j",
+  "molecule_preparation": "read from SDF, sanitize=True, then Chem.RemoveHs before fingerprinting",
+  "fingerprint_definitions": {
+    "rdkit_topological_default": {
+      "fingerprint": "RDKit topological (Chem.RDKFingerprint at library defaults)",
+      "radius": null,
+      "n_bits": 2048,
+      "minPath": 1,
+      "maxPath": 7,
+      "nBitsPerHash": 2,
+      "call": "Chem.RDKFingerprint(mol)",
+      "note": "path-based, NOT circular; radius is not a parameter of this fingerprint",
+      "defaults_verified": "empirically: explicit fpSize=2048,minPath=1,maxPath=7,nBitsPerHash=2 gave identical on-bits"
+    },
+    "morgan_r2_2048": {
+      "fingerprint": "Morgan / ECFP4-equivalent circular",
+      "radius": 2,
+      "n_bits": 2048,
+      "call": "rdFingerprintGenerator.GetMorganGenerator(radius=2, fpSize=2048).GetFingerprint(mol)"
+    }
+  },
+  "batches": {
+    "diffsbdd": {
+      "rdkit_topological_default": {
+        "diversity": 0.8089776623453144,
+        "n_valid_molecules": 20,
+        "n_pairs": 190,
+        "mean_pairwise_tanimoto": 0.19102233765468557,
+        "uniqueness_fraction": 1.0,
+        "n_distinct_canonical_smiles": 20
+      },
+      "morgan_r2_2048": {
+        "diversity": 0.9175067835960684,
+        "n_valid_molecules": 20,
+        "n_pairs": 190,
+        "mean_pairwise_tanimoto": 0.08249321640393159,
+        "uniqueness_fraction": 1.0,
+        "n_distinct_canonical_smiles": 20
+      }
+    },
+    "flowmol3": {
+      "rdkit_topological_default": {
+        "diversity": 0.7894051773397269,
+        "n_valid_molecules": 12,
+        "n_pairs": 66,
+        "mean_pairwise_tanimoto": 0.21059482266027307,
+        "uniqueness_fraction": 1.0,
+        "n_distinct_canonical_smiles": 12
+      },
+      "morgan_r2_2048": {
+        "diversity": 0.8694694865274941,
+        "n_valid_molecules": 12,
+        "n_pairs": 66,
+        "mean_pairwise_tanimoto": 0.13053051347250588,
+        "uniqueness_fraction": 1.0,
+        "n_distinct_canonical_smiles": 12
+      }
+    }
+  },
+  "published_value_check": {
+    "published_value": 0.8089776623453144,
+    "published_source": "diffsbdd_denovo_metrics.json (diversity), diffsbdd_metrics.csv header (diversity=0.809)",
+    "recomputed_value": 0.8089776623453144,
+    "abs_difference": 0.0,
+    "reproduced_exactly": true,
+    "verdict": "REPRODUCED EXACTLY (bit-for-bit) with Chem.RDKFingerprint at RDKit defaults over the 20 valid DiffSBDD molecules, formula '1 - mean pairwise Tanimoto over valid molecules'. This pins the published number's provenance.",
+    "morgan_r2_2048_value_for_same_batch": 0.9175067835960684,
+    "why_it_matters": "Under Morgan r=2/2048 the same batch scores 0.9175 rather than 0.8090 (+0.1085); the fingerprint choice must be stated or the number is not reproducible.",
+    "robustness": {
+      "identical_via_sdf_SMILES_property_parse": 0.8089776623453144,
+      "identical_without_RemoveHs": 0.8089776623453144
+    }
+  },
+  "seeds": {
+    "crossdocked_round1": 4242,
+    "crossdocked_round2": 8484,
+    "geom_drugs": 4242,
+    "saturation_subsampling": 4242,
+    "note": "diversity itself is deterministic (no sampling); seeds apply to corpus sampling"
+  },
+  "environment": {
+    "python": "3.10.20",
+    "rdkit": "2024.09.6",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "conda_env": "flowmol3",
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+    "hardware": "8 cores, 8.2 GB RAM, no GPU"
+  },
+  "flowmol3_note": "FlowMol3 SDF carries explicit H. With RemoveHs (as used here) RDKFingerprint diversity is 0.7894; if explicit H are left in place it reads 0.4286. Explicit hydrogens materially change the topological fingerprint, so the RemoveHs step must be stated for this batch."
+}

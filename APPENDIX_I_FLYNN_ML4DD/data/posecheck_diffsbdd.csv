@@ -1,0 +1,32 @@
+# PoseCheck physical plausibility - 20 DiffSBDD ligands + caffeine reference, 3RFM adenosine A2A
+# protein=assets/3rfm_protein.pdb (full receptor, protonated via hydride/reduce inside PoseCheck)
+# reference row mol_id='caffeine' = the 3RFM co-crystal pose (CFF A:330), same convention as Figure I.7
+# strain_energy_kcal_mol = UFF strain (PoseCheck definition: pose energy minus relaxed-ensemble energy)
+# clash_count from PoseCheck defaults (clash_tolerance=0.5 A); ligands loaded with add_hs=True
+# interaction counts summed over the prolif MultiIndex (ligand, residue, interaction) boolean columns
+# n_hbond_donors: HBDonor IS in prolif's default requested set but was detected ZERO times for all 21
+#   ligands (caffeine included, which has no HB donor). This is a measured zero, NOT a missing column.
+#   Also requested and never detected: Anionic, Cationic, CationPi, PiCation, PiStacking.
+# posecheck=1.3.1 prolif=2.2.0 rdkit=2024.09.6 MDAnalysis=2.10.0 python=3.11.15 seed=0 hardware=8-core CPU, no GPU
+mol_id,strain_energy_kcal_mol,n_hbond_donors,n_hbond_acceptors,n_hydrophobic,n_vdw_contacts,clash_count,is_reference
+diffsbdd_3rfm_0,191.16891821348779,0,1,2,6,3,False
+diffsbdd_3rfm_1,91.32196595243585,0,0,2,2,1,False
+diffsbdd_3rfm_2,150.24382104082594,0,0,3,6,5,False
+diffsbdd_3rfm_3,30.325518851889107,0,1,3,5,3,False
+diffsbdd_3rfm_4,845.5567949022708,0,1,2,5,6,False
+diffsbdd_3rfm_5,110.43367397866052,0,0,4,3,2,False
+diffsbdd_3rfm_6,2600.926440318184,0,0,3,12,19,False
+diffsbdd_3rfm_7,48.427410990657435,0,1,2,4,2,False
+diffsbdd_3rfm_8,180.00776607265553,0,1,3,12,9,False
+diffsbdd_3rfm_9,16.425689569792162,0,0,2,3,2,False
+diffsbdd_3rfm_10,106.5142538501937,0,0,1,3,1,False
+diffsbdd_3rfm_11,522.8063901429895,0,1,2,4,1,False
+diffsbdd_3rfm_12,40.947743223092544,0,0,2,6,4,False
+diffsbdd_3rfm_13,169.07034164138616,0,0,0,4,1,False
+diffsbdd_3rfm_14,1395.7204425446007,0,0,3,7,5,False
+diffsbdd_3rfm_15,145.3214041335582,0,0,0,3,1,False
+diffsbdd_3rfm_16,321.4440270593812,0,0,5,10,7,False
+diffsbdd_3rfm_17,2.0827288501721313,0,0,3,2,0,False
+diffsbdd_3rfm_18,123.63831560285908,0,0,2,3,0,False
+diffsbdd_3rfm_19,115.55661662486479,0,1,2,8,4,False
+caffeine,0.3880509863309385,0,1,0,5,3,True

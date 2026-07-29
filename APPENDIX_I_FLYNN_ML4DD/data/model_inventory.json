@@ -1,0 +1,283 @@
+{
+  "table": "Appendix I Table I.1 - production model inventory",
+  "generated_utc": "2026-07-27T18:17:36.500081+00:00",
+  "checked_date": "2026-07-27",
+  "anti_fabrication_statement": "Every licence string was fetched and read from its distribution point during this session; every checkpoint size is a live HTTP Content-Length or a byte count from the artifact store; every runtime is an observed wall clock from an artifact field, the compute ledger, or the producing run's own stdout. No value is estimated, interpolated, or recalled. Unrecoverable values are null with a reason.",
+  "hardware_local": {
+    "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64",
+    "cpu_count": 8,
+    "ram_gb_total": 8.2,
+    "gpu": null
+  },
+  "hardware_remote": "Modal A100 / A100-40GB / A100-80GB (per-job, as recorded)",
+  "models": {
+    "FlowMol3": {
+      "code_license": "MIT (Copyright (c) 2023 University of Pittsburgh)",
+      "weights_license": "UNSTATED - no licence statement of any kind accompanies the weights at their distribution point",
+      "license_source_url": {
+        "code": "https://raw.githubusercontent.com/Dunni3/FlowMol/main/LICENSE",
+        "weights": "https://bits.csb.pitt.edu/files/FlowMol/trained_models_v3.1/ (and its readme.md)"
+      },
+      "checked_date": {
+        "code": "2026-07-27",
+        "weights": "2026-07-27"
+      },
+      "version": "flowmol 0.1 (pyproject.toml), repo commit 77cae22174b7 (2026-04-26); requires-python >=3.10,<3.11",
+      "checkpoint_name": "trained_models_v3.1/flowmol3/checkpoints/last.ckpt (+ config.yaml), via flowmol.load_pretrained('flowmol3')",
+      "checkpoint_size_mb": 68.02,
+      "observed_runtime_s": {
+        "full_timestep_sweep_total": 1240.3,
+        "per_T": {
+          "10": 27.3,
+          "25": 65.4,
+          "50": 152.4,
+          "100": 302.6,
+          "250": 690.5
+        },
+        "model_load": 1.0
+      },
+      "device": "local CPU, 8 cores, 8.2 GB RAM, no GPU (Linux WSL2 x86_64)",
+      "batch_size": "12 molecules per timestep setting, n_atoms fixed across T = [40,54,42,52,59,39,43,44,45,35,36,42] (mean 44.25)",
+      "notes": "Weights licence is the one genuine gap in the table. The v3.1 weights directory is a plain Apache directory listing served over HTTP; its readme.md documents only the directory layout, the 23 model variants and a wget command, and contains ZERO occurrences of licence/copyright/terms (regex-checked this session). The repo's MIT LICENSE covers the source tree; it makes no statement about the separately-hosted checkpoints. Contrast RFdiffusion, which explicitly extends its licence to the weights. Do not assert the weights are MIT. RUNTIME PROVENANCE: recovered from the producing run's stdout markers ([T=100] 302.6s ... [ALL DONE] total 1240.3s), and all five (n_valid, mean_qed) pairs from that stdout were re-verified against the published flowmol3_metrics.csv this session - exact match on all 5 rows, so these timings belong to the run that made the figure. Checkpoint size is the distribution point's HTTP Content-Length."
+    },
+    "DiffSBDD": {
+      "code_license": "MIT (Copyright (c) 2022 Arne Schneuing, Yuanqi Du, Charles Harris)",
+      "weights_license": "CC-BY-4.0 (Zenodo record 8183747 licence field: {'id': 'cc-by-4.0'})",
+      "license_source_url": {
+        "code": "https://raw.githubusercontent.com/arneschneuing/DiffSBDD/main/LICENSE",
+        "weights": "https://zenodo.org/api/records/8183747 (DOI 10.5281/zenodo.8183747)"
+      },
+      "checked_date": {
+        "code": "2026-07-27",
+        "weights": "2026-07-27"
+      },
+      "version": "repo commit 5d0d38d16c89 (2025-06-25)",
+      "checkpoint_name": "crossdocked_fullatom_cond.ckpt (Zenodo 8183747, one of 8 checkpoints in the record)",
+      "checkpoint_size_mb": 17.86,
+      "observed_runtime_s": {
+        "denovo_20_ligands": 285.9,
+        "inpaint_10_ligands": 1368.1,
+        "optimize_qed": null
+      },
+      "device": "local CPU, 8 cores, 8.2 GB RAM, no GPU",
+      "batch_size": {
+        "denovo": "20 requested / 20 returned, timesteps=100 (diffusion_T=500)",
+        "inpaint": "10 requested, timesteps=50, resamplings=8",
+        "optimize": "population_size=8, evolution_steps=3, top_k=3, timesteps=50"
+      },
+      "notes": "DIVERGENCE: weights are CC-BY-4.0 while code is MIT. Both are permissive and commercial-friendly, but CC-BY-4.0 imposes an attribution requirement on redistribution of the WEIGHTS (and of adaptations) that MIT's notice-retention clause does not equate to: a reader shipping a fine-tuned DiffSBDD checkpoint must give attribution and indicate changes. Zenodo's 'rights' field is null, so cc-by-4.0 is the sole licence signal. SIZE CROSS-CHECK: 17861341 bytes agrees exactly across three independent sources - the local artifact store copy, the Zenodo REST API file record, and a live HTTP Content-Length. optimize runtime is null: diffsbdd_optimize_metrics.json records objective/population/steps/QED trajectory but has no timing key (full key list enumerated this session), and no wall clock for it survives elsewhere."
+    },
+    "RFdiffusion": {
+      "code_license": "BSD (Copyright (c) 2023 University of Washington, Institute for Protein Design)",
+      "weights_license": "BSD - SAME licence, stated explicitly to cover the weights",
+      "license_source_url": {
+        "code": "https://raw.githubusercontent.com/RosettaCommons/RFdiffusion/main/LICENSE",
+        "weights": "https://raw.githubusercontent.com/RosettaCommons/RFdiffusion/main/LICENSE (controlling sentence) ; files served from http://files.ipd.uw.edu/pub/RFdiffusion/"
+      },
+      "checked_date": {
+        "code": "2026-07-27",
+        "weights": "2026-07-27"
+      },
+      "version": "repo HEAD at check date 86507b6538f5 (2026-07-15); the exact commit baked into the Modal image was not recorded - image_ref im-SoE80oCiwIeGkb3qlDIYKa, spec_sha ff53e00ef83847d4",
+      "checkpoint_name": "Base_ckpt.pt (hydrated into Modal volume claude-science-rfdiffusion-weights)",
+      "checkpoint_size_mb": 483.62,
+      "observed_runtime_s": {
+        "scaling_24_backbones_60_90_120_150res_T50": 887.495,
+        "denovo_5x80res_T50_end_to_end": 301.69,
+        "denovo_5x80res_T50_in_container": 249,
+        "denovo_2x80res_T25": 109.708
+      },
+      "device": "Modal A100 (remote GPU); local box has no GPU",
+      "batch_size": "24 backbones (6 each at 60/90/120/150 residues), T=50, for the designability curve; 5x80res T=50 for the figure backbones",
+      "notes": "CLEANEST CASE IN THE TABLE. Controlling sentence, quoted verbatim from the LICENSE: 'This copyright and license covers both the source code and model weights referenced for download in the README file.' That single sentence is what every other project here is missing. The two 5x80res numbers measure different things and both are real: 301.69 s is scheduler end-to-end wall (compute ledger job 9b8d9a93) and 249 s is the in-container runtime recorded in the Modal provider notes; the ~53 s difference is container start plus staging. Weights host files.ipd.uw.edu required a network-allowlist grant this session; size is its live HTTP Content-Length."
+    },
+    "ProteinMPNN": {
+      "code_license": "MIT (Copyright (c) 2022 Justas Dauparas)",
+      "weights_license": "MIT by containment - the weights are files inside the MIT-licensed repository, not a separate download",
+      "license_source_url": {
+        "code": "https://raw.githubusercontent.com/dauparas/ProteinMPNN/main/LICENSE",
+        "weights": "https://api.github.com/repos/dauparas/ProteinMPNN/contents/vanilla_model_weights"
+      },
+      "checked_date": {
+        "code": "2026-07-27",
+        "weights": "2026-07-27"
+      },
+      "version": "repo commit 8907e6671bfb (2023-06-27); the Modal image bakes /app/proteinmpnn @ 8907e66 - the pinned commit IS the current HEAD",
+      "checkpoint_name": "vanilla_model_weights/v_48_020.pt (the CLI default: --model_name default='v_48_020')",
+      "checkpoint_size_mb": 6.68,
+      "observed_runtime_s": null,
+      "device": "Modal A100 (remote GPU)",
+      "batch_size": "4 sequences per backbone x 24 backbones = 96 designs, sampling_temp 0.1",
+      "notes": "No separate weights-licence surface exists to diverge: all four vanilla checkpoints (v_48_002/010/020/030, 6681301 bytes each) live in the repo tree under its MIT LICENSE. The repo README contains zero licence-ish lines, so the LICENSE file is the only statement - which is sufficient here precisely because the weights are in-tree. RUNTIME IS NULL: ProteinMPNN ran inside a single fused Modal job with ESMFold and the scRMSD calculation (ledger job 8b54bb3f, 340.087 s total for 24 backbones); the job emitted no per-stage timing, and the stored result blob is truncated at ~2 KB, so the ProteinMPNN share cannot be separated. Do not divide 340 by anything."
+    },
+    "ESMFold": {
+      "code_license": "MIT (Copyright (c) Meta Platforms, Inc. and affiliates)",
+      "weights_license": "MIT (HuggingFace facebook/esmfold_v1 cardData.license = 'mit', tag 'license:mit')",
+      "license_source_url": {
+        "code": "https://raw.githubusercontent.com/facebookresearch/esm/main/LICENSE",
+        "weights": "https://huggingface.co/api/models/facebook/esmfold_v1 and https://huggingface.co/facebook/esmfold_v1/raw/main/README.md"
+      },
+      "checked_date": {
+        "code": "2026-07-27",
+        "weights": "2026-07-27"
+      },
+      "version": "facebook/esmfold_v1, HF revision 75a3841ee059df2bf4d56688166c8fb459ddd97a (lastModified 2023-03-22); run via transformers 4.46.3; esm repo commit 2b369911bb5b",
+      "checkpoint_name": "pytorch_model.bin (HF facebook/esmfold_v1)",
+      "checkpoint_size_mb": 8442.06,
+      "observed_runtime_s": null,
+      "device": "Modal A100 (remote GPU); first run downloads ~2.5 GB+ from HF at job time",
+      "batch_size": "96 refolds (4 ProteinMPNN sequences x 24 backbones)",
+      "notes": "Weights licence checked independently of the code and it does match: the HF model card front-matter is exactly 'license: mit'. One adjacent trap for the book: the esm README puts the ESM Metagenomic Atlas DATA under CC BY 4.0, which is a different artefact from the esmfold_v1 weights - do not let the CC BY 4.0 mention bleed into a weights claim. RUNTIME IS NULL for the same reason as ProteinMPNN: fused into ledger job 8b54bb3f (340.087 s combined). SIZE: 8442.06 MB is the live Content-Length of the single pytorch_model.bin; the repo's total usedStorage is 16.88 GB because it holds more than one serialisation."
+    },
+    "Boltz-2": {
+      "code_license": "MIT (Copyright (c) 2024 Jeremy Wohlwend, Gabriele Corso, Saro Passaro)",
+      "weights_license": "MIT - stated twice, in the repo README and on the HF weights repo",
+      "license_source_url": {
+        "code": "https://raw.githubusercontent.com/jwohlwend/boltz/main/LICENSE",
+        "weights": "https://raw.githubusercontent.com/jwohlwend/boltz/main/README.md ; https://huggingface.co/api/models/boltz-community/boltz-2"
+      },
+      "checked_date": {
+        "code": "2026-07-27",
+        "weights": "2026-07-27"
+      },
+      "version": "boltz[cuda]==2.2.1 (pyproject version = 2.2.1, present on PyPI); repo commit b1ebfc46ecf5",
+      "checkpoint_name": "boltz2_conf.ckpt + boltz2_aff.ckpt (HF boltz-community/boltz-2, revision 6fdef46d763f; hydrated into Modal volume claude-science-boltz-cache)",
+      "checkpoint_size_mb": {
+        "boltz2_conf.ckpt": 2286.56,
+        "boltz2_aff.ckpt": 2062.14
+      },
+      "observed_runtime_s": {
+        "msa_backed_run_recorded_in_artifact": 161,
+        "msa_backed_run_ledger_end_to_end": 212.0,
+        "single_sequence_run_recorded_in_artifact": 163,
+        "single_sequence_run_ledger_end_to_end": 222.636
+      },
+      "device": "Modal A100 (artifact records 'A100' for the MSA run and 'A100-40GB' for the single-sequence run)",
+      "batch_size": "diffusion_samples=5, recycling_steps=3, one 412-aa target + one ligand; MSA depth 17819",
+      "notes": "Weights licence is unambiguous and matches the code. Controlling sentence from the repo README: 'All the code and weights are provided under MIT license, making them freely available for both academic and commercial uses.' The HF weights repo independently declares 'license: mit'. This is the model a reader can most safely build on - but see the Boltz-2 NIM entry, because reaching the SAME model through the hosted endpoint replaces these MIT terms with NVIDIA's. Runtimes: the artifact-recorded job_wall_s (161/163 s) is the in-job measurement; the compute ledger's 212 s / 222.6 s for the same two jobs is scheduler end-to-end. Both observed, different scopes."
+    },
+    "DiffDock": {
+      "code_license": "MIT (Copyright (c) 2022 Gabriele Corso, Hannes Staerk, Bowen Jing)",
+      "weights_license": "MIT for the ORIGINAL repo weights - README: 'The code and model weights are released under MIT license.' NOT applicable to the NVIDIA-served weights (separate entry).",
+      "license_source_url": {
+        "code": "https://raw.githubusercontent.com/gcorso/DiffDock/main/LICENSE",
+        "weights": "https://raw.githubusercontent.com/gcorso/DiffDock/main/README.md (License section)"
+      },
+      "checked_date": {
+        "code": "2026-07-27",
+        "weights": "2026-07-27"
+      },
+      "version": "repo commit 85c49b60d3e0 (2025-05-02) - NOT the version actually used this pass; the hosted NIM was used instead",
+      "checkpoint_name": "n/a for this pass - no local DiffDock checkpoint was downloaded or run",
+      "checkpoint_size_mb": null,
+      "observed_runtime_s": null,
+      "device": "not run locally",
+      "batch_size": null,
+      "notes": "Recorded for completeness of the licensing picture only. The chapter's DiffDock results came from the hosted NIM, whose model is a DIFFERENT set of weights under DIFFERENT terms - see 'DiffDock NIM (hosted service)'. The repo also notes that MIT-licensed spyrmsd components are vendored in-tree."
+    },
+    "Boltz-2 NIM (hosted service)": {
+      "code_license": "n/a - a service, not distributed code. Underlying open-source project is MIT (jwohlwend/boltz).",
+      "weights_license": "SERVICE TERMS, NOT AN OPEN-SOURCE LICENCE. Two governing documents, and the model card names them INCONSISTENTLY: the card body says 'NVIDIA Open Model Agreement' while the page's governing-terms banner says 'NVIDIA Community Model License'. Hosting is governed by the NVIDIA API Trial Terms of Service.",
+      "license_source_url": {
+        "service_card": "https://build.nvidia.com/mit/boltz2",
+        "hosting_terms": "https://assets.ngc.nvidia.com/products/api-catalog/legal/NVIDIA%20API%20Trial%20Terms%20of%20Service.pdf",
+        "model_terms_named_in_banner": "https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-community-models-license/",
+        "model_terms_named_in_card_body": "https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-open-model-agreement/",
+        "additional_information_cited_by_nvidia": [
+          "https://www.apache.org/licenses/LICENSE-2.0",
+          "https://github.com/jwohlwend/boltz"
+        ]
+      },
+      "checked_date": {
+        "service_card": "2026-07-27",
+        "hosting_terms": "2026-07-27",
+        "model_terms": "2026-07-27"
+      },
+      "version": "served model 'Boltz2 v2.2.1' per the model card; NIM REST API version 1.5.0 (OpenAPI 3.1.0)",
+      "checkpoint_name": "not distributed - inference only via https://health.api.nvidia.com/v1/biology/mit/boltz2/predict",
+      "checkpoint_size_mb": null,
+      "observed_runtime_s": {
+        "smoke_test": 37.2,
+        "ledger_inference_call": 37.635
+      },
+      "device": "NVIDIA-hosted (remote); GPU model not disclosed to the caller",
+      "batch_size": "single request (smoke test)",
+      "notes": "THE MOST CONSEQUENTIAL ROW FOR A PUBLISHED BOOK. Reaching Boltz-2 through this endpoint does not give the reader boltz's MIT terms. Controlling sentence from the NVIDIA API Trial Terms of Service (9-page PDF, read this session): unless you purchase a Subscription, 'you may only use the API Service for internal testing and evaluation purposes, not in production.' The NVIDIA Community Model License additionally forbids using the model or ITS OUTPUTS 'to develop or improve any other AI models ... unless approved by NVIDIA in writing' - directly relevant to a drug-discovery reader who might want to train on predicted structures or affinities - and requires an NVIDIA AI Enterprise subscription to exercise the grants in production. Same science, different rights."
+    },
+    "DiffDock NIM (hosted service)": {
+      "code_license": "n/a - a service. Underlying open-source project is MIT (gcorso/DiffDock).",
+      "weights_license": "SERVICE TERMS, NOT AN OPEN-SOURCE LICENCE, over weights that are NOT the MIT repo weights. Card body: 'NVIDIA Open Model License'; governing-terms banner: 'NVIDIA AI Foundation Models Community License and MIT License'. Hosting governed by the NVIDIA API Trial Terms of Service.",
+      "license_source_url": {
+        "service_card": "https://build.nvidia.com/mit/diffdock",
+        "hosting_terms": "https://assets.ngc.nvidia.com/products/api-catalog/legal/NVIDIA%20API%20Trial%20Terms%20of%20Service.pdf",
+        "model_terms_named_in_card_body": "https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-open-model-license/",
+        "model_terms_named_in_banner": "https://docs.nvidia.com/ai-foundation-models-community-license.pdf",
+        "additional_information_cited_by_nvidia": "https://github.com/gcorso/DiffDock/blob/main/LICENSE"
+      },
+      "checked_date": {
+        "service_card": "2026-07-27",
+        "hosting_terms": "2026-07-27",
+        "model_terms": "2026-07-27"
+      },
+      "version": "served model 'DiffDock v2.3' per the model card; NIM REST API version 2.3.0; card states model v2.2.0 was trained by NVIDIA on PLINDER (450k) + SAIR (36k) = 486k protein-ligand complexes",
+      "checkpoint_name": "not distributed - inference only via https://health.api.nvidia.com/v1/biology/mit/diffdock",
+      "checkpoint_size_mb": null,
+      "observed_runtime_s": {
+        "redock_20_ligands_10_poses_each": 29.4,
+        "smoke_test": 1.4,
+        "ledger_inference_call": 2.295
+      },
+      "device": "NVIDIA-hosted (remote); GPU model not disclosed to the caller",
+      "batch_size": "20 ligands x 10 poses (num_poses=10, time_divisions=20, steps=18); 20/20 succeeded",
+      "notes": "DIFFERENT WEIGHTS, NOT JUST DIFFERENT TERMS. The card states the served model is 'trained by NVIDIA using PLINDER and SAIR', reusing the MIT architecture - so results from this endpoint are not reproducible from the gcorso/DiffDock checkpoints, and the MIT reference is only 'Additional Information' about the architecture's provenance. The card does say 'ready for commercial and non-commercial use', but the trial API it is served over is testing-and-evaluation-only absent a subscription. NVIDIA's Open Model License (card body) is the permissive one - commercially usable, derivatives allowed, with a 'Licensed by NVIDIA Corporation under the NVIDIA Open Model License' NOTICE requirement - whereas the AI Foundation Models Community License named in the banner is the restrictive one. A reader cannot tell from the page which controls; that ambiguity is the finding."
+    }
+  },
+  "flags": [
+    "FlowMol3 WEIGHTS LICENCE IS UNSTATED. The weights ship from a bare HTTP directory listing at bits.csb.pitt.edu whose readme.md documents layout and a wget command only; a regex for licence/copyright/terms over that readme returns zero matches. The repo's MIT LICENSE covers source, not the separately-hosted checkpoints. The chapter should not imply FlowMol3 weights are MIT.",
+    "DiffSBDD weights are CC-BY-4.0 while its code is MIT (Zenodo 8183747). Attribution-on-redistribution applies to the weights and their adaptations; MIT's notice clause is not the same obligation.",
+    "Boltz-2 reached through the hosted NIM is NOT MIT-licensed to the reader. NVIDIA's API Trial Terms of Service limit use to internal testing and evaluation, not production, absent a paid Subscription, and the Community Model License forbids using the model or its outputs to develop or improve other AI models without written NVIDIA approval. The identical model from GitHub/HuggingFace is MIT for academic and commercial use. Same science, different rights, depending only on how you call it.",
+    "The DiffDock NIM does not serve the MIT repo's weights. Its model card states the served model was trained by NVIDIA on PLINDER + SAIR (486,000 complexes); the MIT link is 'Additional Information' about architecture provenance. Chapter results from this endpoint are not reproducible from gcorso/DiffDock checkpoints.",
+    "Both NIM model cards name their governing model licence INCONSISTENTLY between the card body and the page banner (Boltz-2: 'Open Model Agreement' vs 'Community Model License'; DiffDock: 'Open Model License' vs 'AI Foundation Models Community License'). These differ materially - the Open Model License is permissive with a NOTICE requirement, the Community licence adds the no-training-other-models restriction and an AI Enterprise requirement for production. A reader cannot resolve which controls from the page alone.",
+    "FlowMol3's observed timestep sweep took 1240.3 s (20.7 min) on 8-core CPU, not the '~90 min CPU' recorded in intermediates_inventory.json. The 90 min figure was a pre-run planning estimate made when the batch was still 16-20 molecules; the shipped run used 12. Cite 20.7 min.",
+    "RFdiffusion is the only model in the table whose licence explicitly covers its weights, and it is BSD rather than MIT. Its LICENSE says the copyright and licence 'covers both the source code and model weights referenced for download in the README file.'",
+    "ProteinMPNN and ESMFold have NO separable runtimes: they ran fused with the scRMSD computation in one Modal job (340.087 s for 24 backbones x 4 sequences). The chapter must not attribute a per-model time to either.",
+    "ESMFold's checkpoint is 8.44 GB for pytorch_model.bin alone - two orders of magnitude larger than DiffSBDD's 17.86 MB. A reader budgeting disk or a first-run download will be surprised if the chapter presents these models as interchangeable in footprint.",
+    "RFdiffusion's weights host (files.ipd.uw.edu) is plain HTTP, not HTTPS, in the README's own wget commands.",
+    "Two RFdiffusion/Boltz-2 numbers exist per run and both are real but measure different scopes: in-job wall clock (artifact job_wall_s, Modal container time) vs scheduler end-to-end (compute ledger). Boltz-2 MSA run = 161 s in-job vs 212 s end-to-end. State which is meant.",
+    "The DiffSBDD checkpoint used is one of eight in Zenodo 8183747 (sizes 16.3-77.6 MB). Naming only 'the DiffSBDD checkpoint' is ambiguous; crossdocked_fullatom_cond.ckpt is the one behind the chapter's figures."
+  ],
+  "divergences": [
+    {
+      "model": "FlowMol3",
+      "code": "MIT",
+      "weights": "UNSTATED",
+      "severity": "high",
+      "why": "Absence of a grant is not a permissive grant. A reader redistributing or building on the checkpoints has no stated permission to rely on. Strictly more restrictive in effect than the MIT code licence, because MIT's explicit grant does not reach these files.",
+      "evidence": "bits.csb.pitt.edu/files/FlowMol/trained_models_v3.1/readme.md fetched this session: 2283 chars, zero licence/copyright/terms matches."
+    },
+    {
+      "model": "DiffSBDD",
+      "code": "MIT",
+      "weights": "CC-BY-4.0",
+      "severity": "medium",
+      "why": "CC-BY-4.0 adds an attribution-and-indicate-changes obligation on redistribution of the weights and adaptations that MIT does not impose in the same form. Both remain commercial-friendly.",
+      "evidence": "Zenodo REST record 8183747 metadata.license = {'id': 'cc-by-4.0'}; metadata.rights = null."
+    },
+    {
+      "model": "Boltz-2 via hosted NIM",
+      "code": "MIT (repo)",
+      "weights": "NVIDIA service terms (API Trial ToS + Community/Open Model licence)",
+      "severity": "high",
+      "why": "The hosted path is materially more restrictive than the repo: testing-and-evaluation-only without a Subscription, and a prohibition on using outputs to develop or improve other AI models without written approval. The repo grants academic and commercial use outright.",
+      "evidence": "NVIDIA API Trial Terms of Service PDF, 9 pages, read this session; NVIDIA Community Model License text read this session."
+    },
+    {
+      "model": "DiffDock via hosted NIM",
+      "code": "MIT (repo)",
+      "weights": "NVIDIA licence over NVIDIA-trained weights",
+      "severity": "high",
+      "why": "Not a licence divergence over the same artefact but something a reader is more likely to get wrong: different weights entirely, under NVIDIA terms, served over a trial API that is not for production absent a subscription.",
+      "evidence": "build.nvidia.com/mit/diffdock model card: 'the model v2.2.0 is trained by NVIDIA using PLINDER and SAIR'."
+    }
+  ]
+}

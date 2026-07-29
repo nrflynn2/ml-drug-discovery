@@ -1,0 +1,22 @@
+# PoseBusters intramolecular validity - FlowMol3 batch (12 molecules, explicit H)
+# config='mol' (intramolecular checks only; batch is origin-centred with no protein frame)
+# generated in-session; posebusters=0.6.5 rdkit=2024.09.6 python=3.11.15 seed=0 hardware=8-core CPU, no GPU, 8.2 GB RAM
+# pb_valid = conjunction of all EVALUATED checks (NaN excluded); pb_valid_strict_na_as_fail treats an unevaluable check as a failure
+# full_report=False (config's chosen columns only), so no mol_true_loaded column is emitted
+# LOADING THIS FILE: the metadata block above is 9 lines. Use pd.read_csv(path, skiprows=9).
+#   Do NOT use pd.read_csv(path, comment='#'): a '#' inside a SMILES string is a triple bond
+#   (e.g. C#N, nitrile) and pandas would truncate that field. The smiles column is placed LAST
+#   so that mistake can never corrupt a numeric column, but it would still mangle the SMILES.
+mol_id,mol_pred_loaded,sanitization,inchi_convertible,all_atoms_connected,no_radicals,bond_lengths,bond_angles,internal_steric_clash,aromatic_ring_flatness,non-aromatic_ring_non-flatness,double_bond_flatness,internal_energy,pb_valid,pb_valid_strict_na_as_fail,n_checks_na,n_timesteps,smiles
+flowmol3_T100_mol0,True,True,True,True,True,True,True,True,True,True,True,True,True,True,0,100,Cc1ccc(NC(=O)c2ccc(OC(F)(F)F)cc2)cc1
+flowmol3_T100_mol1,True,True,True,True,True,True,True,True,True,True,True,True,True,True,0,100,CCn1nc2nc(-c3ccccc3)ccc2c1SCC(=O)c1cccs1
+flowmol3_T100_mol2,True,True,True,True,True,True,True,True,True,True,True,True,True,True,0,100,CCc1sc2c(ccc(=O)n2CCCC(C)=O)c1CC
+flowmol3_T100_mol3,True,True,True,True,True,True,True,True,True,True,True,True,True,True,0,100,COc1ccc(CCn2cnc3ccccc3c2=O)cc1OC
+flowmol3_T100_mol4,True,True,True,True,True,True,True,True,True,True,True,True,True,True,0,100,CC(C)[C@H]1C[C@]2(CCC[C@H]2CCC(C)(C)C)CCN1C
+flowmol3_T100_mol5,True,True,True,True,True,True,True,True,True,True,True,True,True,True,0,100,CC(=O)[C@H](Cc1ccccc1)n1c(=O)[nH]c2ccccc2c1=O
+flowmol3_T100_mol6,True,True,True,True,True,True,True,True,True,True,True,True,True,True,0,100,CCCCNc1nc(Oc2ccccc2)nc(C)c1C(C)=O
+flowmol3_T100_mol7,True,True,True,True,True,True,True,True,True,True,True,True,True,True,0,100,COc1ccc2c(NC(=O)c3ccc(OC)c(Br)c3)cn(C)c2c1
+flowmol3_T100_mol8,True,True,True,True,True,True,True,True,True,True,True,True,True,True,0,100,CCCCC(=O)N1CCC(C(C)C)CC1
+flowmol3_T100_mol9,True,True,True,True,True,True,True,True,True,True,True,True,True,True,0,100,CCCNC(=S)N(CC)Cc1cccs1
+flowmol3_T100_mol10,True,True,True,True,True,True,True,True,True,True,True,True,True,True,0,100,CC(C)OC(=O)CCc1c(-c2cccs2)nnn1C
+flowmol3_T100_mol11,True,True,True,True,True,True,True,True,True,True,True,True,True,True,0,100,CCCCn1c(CCC)nnc1Sc1ccccc1

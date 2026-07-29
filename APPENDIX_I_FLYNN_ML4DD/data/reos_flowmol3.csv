@@ -1,0 +1,69 @@
+# REOS structural-alert analysis, FlowMol's own quality signal (flowmol/analysis/reos.py wrapper
+#   reimplemented here over useful_rdkit_utils.reos.REOS; FlowMol was NOT cloned)
+# rule: a molecule is flagged for a rule when len(mol.GetSubstructMatches(pat)) > rule 'max' value
+# ACTIVE RULE SETS = ['Glaxo'] (the useful_rdkit_utils DEFAULT), 55 rules,
+#   all 55 listed below including never-triggered ones. Available but INACTIVE: ['BMS', 'Dundee', 'Inpharmatica', 'LINT', 'MLSMR', 'PAINS', 'SureChEMBL']
+# flag_count/flag_rate/n_mols = FlowMol3 batch (12 mols, primary subject of this file)
+# *_diffsbdd columns = BONUS comparison on the 20 DiffSBDD ligands, same rules
+# alerts computed on implicit-H graphs (Chem.RemoveHs); verified identical on the explicit-H originals
+# FlowMol3:  avg_flag_rate=0.000000 avg_flags_per_mol=0.0000 has_flags_rate=0.0000 (0/12 mols flagged)
+# DiffSBDD:  avg_flag_rate=0.002727 avg_flags_per_mol=0.1500 has_flags_rate=0.1500 (3/20 mols flagged)
+# DiffSBDD flagged molecules: diffsbdd_3rfm_1 -> ['Glaxo::I6 Epoxides, Thioepoxides, Aziridines']; diffsbdd_3rfm_3 -> ['Glaxo::I1 Aliphatic methylene chains 7 or more long']; diffsbdd_3rfm_11 -> ['Glaxo::I6 Epoxides, Thioepoxides, Aziridines']
+# avg_flag_rate = mean of the (n_mols x n_rules) boolean matrix; avg_flags_per_mol = mean flags per molecule
+# useful_rdkit_utils=1.00 rdkit=2024.09.6 python=3.11.15 seed=0 hardware=8-core CPU, no GPU
+flag_name,flag_count,flag_rate,n_mols,flag_count_diffsbdd,flag_rate_diffsbdd,n_mols_diffsbdd
+Glaxo::R1 Reactive alkyl halides,0,0.0,12,0,0.0,20
+Glaxo::R2 Acid halides,0,0.0,12,0,0.0,20
+Glaxo::R3 Carbazides,0,0.0,12,0,0.0,20
+Glaxo::R4 Sulphate esters,0,0.0,12,0,0.0,20
+Glaxo::R5 Sulphonates,0,0.0,12,0,0.0,20
+Glaxo::R6 Acid anhydrides,0,0.0,12,0,0.0,20
+Glaxo::R7 Peroxides,0,0.0,12,0,0.0,20
+Glaxo::R8 Pentafluorophenyl esters,0,0.0,12,0,0.0,20
+Glaxo::R9 Paranitrophenyl esters,0,0.0,12,0,0.0,20
+Glaxo::R10 esters of HOBT,0,0.0,12,0,0.0,20
+Glaxo::R11 Isocyanates & Isothiocyanates,0,0.0,12,0,0.0,20
+Glaxo::R12 Triflates,0,0.0,12,0,0.0,20
+Glaxo::R13 lawesson's reagent and derivatives,0,0.0,12,0,0.0,20
+Glaxo::R14 phosphoramides,0,0.0,12,0,0.0,20
+Glaxo::R15 Aromatic azides,0,0.0,12,0,0.0,20
+Glaxo::R16 beta carbonyl quaternary Nitrogen,0,0.0,12,0,0.0,20
+Glaxo::R17 acylhydrazide,0,0.0,12,0,0.0,20
+"Glaxo::R18 Quaternary C, Cl, I, P or S",0,0.0,12,0,0.0,20
+Glaxo::R19 Phosphoranes,0,0.0,12,0,0.0,20
+Glaxo::R20 Chloramidines,0,0.0,12,0,0.0,20
+Glaxo::R21 Nitroso,0,0.0,12,0,0.0,20
+Glaxo::R22 P/S Halides,0,0.0,12,0,0.0,20
+Glaxo::R23 Carbodiimide,0,0.0,12,0,0.0,20
+Glaxo::R24 Isonitrile,0,0.0,12,0,0.0,20
+Glaxo::R25 Triacyloximes,0,0.0,12,0,0.0,20
+Glaxo::R26 Cyanohydrins,0,0.0,12,0,0.0,20
+Glaxo::R27 Acyl cyanides,0,0.0,12,0,0.0,20
+Glaxo::R28 Sulfonyl cyanides,0,0.0,12,0,0.0,20
+Glaxo::R29 Cyanophosphonates,0,0.0,12,0,0.0,20
+Glaxo::R30 Azocyanamides,0,0.0,12,0,0.0,20
+Glaxo::R31 Azoalkanals,0,0.0,12,0,0.0,20
+Glaxo::I1 Aliphatic methylene chains 7 or more long,0,0.0,12,1,0.05,20
+Glaxo::I2 Compounds with 4 or more acidic groups,0,0.0,12,0,0.0,20
+Glaxo::I3 Crown ethers,0,0.0,12,0,0.0,20
+Glaxo::I4 Disulphides,0,0.0,12,0,0.0,20
+Glaxo::I5 Thiols,0,0.0,12,0,0.0,20
+"Glaxo::I6 Epoxides, Thioepoxides, Aziridines",0,0.0,12,2,0.1,20
+"Glaxo::I7 2,4,5 trihydroxyphenyl",0,0.0,12,0,0.0,20
+"Glaxo::I8 2,3,4 trihydroxyphenyl",0,0.0,12,0,0.0,20
+Glaxo::I9 Hydrazothiourea,0,0.0,12,0,0.0,20
+Glaxo::I10 Thiocyanate,0,0.0,12,0,0.0,20
+Glaxo::I11 Benzylic quaternary Nitrogen,0,0.0,12,0,0.0,20
+Glaxo::I12 Thioesters,0,0.0,12,0,0.0,20
+Glaxo::I13 Cyanamides,0,0.0,12,0,0.0,20
+Glaxo::I14 Four membered lactones,0,0.0,12,0,0.0,20
+Glaxo::I15 Di and Triphosphates,0,0.0,12,0,0.0,20
+Glaxo::I16 Betalactams,0,0.0,12,0,0.0,20
+Glaxo::N1 Quinones,0,0.0,12,0,0.0,20
+Glaxo::N2 Polyenes,0,0.0,12,0,0.0,20
+Glaxo::N3 Saponin derivatives,0,0.0,12,0,0.0,20
+Glaxo::N4 Cytochalasin derivatives,0,0.0,12,0,0.0,20
+Glaxo::N5 Cycloheximide derivatives,0,0.0,12,0,0.0,20
+Glaxo::N6 Monensin derivatives,0,0.0,12,0,0.0,20
+Glaxo::N7 Cyanidin derivatives,0,0.0,12,0,0.0,20
+Glaxo::N8 Squalestatin derivatives,0,0.0,12,0,0.0,20

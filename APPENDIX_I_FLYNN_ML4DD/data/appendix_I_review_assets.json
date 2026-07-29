@@ -1,0 +1,3617 @@
+{
+ "_meta": {
+  "title": "Appendix I technical-review extensions: consolidated asset pack",
+  "generated_utc": "2026-07-27T18:33:12.784591+00:00",
+  "frame_id": "010687d9-f424-4869-8d90-9070abd80489",
+  "project_id": "proj_27f2072b1b51",
+  "anti_fabrication": "Every value below was written to a saved artifact by code that ran in this session. Nulls are measured absences with stated reasons, never placeholders. Each key carries `source` naming the artifact and its content hash.",
+  "how_to_cite_a_number": "Each leaf carries `value`, `source` (file + version_id + hash), and where relevant `definition` and `caveat`. Quote value; cite file.",
+  "verification": {
+   "checks_run": 40,
+   "checks_passed": 40,
+   "method": "every headline value in this pack was recomputed from its source CSV and compared to the stored value",
+   "csv_parsing_hazard": "CRITICAL for anyone reading these CSVs: several carry provenance headers as leading '#' lines, AND several SMILES columns contain '#' (triple bonds). Passing comment='#' to pandas.read_csv truncates those rows mid-line and silently yields NaN. Strip ONLY leading comment lines: skip while line.lstrip().startswith('#'), then parse the remainder. Affected files: novelty_diffsbdd.csv (2 of 20 SMILES), boltz2_comparison.csv (1 of 7).",
+   "verified_utc": "2026-07-27T18:36:33.145708+00:00"
+  },
+  "csv_read_recipe": "lines = open(path).read().splitlines(); i=0\nwhile i<len(lines) and lines[i].lstrip().startswith('#'): i+=1\ndf = pd.read_csv(io.StringIO('\\n'.join(lines[i:])))"
+ },
+ "F1_sampler_decomposition": {
+  "_question": "Is the 4x step advantage about path geometry, or an artifact of comparing stochastic ancestral sampling against a deterministic ODE?",
+  "_answer": "The 4x advantage survives with the sampler family held fixed, and the sampling-noise component is zero or negative. The chapter's claim strengthens.",
+  "crossing_flow_matching_steps": {
+   "value": 8,
+   "source": {
+    "file": "toy_sampler_sweep.csv",
+    "version_id": "2fef6578-3c13-4042-861b-65e6c44fac69",
+    "sha256_16": "5374402b664cbd52"
+   },
+   "definition": "first budget at which mean energy distance over seeds 0-4 falls below 0.01"
+  },
+  "crossing_ddpm_ancestral_steps": {
+   "value": 32,
+   "source": {
+    "file": "toy_sampler_sweep.csv",
+    "version_id": "2fef6578-3c13-4042-861b-65e6c44fac69",
+    "sha256_16": "5374402b664cbd52"
+   }
+  },
+  "crossing_ddim_eta0_steps": {
+   "value": null,
+   "source": {
+    "file": "toy_sampler_sweep.csv",
+    "version_id": "2fef6578-3c13-4042-861b-65e6c44fac69",
+    "sha256_16": "5374402b664cbd52"
+   },
+   "reason": "measured absence: DDIM at eta=0 never reaches the 0.01 band within the 200 distinct noise levels available; best mean 0.07318 at 200 steps"
+  },
+  "crossing_ddim_eta0_x0clip_steps": {
+   "value": 64,
+   "source": {
+    "file": "toy_sampler_sweep.csv",
+    "version_id": "2fef6578-3c13-4042-861b-65e6c44fac69",
+    "sha256_16": "5374402b664cbd52"
+   },
+   "note": "with the standard x0-clipping stabiliser, DDIM does cross, at 8x flow matching's budget"
+  },
+  "step_ratio_published_claim": {
+   "value": 4.0,
+   "source": {
+    "file": "toy_sampler_sweep.csv",
+    "version_id": "2fef6578-3c13-4042-861b-65e6c44fac69",
+    "sha256_16": "5374402b664cbd52"
+   },
+   "note": "32/8 = 4, identical to the published toy_stepcount_metrics.csv crossings (ancestral 32, euler 8) - the headline is confirmed on the pinned checkpoint"
+  },
+  "energy_at_8_steps": {
+   "value": {
+    "ddim_eta0": 0.84861,
+    "ddim_eta0_x0clip": 0.05953,
+    "ddpm_ancestral": 0.04072,
+    "fm_euler": 0.00998
+   },
+   "source": {
+    "file": "toy_sampler_sweep.csv",
+    "version_id": "2fef6578-3c13-4042-861b-65e6c44fac69",
+    "sha256_16": "5374402b664cbd52"
+   },
+   "definition": "mean over seeds 0-4, 2000 samples, energy distance = 2*E|X-Y| - E|X-X'| - E|Y-Y'| (full matrices)"
+  },
+  "eta_sweep_at_8_steps": {
+   "value": {
+    "0.0": 0.84861,
+    "0.2": 0.78284,
+    "0.4": 0.63052,
+    "0.6": 0.54207,
+    "0.8": 0.53184,
+    "1.0": 0.04072
+   },
+   "source": {
+    "file": "toy_eta_sweep.csv",
+    "version_id": "0c26c241-2f21-4072-a37a-0c386b47f2d7",
+    "sha256_16": "73151bdfeb87ab30"
+   },
+   "note": "monotone DECREASE as eta rises: removing sampling noise COSTS 20.8x in energy"
+  },
+  "sampling_noise_component": {
+   "value": "zero or negative",
+   "source": {
+    "file": "toy_eta_sweep.csv",
+    "version_id": "0c26c241-2f21-4072-a37a-0c386b47f2d7",
+    "sha256_16": "73151bdfeb87ab30"
+   },
+   "quantified": "eta 0.0 -> 1.0 improves energy 20.8x at a fixed 8-step budget, so stochasticity helps the diffusion sampler rather than flattering flow matching"
+  },
+  "eta1_equals_ancestral_validation": {
+   "value": "2.3e-13 max coordinate deviation in float64",
+   "source": {
+    "file": "track_sampler.json",
+    "version_id": "ad4b1356-d9f8-487c-ae6c-467e68bbe464",
+    "sha256_16": "4d9e23e7dc3e9918"
+   },
+   "note": "proves the DDIM respacing is identical to the ancestral sampler's, so eta is the only difference"
+  },
+  "x0_conditioning_defect": {
+   "value": {
+    "abar_terminal": 6.071720548561643e-08,
+    "x0_amplification_1_over_sqrt_abar": 4058,
+    "max_abs_x0_pred_at_8_steps": 1498.3,
+    "target_support_max_abs": 1.899,
+    "effect_of_clipping_8_steps": {
+     "unclipped": 0.84861,
+     "clipped": 0.05953,
+     "improvement_x": 14.3
+    },
+    "max_abs_x0_pred_at_8_steps_range_seeds_0_4": [
+     800.8,
+     1754.6
+    ],
+    "max_abs_x0_pred_all_at_terminal_step": true
+   },
+   "source": {
+    "file": "track_sampler.json",
+    "version_id": "ad4b1356-d9f8-487c-ae6c-467e68bbe464",
+    "sha256_16": "4d9e23e7dc3e9918"
+   },
+   "note": "why deterministic DDIM struggles on THIS ladder: terminal abar=6.07e-08 amplifies epsilon error 4058x",
+   "correction_note": "An earlier value of 47.37 for max_abs_x0_pred_at_8_steps did NOT reproduce and has been replaced. Recomputed from toy_ddpm_trained.pt through the DDIM eta=0 update (n=2000): the peak is 1498.3 at seed 0, 800.8 to 1754.6 across seeds 0 to 4, and all of it occurs at the terminal t=199 step where abar=6.07e-08. The amplification factor 4058 and abar_terminal do reproduce exactly. Recompute detail in handoff/x0_recompute.json."
+  },
+  "crossing_sentence": {
+   "value": "flow matching crosses 0.01 at 8 steps; DDIM at no tested budget (its mean energy is still 0.073 at 200 steps); ancestral DDPM at 32.",
+   "source": {
+    "file": "track_sampler.json",
+    "version_id": "ad4b1356-d9f8-487c-ae6c-467e68bbe464",
+    "sha256_16": "4d9e23e7dc3e9918"
+   }
+  },
+  "caveat": "2-D toy, 74882-parameter MLP. Do NOT generalise 'DDIM is worse than ancestral' to production scale. The defensible claim is that the 4x advantage is not an artifact of mismatched sampler families."
+ },
+ "F2_physical_validity": {
+  "_question": "Does the 100% validity claim survive a physical-plausibility bar?",
+  "_answer": "Graph validity holds, geometry does not. The chapter's 100% tests only the molecular graph.",
+  "pb_valid_flowmol3": {
+   "value": [
+    12,
+    12
+   ],
+   "fraction": 1.0,
+   "source": {
+    "file": "posebusters_flowmol3.csv",
+    "version_id": "8cdc2459-cc79-4fd0-ad4c-58e1b7fbeca4",
+    "sha256_16": "b729067ab17a4029"
+   },
+   "definition": "PoseBusters config=mol, all intramolecular checks pass"
+  },
+  "pb_valid_diffsbdd": {
+   "value": [
+    15,
+    20
+   ],
+   "fraction": 0.75,
+   "source": {
+    "file": "posebusters_diffsbdd.csv",
+    "version_id": "e01d4e94-24d2-4df7-a97c-60cab6aebc86",
+    "sha256_16": "de1062e5c6d1630a"
+   },
+   "definition": "PoseBusters config=dock against the full 3RFM receptor",
+   "strict_variant": {
+    "value": 0.65,
+    "note": "if the 2 molecules whose internal_energy check could not be evaluated (UFF parameters missing) are counted as failures rather than NaN"
+   }
+  },
+  "worst_checks_diffsbdd": {
+   "value": [
+    {
+     "check": "bond_angles",
+     "pass_rate": 0.85,
+     "set": "diffsbdd"
+    },
+    {
+     "check": "bond_lengths",
+     "pass_rate": 0.9,
+     "set": "diffsbdd"
+    },
+    {
+     "check": "non-aromatic_ring_non-flatness",
+     "pass_rate": 0.95,
+     "set": "diffsbdd"
+    }
+   ],
+   "source": {
+    "file": "posebusters_diffsbdd.csv",
+    "version_id": "e01d4e94-24d2-4df7-a97c-60cab6aebc86",
+    "sha256_16": "de1062e5c6d1630a"
+   }
+  },
+  "intermolecular_checks_diffsbdd": {
+   "value": "100% on every one",
+   "source": {
+    "file": "posebusters_diffsbdd.csv",
+    "version_id": "e01d4e94-24d2-4df7-a97c-60cab6aebc86",
+    "sha256_16": "de1062e5c6d1630a"
+   },
+   "note": "minimum distance to protein, volume overlap with protein/cofactors/waters, protein-ligand max distance"
+  },
+  "strain_diffsbdd_median_kcal": {
+   "value": 134.48,
+   "source": {
+    "file": "posecheck_diffsbdd.csv",
+    "version_id": "70dfddae-98d4-486f-b058-02291d3c92a0",
+    "sha256_16": "b5616469c013cecd"
+   },
+   "definition": "PoseCheck UFF strain = pose energy minus relaxed-ensemble energy, kcal/mol",
+   "iqr": [
+    80.6,
+    223.74
+   ]
+  },
+  "strain_flowmol3_median_kcal": {
+   "value": 8.18,
+   "source": {
+    "file": "posecheck_diffsbdd.csv",
+    "version_id": "70dfddae-98d4-486f-b058-02291d3c92a0",
+    "sha256_16": "b5616469c013cecd"
+   }
+  },
+  "strain_caffeine_kcal": {
+   "value": 0.388,
+   "source": {
+    "file": "posecheck_diffsbdd.csv",
+    "version_id": "70dfddae-98d4-486f-b058-02291d3c92a0",
+    "sha256_16": "b5616469c013cecd"
+   },
+   "note": "the 3RFM co-crystal reference ligand, measured the same way"
+  },
+  "strain_fold_over_caffeine": {
+   "value": {
+    "diffsbdd": 347.0,
+    "flowmol3": 21.0
+   },
+   "source": {
+    "file": "posecheck_diffsbdd.csv",
+    "version_id": "70dfddae-98d4-486f-b058-02291d3c92a0",
+    "sha256_16": "b5616469c013cecd"
+   }
+  },
+  "n_diffsbdd_strain_above_300": {
+   "value": 5,
+   "source": {
+    "file": "posecheck_diffsbdd.csv",
+    "version_id": "70dfddae-98d4-486f-b058-02291d3c92a0",
+    "sha256_16": "b5616469c013cecd"
+   },
+   "values": [
+    2600.9,
+    1395.7,
+    845.6,
+    522.8,
+    321.4
+   ]
+  },
+  "clash_does_not_discriminate": {
+   "value": {
+    "diffsbdd_median": 2.5,
+    "diffsbdd_q1": 1.0,
+    "diffsbdd_q3": 5.0,
+    "diffsbdd_max": 19,
+    "diffsbdd_n_zero": 2,
+    "caffeine": 3,
+    "tolerance_angstrom": 0.5,
+    "note": "does NOT discriminate: caffeine co-crystal (3) sits above the generated median (2.5)"
+   },
+   "source": {
+    "file": "posecheck_diffsbdd.csv",
+    "version_id": "70dfddae-98d4-486f-b058-02291d3c92a0",
+    "sha256_16": "b5616469c013cecd"
+   },
+   "note": "caffeine's co-crystal pose scores 3 clashes, ABOVE the generated median of 2.5 - report strain, not clash count"
+  },
+  "interactions": {
+   "value": {
+    "n_hbond_donors": {
+     "median_generated": 0.0,
+     "mean_generated": 0.0,
+     "max_generated": 0,
+     "caffeine": 0
+    },
+    "n_hbond_acceptors": {
+     "median_generated": 0.0,
+     "mean_generated": 0.35,
+     "max_generated": 1,
+     "caffeine": 1
+    },
+    "n_hydrophobic": {
+     "median_generated": 2.0,
+     "mean_generated": 2.3,
+     "max_generated": 5,
+     "caffeine": 0
+    },
+    "n_vdw_contacts": {
+     "median_generated": 4.5,
+     "mean_generated": 5.4,
+     "max_generated": 12,
+     "caffeine": 5
+    }
+   },
+   "source": {
+    "file": "posecheck_diffsbdd.csv",
+    "version_id": "70dfddae-98d4-486f-b058-02291d3c92a0",
+    "sha256_16": "b5616469c013cecd"
+   },
+   "note": "HBDonor IS in prolif's default requested set but was detected ZERO times across all 21 ligands including caffeine - a measured zero, not a missing column. Also requested and never detected: Anionic, Cationic, CationPi, PiCation, PiStacking. Detected types: HBAcceptor, Hydrophobic, VdWContact."
+  },
+  "reos_flowmol3": {
+   "value": {
+    "avg_flag_rate": 0.0,
+    "has_flags_rate": 0.0,
+    "n_mols": 12
+   },
+   "source": {
+    "file": "reos_flowmol3.csv",
+    "version_id": "9f374859-1877-491d-92b1-a04192688d9e",
+    "sha256_16": "e3f6348e49633651"
+   },
+   "rule_set": "Glaxo, 55 rules (the useful_rdkit_utils default)"
+  },
+  "reos_diffsbdd": {
+   "value": {
+    "has_flags_rate": 0.15,
+    "n_mols_with_flags": 3
+   },
+   "source": {
+    "file": "reos_flowmol3.csv",
+    "version_id": "9f374859-1877-491d-92b1-a04192688d9e",
+    "sha256_16": "e3f6348e49633651"
+   },
+   "top_flags": [
+    {
+     "flag_name": "Glaxo::I6 Epoxides, Thioepoxides, Aziridines",
+     "flag_count": 2,
+     "flag_rate": 0.1
+    },
+    {
+     "flag_name": "Glaxo::I1 Aliphatic methylene chains 7 or more long",
+     "flag_count": 1,
+     "flag_rate": 0.05
+    }
+   ]
+  },
+  "honest_framing": {
+   "value": "HONEST-FINDINGS, NOT VALIDATION - and the verdict differs by model. FlowMol3 earns 'our batch holds up': 12/12 pass all 11 intramolecular PoseBusters checks and 0/12 trigger any of the 55 Glaxo REOS alerts. DiffSBDD is 'here is what we found when we looked': only 15/20 are PoseBusters-valid (13/20 if the 2 ligands whose energy-ratio check cannot be evaluated are counted as failures), and every failure is INTRAMOLECULAR - bond_angles 85%, bond_lengths 90%, non-aromatic ring non-flatness 95%. All 9 ligand-protein checks pass 100%, so DiffSBDD places ligands in the pocket correctly but distorts their internal geometry. Strain energy is the sharpest result and it is not a pass/fail check at all: median UFF strain is 134.5 kcal/mol for DiffSBDD and 8.2 for FlowMol3, against 0.39 for the caffeine co-crystal pose. All 20 DiffSBDD ligands exceed caffeine, 5 exceed 300 kcal/mol, and the worst is 2600.9 - energies far above any thermally accessible conformer, meaning the strain is invisible to both the chapter's validity metric and to PoseBusters' pass/fail battery. Two further cautions: clash count does NOT discriminate (DiffSBDD median 2.5 vs caffeine 3), so it should not be cited as evidence of quality; and the ligands make few real interactions (median 0 HB acceptors, 2 hydrophobic; HBDonor was requested by prolif and detected zero times in all 21 ligands), which is the PoseCheck finding reproduced. DIRECT FLAG FOR THE CHAPTER: the reported '100% validity' for both sets is RDKit sanitization plus largest-fragment extraction. It tests only whether the molecular GRAPH is legal - valences, aromaticity, ring perception - and tests NOTHING about geometry. Both sets do score 100% on the graph-level checks here (sanitization, InChI-convertibility, connectivity, no radicals), so the claim is not wrong; it is just far weaker than it sounds, and for a pocket-conditioned generator whose whole premise is 3D placement it is the wrong bar. 100% graph validity coexists with 25% of DiffSBDD ligands failing physical geometry and a median strain 346x the co-crystal reference.",
+   "source": {
+    "file": "track_validity.json",
+    "version_id": "cd2b0359-bea7-4371-bfe3-1efa8235db81",
+    "sha256_16": "4a806261e306c4a5"
+   }
+  }
+ },
+ "F3_boltz2_controlled_comparison": {
+  "_question": "Did pocket-conditioned generation produce a molecule Boltz-2 calls a better binder than the unconditioned one?",
+  "_answer": "No. Every generated ligand falls below the 0.5 binder threshold under two independent implementations, while the known co-crystal ligand clears it.",
+  "caffeine_binder_probability": {
+   "value": {
+    "pinned": 0.6219,
+    "hosted_nim": 0.6172
+   },
+   "source": {
+    "file": "boltz2_comparison.csv",
+    "version_id": "b2987811-5fe9-420a-9ddb-b421b2318441",
+    "sha256_16": "bbf25e53535a905c"
+   },
+   "note": "the 3RFM co-crystal ligand, run as a positive control - the affinity head ranks it top under both"
+  },
+  "best_generated_binder_probability": {
+   "value": {
+    "mol_id": "diffsbdd_3rfm_0",
+    "pinned": 0.444,
+    "hosted_nim": 0.3633
+   },
+   "source": {
+    "file": "boltz2_comparison.csv",
+    "version_id": "b2987811-5fe9-420a-9ddb-b421b2318441",
+    "sha256_16": "bbf25e53535a905c"
+   }
+  },
+  "figure_I10_ligand_binder_probability": {
+   "value": {
+    "mol_id": "diffsbdd_3rfm_2",
+    "pinned": 0.4391,
+    "hosted_nim": 0.4492
+   },
+   "source": {
+    "file": "boltz2_comparison.csv",
+    "version_id": "b2987811-5fe9-420a-9ddb-b421b2318441",
+    "sha256_16": "bbf25e53535a905c"
+   },
+   "note": "the highest-QED ligand, the one rendered in Figure I.10"
+  },
+  "flowmol3_unconditioned_binder_probability": {
+   "value": {
+    "pinned": 0.0906,
+    "hosted_nim": 0.0801
+   },
+   "source": {
+    "file": "boltz2_comparison.csv",
+    "version_id": "b2987811-5fe9-420a-9ddb-b421b2318441",
+    "sha256_16": "bbf25e53535a905c"
+   },
+   "note": "the molecule from the existing section I.7 run, rescored under the identical config"
+  },
+  "n_above_threshold": {
+   "value": {
+    "threshold": 0.5,
+    "pinned": 1,
+    "hosted_nim": 1,
+    "which": "caffeine only",
+    "n_total": 7
+   },
+   "source": {
+    "file": "boltz2_comparison.csv",
+    "version_id": "b2987811-5fe9-420a-9ddb-b421b2318441",
+    "sha256_16": "bbf25e53535a905c"
+   }
+  },
+  "pocket_conditioning_verdict": {
+   "value": "Pocket conditioning DID beat unconditioned generation on this metric: the best DiffSBDD ligand scores 0.444 against the FlowMol3 molecule's 0.091, a 4.9x higher binder probability. But neither clears the threshold, so the honest statement is that conditioning moved the ranking without producing a predicted binder.",
+   "source": {
+    "file": "boltz2_comparison.csv",
+    "version_id": "b2987811-5fe9-420a-9ddb-b421b2318441",
+    "sha256_16": "bbf25e53535a905c"
+   }
+  },
+  "implementation_agreement": {
+   "value": {
+    "spearman_rho": 0.9643,
+    "pearson_r": 0.9817,
+    "mean_abs_probability_delta": 0.029,
+    "identical_ranks": "5/7"
+   },
+   "source": {
+    "file": "boltz2_comparison.csv",
+    "version_id": "b2987811-5fe9-420a-9ddb-b421b2318441",
+    "sha256_16": "bbf25e53535a905c"
+   },
+   "note": "two independent Boltz-2 implementations (pinned 2.2.1 on an A100, and NVIDIA's hosted NIM) agree closely, so the ranking is implementation-independent"
+  },
+  "config_equality": {
+   "value": {
+    "target": "UniProt P29274 (ADORA2A), 412 aa - byte-identical protein block across all runs",
+    "msa_source": "AlphaFold-DB, depth 17819",
+    "msa_depth_modal": 17819,
+    "msa_depth_nim": 1024,
+    "msa_truncation_note": "The hosted NIM received the top-1024 MSA records (2.26 MB at depth 4096 risked payload limits); the pinned run used the full 17819. This is the ONE known configuration difference and it is recorded rather than hidden.",
+    "recycling_steps": 3,
+    "diffusion_samples": 5,
+    "sampling_steps_nim": 50,
+    "step_scale_nim": 1.638,
+    "modal": {
+     "boltz_version": "2.2.1",
+     "torch": "2.13.0+cu130",
+     "gpu": "NVIDIA A100 80GB PCIe",
+     "python": "3.11.12"
+    },
+    "nim": {
+     "endpoint": "https://health.api.nvidia.com/v1/biology/mit/boltz2/predict",
+     "version": "served build, version not exposed by the API"
+    }
+   },
+   "source": {
+    "file": "track_boltz.json",
+    "version_id": "ba51ca86-fdda-4475-942e-5178a72caee1",
+    "sha256_16": "9d747f8517028584"
+   },
+   "recorded_difference": "the hosted NIM received the top-1024 MSA records against the pinned run's full 17819",
+   "receptor_vs_target_note": "The 412 aa figure is the full UniProt P29274 sequence used as the Boltz-2 co-folding target. It is NOT the crystallized 3RFM construct, which contains 291 ordered residues (chain A, 7 to 305 with a gap at 150 to 157, 2250 protein atoms) and is what the PoseBusters and PoseCheck pocket work uses. Two different entities."
+  },
+  "interpretation_constraint": {
+   "value": "affinity_pred_value is Boltz-2's log10(IC50 in uM) regression head and is only meaningful for molecules the binary head calls binders. NONE of the generated ligands clear 0.5, so converting their pred_value into an IC50 would be exactly the off-label use the chapter was corrected on. The comparison is a RANKING result, not a potency prediction.",
+   "source": {
+    "file": "track_boltz.json",
+    "version_id": "ba51ca86-fdda-4475-942e-5178a72caee1",
+    "sha256_16": "9d747f8517028584"
+   },
+   "note": "THIS IS THE OFF-LABEL GUARD. Do not convert any generated ligand's affinity_pred_value into an IC50."
+  },
+  "runtimes": {
+   "value": {
+    "pinned_total_job_wall_s": 1069,
+    "hosted_nim_total_wall_s": 237,
+    "pinned_per_ligand_s": [
+     145.5,
+     147.2,
+     152.2,
+     151.6,
+     153.5,
+     167.7,
+     147.3
+    ],
+    "nim_per_ligand_s": [
+     50.1,
+     20.7,
+     21.6,
+     52.3,
+     52.5,
+     18.1,
+     21.6
+    ],
+    "per_ligand_speedup_nim_vs_pinned": 4.5,
+    "pinned_per_ligand_sum_s": 1065.0,
+    "nim_per_ligand_sum_s": 236.9
+   },
+   "source": {
+    "file": "boltz2_comparison.csv",
+    "version_id": "b2987811-5fe9-420a-9ddb-b421b2318441",
+    "sha256_16": "bbf25e53535a905c"
+   },
+   "note": "The hosted NIM was 4.50x faster per ligand (sum of per-ligand walls: 1065.0 s pinned vs 236.9 s hosted; means 152.1 s vs 33.8 s, the same ratio), at a depth-1024 MSA against the pinned run's 17,819. Note that 1069 s is the Modal JOB wall, which includes container start and model load, so it is not the right numerator for a per-ligand speedup; dividing it by the hosted total gives 4.51x, essentially the same figure. An earlier draft of this pack stated 'about 6x', which does not follow from any ratio of these measurements and has been corrected."
+  },
+  "offlabel_evidence": {
+   "value": {
+    "non_binder_flowmol3": {
+     "prob": 0.0906,
+     "pred_log10_IC50_uM": 1.1239,
+     "implied_IC50_uM": 13.3
+    },
+    "real_binder_caffeine": {
+     "prob": 0.6219,
+     "pred_log10_IC50_uM": 1.3978,
+     "implied_IC50_uM": 24.99
+    }
+   },
+   "source": {
+    "file": "boltz2_comparison.csv",
+    "version_id": "b2987811-5fe9-420a-9ddb-b421b2318441"
+   },
+   "note": "Direct evidence that affinity_pred_value is not calibrated below the 0.5 gate: the molecule the binary head rejects gets an implied IC50 nearly 2x TIGHTER than the co-crystal ligand it accepts."
+  }
+ },
+ "F4_novelty_and_diversity": {
+  "_question": "Is 0.21 median Tanimoto to caffeine really novelty, and what fingerprint produced 0.809 diversity?",
+  "_answer": "0.21 is dissimilarity to the reference ligand, not novelty. Against the training corpus, similarity runs 2.2x higher. The 0.809 is reproducible only under RDKit's topological fingerprint; Morgan gives 0.918.",
+  "published_diversity_reproduction": {
+   "value": {
+    "published_value": 0.8089776623453144,
+    "published_source": "diffsbdd_denovo_metrics.json (diversity), diffsbdd_metrics.csv header (diversity=0.809)",
+    "recomputed_value": 0.8089776623453144,
+    "abs_difference": 0.0,
+    "reproduced_exactly": true,
+    "verdict": "REPRODUCED EXACTLY (bit-for-bit) with Chem.RDKFingerprint at RDKit defaults over the 20 valid DiffSBDD molecules, formula '1 - mean pairwise Tanimoto over valid molecules'. This pins the published number's provenance.",
+    "morgan_r2_2048_value_for_same_batch": 0.9175067835960684,
+    "why_it_matters": "Under Morgan r=2/2048 the same batch scores 0.9175 rather than 0.8090 (+0.1085); the fingerprint choice must be stated or the number is not reproducible.",
+    "robustness": {
+     "identical_via_sdf_SMILES_property_parse": 0.8089776623453144,
+     "identical_without_RemoveHs": 0.8089776623453144
+    }
+   },
+   "source": {
+    "file": "diversity_metadata.json",
+    "version_id": "cb55bfdf-10c9-429f-9b80-eaf9ad062f46",
+    "sha256_16": "98d6a5da48b685aa"
+   }
+  },
+  "diversity_diffsbdd": {
+   "value": {
+    "rdkit_topological": 0.809,
+    "morgan_r2_2048": 0.9175
+   },
+   "source": {
+    "file": "diversity_metadata.json",
+    "version_id": "cb55bfdf-10c9-429f-9b80-eaf9ad062f46",
+    "sha256_16": "98d6a5da48b685aa"
+   },
+   "definition": "1 - mean pairwise Tanimoto over valid molecules",
+   "fingerprint_note": "the published 0.809 is the RDKit topological value: Chem.RDKFingerprint(mol) at defaults (fpSize=2048, minPath=1, maxPath=7, nBitsPerHash=2). It is a path-based fingerprint; radius is not one of its parameters."
+  },
+  "diversity_flowmol3": {
+   "value": {
+    "rdkit_topological": 0.7894,
+    "morgan_r2_2048": 0.8695
+   },
+   "source": {
+    "file": "diversity_metadata.json",
+    "version_id": "cb55bfdf-10c9-429f-9b80-eaf9ad062f46",
+    "sha256_16": "98d6a5da48b685aa"
+   }
+  },
+  "uniqueness": {
+   "value": {
+    "diffsbdd": {
+     "n_valid": 20,
+     "n_distinct_canonical_smiles": 20,
+     "uniqueness_fraction": 1.0,
+     "definition": "n_distinct_canonical_SMILES / n_valid_molecules (isomeric canonical SMILES, stereo retained)"
+    },
+    "flowmol3": {
+     "n_valid": 12,
+     "n_distinct_canonical_smiles": 12,
+     "uniqueness_fraction": 1.0,
+     "definition": "n_distinct_canonical_SMILES / n_valid_molecules (isomeric canonical SMILES, stereo retained)"
+    }
+   },
+   "source": {
+    "file": "diversity_metadata.json",
+    "version_id": "cb55bfdf-10c9-429f-9b80-eaf9ad062f46",
+    "sha256_16": "98d6a5da48b685aa"
+   },
+   "definition": "fraction of distinct canonical SMILES"
+  },
+  "median_max_tanimoto_vs_training_corpus": {
+   "value": {
+    "diffsbdd": {
+     "rdkit_topological": 0.4664,
+     "morgan_r2_2048": 0.2144
+    },
+    "flowmol3": {
+     "rdkit_topological": 0.5839,
+     "morgan_r2_2048": 0.3951
+    }
+   },
+   "source": {
+    "file": "novelty_diffsbdd.csv",
+    "version_id": "b52e619b-337b-40f3-a03d-be848e523526",
+    "sha256_16": "412603955246238b"
+   },
+   "definition": "per-ligand MAXIMUM Tanimoto to the sampled training corpus, then the MEDIAN of those maxima",
+   "caveat": "LOWER BOUND. The saturation check shows median-of-max still climbing with corpus size and not plateaued; the full corpora are 1.5-2 orders of magnitude larger than these samples."
+  },
+  "confirmed_train_split_subset": {
+   "value": {
+    "corpus_n": 1749,
+    "rdkit_topological": 0.4453,
+    "morgan_r2_2048": 0.2032
+   },
+   "source": {
+    "file": "novelty_diffsbdd.csv",
+    "version_id": "b52e619b-337b-40f3-a03d-be848e523526",
+    "sha256_16": "412603955246238b"
+   },
+   "note": "restricted to ligands verified present in DiffSBDD's own published train split, so this subset needs no 'documented public preprocessing' hedge"
+  },
+  "median_tanimoto_vs_caffeine": {
+   "value": {
+    "rdkit_topological": 0.2121,
+    "morgan_r2_2048": 0.0899
+   },
+   "source": {
+    "file": "novelty_diffsbdd.csv",
+    "version_id": "b52e619b-337b-40f3-a03d-be848e523526",
+    "sha256_16": "412603955246238b"
+   },
+   "note": "reproduces the chapter's published 0.21 under the fingerprint the chapter used"
+  },
+  "the_gap": {
+   "value": {
+    "diffsbdd|rdkit_topological_default": {
+     "median_tanimoto_vs_caffeine": 0.21212756634111066,
+     "median_max_tanimoto_vs_train": 0.46642772310824565,
+     "absolute_gap": 0.254300156767135,
+     "ratio_train_over_caffeine": 2.1988076851747262
+    },
+    "diffsbdd|morgan_r2_2048": {
+     "median_tanimoto_vs_caffeine": 0.08989898989898984,
+     "median_max_tanimoto_vs_train": 0.21440051430408225,
+     "absolute_gap": 0.1245015244050924,
+     "ratio_train_over_caffeine": 2.3849045973150735
+    },
+    "flowmol3|rdkit_topological_default": {
+     "median_tanimoto_vs_caffeine": 0.24932181305536566,
+     "median_max_tanimoto_vs_train": 0.5838621618243589,
+     "absolute_gap": 0.33454034876899325,
+     "ratio_train_over_caffeine": 2.3418013637447097
+    },
+    "flowmol3|morgan_r2_2048": {
+     "median_tanimoto_vs_caffeine": 0.1018573113207547,
+     "median_max_tanimoto_vs_train": 0.3951340098881082,
+     "absolute_gap": 0.2932766985673535,
+     "ratio_train_over_caffeine": 3.879289613720588
+    },
+    "_summary": "Novelty measured against the training corpus is uniformly and substantially WORSE (higher similarity) than dissimilarity to caffeine, across both batches and both fingerprints. DiffSBDD: median nearest-training-neighbour Tanimoto 0.466 vs 0.212 to caffeine (2.2x higher, +0.254 absolute) under the chapter's own RDKFingerprint. FlowMol3: 0.584 vs 0.249 (2.3x). Under Morgan r=2 the ratio widens to 3.9x for FlowMol3. Because median-of-max has not saturated at these corpus sizes, all training-proximity figures are lower bounds. The chapter's 0.21 'novelty' number therefore measures dissimilarity to one reference ligand and says nothing about training-set memorisation; the corpus-based figures are the ones that speak to the sidebar's claim."
+   },
+   "source": {
+    "file": "track_novelty.json",
+    "version_id": "91bfe704-c557-4045-a9e3-b16ad378d966",
+    "sha256_16": "df37abd5af5e15b7"
+   }
+  },
+  "corpus_provenance": {
+   "value": {
+    "crossdocked": {
+     "purpose": "training-corpus proxy for the DiffSBDD batch (checkpoint crossdocked_fullatom_cond.ckpt)",
+     "source_url_pattern": "https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/{:06d}.tar",
+     "dataset": "HuggingFace kohbanye/crossdocked2020",
+     "license": "cc0-1.0",
+     "access_method": "HTTP Range requests (206) over bounded byte windows; tar headers parsed with checksum validation; first SDF record per member = one docked pose per ligand",
+     "n_tar_shards_available": 39,
+     "n_tar_shards_sampled": 33,
+     "range_len_bytes": 7000000,
+     "n_ranges_requested": 230,
+     "n_ranges_failed": 20,
+     "bytes_read_approx": 1470000000,
+     "seeds": [
+      4242,
+      8484
+     ],
+     "n_poses_parsed": 168981,
+     "sample_size_unique_ligands": 5211,
+     "dedup": {
+      "method": "canonical SMILES via Chem.MolFromMolBlock -> RemoveHs -> MolToSmiles",
+      "n_before_dedup": 168981,
+      "n_after_dedup": 5211,
+      "dedup_ratio": 0.03084
+     },
+     "train_split_verification": {
+      "split_file_url": "https://huggingface.co/datasets/Yukk1Zz/if3-crossdocked2020/resolve/main/split_by_name.pt",
+      "split_dataset": "HuggingFace Yukk1Zz/if3-crossdocked2020 split_by_name.pt",
+      "split_train_entries": 100000,
+      "split_unique_train_ligand_files": 97030,
+      "n_sampled_ligands_confirmed_in_train_split": 1749,
+      "method": "matched (complex_dir, ligand_original_name) from each tar member's sidecar JSON against the split train list, stripping the trailing _<pose_index>.sdf",
+      "note": "split_by_name.pt is the standard CrossDocked pocket10 split used by the DiffSBDD/Pocket2Mol/TargetDiff line of work; DiffSBDD's repo publishes only timesplit_* lists for its Binding MOAD variant, so this is the closest published split for the CrossDocked checkpoint"
+     },
+     "byte_ranges_sampled": [
+      {
+       "tar": 0,
+       "byte_start": 136125440,
+       "byte_end": 143125439,
+       "n_members_parsed": 890,
+       "error": null
+      },
+      {
+       "tar": 0,
+       "byte_start": 543079424,
+       "byte_end": 550079423,
+       "n_members_parsed": 800,
+       "error": null
+      },
+      {
+       "tar": 0,
+       "byte_start": 152548864,
+       "byte_end": 159548863,
+       "n_members_parsed": 603,
+       "error": null
+      },
+      {
+       "tar": 0,
+       "byte_start": 193099776,
+       "byte_end": 200099775,
+       "n_members_parsed": 610,
+       "error": null
+      },
+      {
+       "tar": 0,
+       "byte_start": 361737728,
+       "byte_end": 368737727,
+       "n_members_parsed": 916,
+       "error": null
+      },
+      {
+       "tar": 1,
+       "byte_start": 130148352,
+       "byte_end": 137148351,
+       "n_members_parsed": 969,
+       "error": null
+      },
+      {
+       "tar": 1,
+       "byte_start": 184082944,
+       "byte_end": 191082943,
+       "n_members_parsed": 1077,
+       "error": null
+      },
+      {
+       "tar": 1,
+       "byte_start": 255256576,
+       "byte_end": 262256575,
+       "n_members_parsed": 896,
+       "error": null
+      },
+      {
+       "tar": 1,
+       "byte_start": 611677696,
+       "byte_end": 618677695,
+       "n_members_parsed": 708,
+       "error": null
+      },
+      {
+       "tar": 1,
+       "byte_start": 250940928,
+       "byte_end": 257940927,
+       "n_members_parsed": 719,
+       "error": null
+      },
+      {
+       "tar": 3,
+       "byte_start": 478426112,
+       "byte_end": 485426111,
+       "n_members_parsed": 790,
+       "error": null
+      },
+      {
+       "tar": 3,
+       "byte_start": 65539072,
+       "byte_end": 72539071,
+       "n_members_parsed": 1123,
+       "error": null
+      },
+      {
+       "tar": 3,
+       "byte_start": 294503936,
+       "byte_end": 301503935,
+       "n_members_parsed": 738,
+       "error": null
+      },
+      {
+       "tar": 3,
+       "byte_start": 361269248,
+       "byte_end": 368269247,
+       "n_members_parsed": 792,
+       "error": null
+      },
+      {
+       "tar": 3,
+       "byte_start": 4342272,
+       "byte_end": 11342271,
+       "n_members_parsed": 751,
+       "error": null
+      },
+      {
+       "tar": 4,
+       "byte_start": 342489088,
+       "byte_end": 349489087,
+       "n_members_parsed": 783,
+       "error": null
+      },
+      {
+       "tar": 4,
+       "byte_start": 180637696,
+       "byte_end": 187637695,
+       "n_members_parsed": 776,
+       "error": null
+      },
+      {
+       "tar": 4,
+       "byte_start": 554846720,
+       "byte_end": 561846719,
+       "n_members_parsed": 760,
+       "error": null
+      },
+      {
+       "tar": 4,
+       "byte_start": 361024000,
+       "byte_end": 368023999,
+       "n_members_parsed": 1031,
+       "error": null
+      },
+      {
+       "tar": 4,
+       "byte_start": 381771776,
+       "byte_end": 388771775,
+       "n_members_parsed": 1009,
+       "error": null
+      },
+      {
+       "tar": 5,
+       "byte_start": 423620608,
+       "byte_end": 430620607,
+       "n_members_parsed": 682,
+       "error": null
+      },
+      {
+       "tar": 5,
+       "byte_start": 433395712,
+       "byte_end": 440395711,
+       "n_members_parsed": 1071,
+       "error": null
+      },
+      {
+       "tar": 5,
+       "byte_start": 344479744,
+       "byte_end": 351479743,
+       "n_members_parsed": 735,
+       "error": null
+      },
+      {
+       "tar": 5,
+       "byte_start": 329682944,
+       "byte_end": 336682943,
+       "n_members_parsed": 741,
+       "error": null
+      },
+      {
+       "tar": 5,
+       "byte_start": 180125696,
+       "byte_end": 187125695,
+       "n_members_parsed": 734,
+       "error": null
+      },
+      {
+       "tar": 8,
+       "byte_start": 369756672,
+       "byte_end": 376756671,
+       "n_members_parsed": 682,
+       "error": null
+      },
+      {
+       "tar": 8,
+       "byte_start": 601037312,
+       "byte_end": 608037311,
+       "n_members_parsed": 771,
+       "error": null
+      },
+      {
+       "tar": 8,
+       "byte_start": 520637952,
+       "byte_end": 527637951,
+       "n_members_parsed": 724,
+       "error": null
+      },
+      {
+       "tar": 8,
+       "byte_start": 287716352,
+       "byte_end": 294716351,
+       "n_members_parsed": 684,
+       "error": null
+      },
+      {
+       "tar": 8,
+       "byte_start": 473144832,
+       "byte_end": 480144831,
+       "n_members_parsed": 719,
+       "error": null
+      },
+      {
+       "tar": 11,
+       "byte_start": 84555264,
+       "byte_end": 91555263,
+       "n_members_parsed": 695,
+       "error": null
+      },
+      {
+       "tar": 11,
+       "byte_start": 513498624,
+       "byte_end": 520498623,
+       "n_members_parsed": 939,
+       "error": null
+      },
+      {
+       "tar": 11,
+       "byte_start": 275521024,
+       "byte_end": 282521023,
+       "n_members_parsed": 635,
+       "error": null
+      },
+      {
+       "tar": 11,
+       "byte_start": 179364352,
+       "byte_end": 186364351,
+       "n_members_parsed": 687,
+       "error": null
+      },
+      {
+       "tar": 11,
+       "byte_start": 178322944,
+       "byte_end": 185322943,
+       "n_members_parsed": 672,
+       "error": null
+      },
+      {
+       "tar": 15,
+       "byte_start": 302413312,
+       "byte_end": 309413311,
+       "n_members_parsed": 703,
+       "error": null
+      },
+      {
+       "tar": 15,
+       "byte_start": 515993088,
+       "byte_end": 522993087,
+       "n_members_parsed": 801,
+       "error": null
+      },
+      {
+       "tar": 15,
+       "byte_start": 298211840,
+       "byte_end": 305211839,
+       "n_members_parsed": 624,
+       "error": null
+      },
+      {
+       "tar": 15,
+       "byte_start": 90662400,
+       "byte_end": 97662399,
+       "n_members_parsed": 586,
+       "error": null
+      },
+      {
+       "tar": 15,
+       "byte_start": 108987904,
+       "byte_end": 115987903,
+       "n_members_parsed": 608,
+       "error": null
+      },
+      {
+       "tar": 16,
+       "byte_start": 405775872,
+       "byte_end": 412775871,
+       "n_members_parsed": 1113,
+       "error": null
+      },
+      {
+       "tar": 16,
+       "byte_start": 462198272,
+       "byte_end": 469198271,
+       "n_members_parsed": 855,
+       "error": null
+      },
+      {
+       "tar": 16,
+       "byte_start": 500818944,
+       "byte_end": 507818943,
+       "n_members_parsed": 847,
+       "error": null
+      },
+      {
+       "tar": 16,
+       "byte_start": 506842112,
+       "byte_end": 513842111,
+       "n_members_parsed": 1072,
+       "error": null
+      },
+      {
+       "tar": 16,
+       "byte_start": 245696000,
+       "byte_end": 252695999,
+       "n_members_parsed": 504,
+       "error": null
+      },
+      {
+       "tar": 17,
+       "byte_start": 530960384,
+       "byte_end": 537960383,
+       "n_members_parsed": 830,
+       "error": null
+      },
+      {
+       "tar": 17,
+       "byte_start": 240593920,
+       "byte_end": 247593919,
+       "n_members_parsed": 750,
+       "error": null
+      },
+      {
+       "tar": 17,
+       "byte_start": 112333824,
+       "byte_end": 119333823,
+       "n_members_parsed": 888,
+       "error": null
+      },
+      {
+       "tar": 17,
+       "byte_start": 479836160,
+       "byte_end": 486836159,
+       "n_members_parsed": 902,
+       "error": null
+      },
+      {
+       "tar": 17,
+       "byte_start": 445478912,
+       "byte_end": 452478911,
+       "n_members_parsed": 1000,
+       "error": null
+      },
+      {
+       "tar": 18,
+       "byte_start": 584085504,
+       "byte_end": 591085503,
+       "n_members_parsed": 815,
+       "error": null
+      },
+      {
+       "tar": 18,
+       "byte_start": 452250112,
+       "byte_end": 459250111,
+       "n_members_parsed": 801,
+       "error": null
+      },
+      {
+       "tar": 18,
+       "byte_start": 237820928,
+       "byte_end": 244820927,
+       "n_members_parsed": 699,
+       "error": null
+      },
+      {
+       "tar": 18,
+       "byte_start": 266469376,
+       "byte_end": 273469375,
+       "n_members_parsed": 702,
+       "error": null
+      },
+      {
+       "tar": 18,
+       "byte_start": 391873536,
+       "byte_end": 398873535,
+       "n_members_parsed": 1020,
+       "error": null
+      },
+      {
+       "tar": 20,
+       "byte_start": 232151040,
+       "byte_end": 239151039,
+       "n_members_parsed": 805,
+       "error": null
+      },
+      {
+       "tar": 20,
+       "byte_start": 567728640,
+       "byte_end": 574728639,
+       "n_members_parsed": 821,
+       "error": null
+      },
+      {
+       "tar": 20,
+       "byte_start": 410957312,
+       "byte_end": 417957311,
+       "n_members_parsed": 818,
+       "error": null
+      },
+      {
+       "tar": 20,
+       "byte_start": 90574848,
+       "byte_end": 97574847,
+       "n_members_parsed": 624,
+       "error": null
+      },
+      {
+       "tar": 20,
+       "byte_start": 332397568,
+       "byte_end": 339397567,
+       "n_members_parsed": 728,
+       "error": null
+      },
+      {
+       "tar": 21,
+       "byte_start": 64910336,
+       "byte_end": 71910335,
+       "n_members_parsed": 811,
+       "error": null
+      },
+      {
+       "tar": 21,
+       "byte_start": 573864960,
+       "byte_end": 580864959,
+       "n_members_parsed": 797,
+       "error": null
+      },
+      {
+       "tar": 21,
+       "byte_start": 232109568,
+       "byte_end": 239109567,
+       "n_members_parsed": 817,
+       "error": null
+      },
+      {
+       "tar": 21,
+       "byte_start": 108763648,
+       "byte_end": 115763647,
+       "n_members_parsed": 817,
+       "error": null
+      },
+      {
+       "tar": 21,
+       "byte_start": 454702080,
+       "byte_end": 461702079,
+       "n_members_parsed": 794,
+       "error": null
+      },
+      {
+       "tar": 24,
+       "byte_start": 9252352,
+       "byte_end": 16252351,
+       "n_members_parsed": 829,
+       "error": null
+      },
+      {
+       "tar": 24,
+       "byte_start": 25207296,
+       "byte_end": 32207295,
+       "n_members_parsed": 805,
+       "error": null
+      },
+      {
+       "tar": 24,
+       "byte_start": 596017664,
+       "byte_end": 603017663,
+       "n_members_parsed": 803,
+       "error": null
+      },
+      {
+       "tar": 24,
+       "byte_start": 460748288,
+       "byte_end": 467748287,
+       "n_members_parsed": 813,
+       "error": null
+      },
+      {
+       "tar": 24,
+       "byte_start": 641015808,
+       "byte_end": 648015807,
+       "n_members_parsed": 796,
+       "error": null
+      },
+      {
+       "tar": 26,
+       "byte_start": 220109312,
+       "byte_end": 227109311,
+       "n_members_parsed": 775,
+       "error": null
+      },
+      {
+       "tar": 26,
+       "byte_start": 271109632,
+       "byte_end": 278109631,
+       "n_members_parsed": 723,
+       "error": null
+      },
+      {
+       "tar": 26,
+       "byte_start": 459575808,
+       "byte_end": 466575807,
+       "n_members_parsed": 617,
+       "error": null
+      },
+      {
+       "tar": 26,
+       "byte_start": 522303488,
+       "byte_end": 529303487,
+       "n_members_parsed": 622,
+       "error": null
+      },
+      {
+       "tar": 26,
+       "byte_start": 233257984,
+       "byte_end": 240257983,
+       "n_members_parsed": 767,
+       "error": null
+      },
+      {
+       "tar": 27,
+       "byte_start": 453891072,
+       "byte_end": 460891071,
+       "n_members_parsed": 761,
+       "error": null
+      },
+      {
+       "tar": 27,
+       "byte_start": 377870848,
+       "byte_end": 384870847,
+       "n_members_parsed": 841,
+       "error": null
+      },
+      {
+       "tar": 27,
+       "byte_start": 262285824,
+       "byte_end": 269285823,
+       "n_members_parsed": 508,
+       "error": null
+      },
+      {
+       "tar": 27,
+       "byte_start": 174382080,
+       "byte_end": 181382079,
+       "n_members_parsed": 775,
+       "error": null
+      },
+      {
+       "tar": 27,
+       "byte_start": 453460480,
+       "byte_end": 460460479,
+       "n_members_parsed": 753,
+       "error": null
+      },
+      {
+       "tar": 28,
+       "byte_start": 537573376,
+       "byte_end": 544573375,
+       "n_members_parsed": 972,
+       "error": null
+      },
+      {
+       "tar": 28,
+       "byte_start": 8109568,
+       "byte_end": 15109567,
+       "n_members_parsed": 772,
+       "error": null
+      },
+      {
+       "tar": 28,
+       "byte_start": 542191616,
+       "byte_end": 549191615,
+       "n_members_parsed": 967,
+       "error": null
+      },
+      {
+       "tar": 28,
+       "byte_start": 406919168,
+       "byte_end": 413919167,
+       "n_members_parsed": 683,
+       "error": null
+      },
+      {
+       "tar": 28,
+       "byte_start": 119584768,
+       "byte_end": 126584767,
+       "n_members_parsed": 992,
+       "error": null
+      },
+      {
+       "tar": 29,
+       "byte_start": 520206336,
+       "byte_end": 527206335,
+       "n_members_parsed": 928,
+       "error": null
+      },
+      {
+       "tar": 29,
+       "byte_start": 239024640,
+       "byte_end": 246024639,
+       "n_members_parsed": 678,
+       "error": null
+      },
+      {
+       "tar": 29,
+       "byte_start": 500350464,
+       "byte_end": 507350463,
+       "n_members_parsed": 859,
+       "error": null
+      },
+      {
+       "tar": 29,
+       "byte_start": 401565184,
+       "byte_end": 408565183,
+       "n_members_parsed": 672,
+       "error": null
+      },
+      {
+       "tar": 29,
+       "byte_start": 318506496,
+       "byte_end": 325506495,
+       "n_members_parsed": 668,
+       "error": null
+      },
+      {
+       "tar": 35,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000035.tar 0 status=404"
+      },
+      {
+       "tar": 35,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000035.tar 0 status=404"
+      },
+      {
+       "tar": 35,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000035.tar 0 status=404"
+      },
+      {
+       "tar": 35,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000035.tar 0 status=404"
+      },
+      {
+       "tar": 35,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000035.tar 0 status=404"
+      },
+      {
+       "tar": 38,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000038.tar 0 status=404"
+      },
+      {
+       "tar": 38,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000038.tar 0 status=404"
+      },
+      {
+       "tar": 38,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000038.tar 0 status=404"
+      },
+      {
+       "tar": 38,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000038.tar 0 status=404"
+      },
+      {
+       "tar": 38,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000038.tar 0 status=404"
+      },
+      {
+       "tar": 0,
+       "byte_start": 372867072,
+       "byte_end": 379867071,
+       "n_members_parsed": 908,
+       "error": null
+      },
+      {
+       "tar": 0,
+       "byte_start": 477309952,
+       "byte_end": 484309951,
+       "n_members_parsed": 1060,
+       "error": null
+      },
+      {
+       "tar": 0,
+       "byte_start": 574636544,
+       "byte_end": 581636543,
+       "n_members_parsed": 724,
+       "error": null
+      },
+      {
+       "tar": 0,
+       "byte_start": 565548032,
+       "byte_end": 572548031,
+       "n_members_parsed": 780,
+       "error": null
+      },
+      {
+       "tar": 0,
+       "byte_start": 542482944,
+       "byte_end": 549482943,
+       "n_members_parsed": 808,
+       "error": null
+      },
+      {
+       "tar": 2,
+       "byte_start": 464805376,
+       "byte_end": 471805375,
+       "n_members_parsed": 728,
+       "error": null
+      },
+      {
+       "tar": 2,
+       "byte_start": 65792000,
+       "byte_end": 72791999,
+       "n_members_parsed": 675,
+       "error": null
+      },
+      {
+       "tar": 2,
+       "byte_start": 411618816,
+       "byte_end": 418618815,
+       "n_members_parsed": 732,
+       "error": null
+      },
+      {
+       "tar": 2,
+       "byte_start": 288282624,
+       "byte_end": 295282623,
+       "n_members_parsed": 685,
+       "error": null
+      },
+      {
+       "tar": 2,
+       "byte_start": 123084800,
+       "byte_end": 130084799,
+       "n_members_parsed": 677,
+       "error": null
+      },
+      {
+       "tar": 3,
+       "byte_start": 92887040,
+       "byte_end": 99887039,
+       "n_members_parsed": 958,
+       "error": null
+      },
+      {
+       "tar": 3,
+       "byte_start": 127140864,
+       "byte_end": 134140863,
+       "n_members_parsed": 795,
+       "error": null
+      },
+      {
+       "tar": 3,
+       "byte_start": 353113600,
+       "byte_end": 360113599,
+       "n_members_parsed": 832,
+       "error": null
+      },
+      {
+       "tar": 3,
+       "byte_start": 186697216,
+       "byte_end": 193697215,
+       "n_members_parsed": 1190,
+       "error": null
+      },
+      {
+       "tar": 3,
+       "byte_start": 604476928,
+       "byte_end": 611476927,
+       "n_members_parsed": 1005,
+       "error": null
+      },
+      {
+       "tar": 4,
+       "byte_start": 509619200,
+       "byte_end": 516619199,
+       "n_members_parsed": 603,
+       "error": null
+      },
+      {
+       "tar": 4,
+       "byte_start": 613820416,
+       "byte_end": 620820415,
+       "n_members_parsed": 918,
+       "error": null
+      },
+      {
+       "tar": 4,
+       "byte_start": 389982720,
+       "byte_end": 396982719,
+       "n_members_parsed": 1035,
+       "error": null
+      },
+      {
+       "tar": 4,
+       "byte_start": 459254272,
+       "byte_end": 466254271,
+       "n_members_parsed": 590,
+       "error": null
+      },
+      {
+       "tar": 4,
+       "byte_start": 562622464,
+       "byte_end": 569622463,
+       "n_members_parsed": 922,
+       "error": null
+      },
+      {
+       "tar": 6,
+       "byte_start": 244132864,
+       "byte_end": 251132863,
+       "n_members_parsed": 820,
+       "error": null
+      },
+      {
+       "tar": 6,
+       "byte_start": 398189056,
+       "byte_end": 405189055,
+       "n_members_parsed": 803,
+       "error": null
+      },
+      {
+       "tar": 6,
+       "byte_start": 621370368,
+       "byte_end": 628370367,
+       "n_members_parsed": 663,
+       "error": null
+      },
+      {
+       "tar": 6,
+       "byte_start": 143683584,
+       "byte_end": 150683583,
+       "n_members_parsed": 822,
+       "error": null
+      },
+      {
+       "tar": 6,
+       "byte_start": 244284928,
+       "byte_end": 251284927,
+       "n_members_parsed": 820,
+       "error": null
+      },
+      {
+       "tar": 7,
+       "byte_start": 218779136,
+       "byte_end": 225779135,
+       "n_members_parsed": 884,
+       "error": null
+      },
+      {
+       "tar": 7,
+       "byte_start": 643962368,
+       "byte_end": 650962367,
+       "n_members_parsed": 795,
+       "error": null
+      },
+      {
+       "tar": 7,
+       "byte_start": 264994304,
+       "byte_end": 271994303,
+       "n_members_parsed": 891,
+       "error": null
+      },
+      {
+       "tar": 7,
+       "byte_start": 130915840,
+       "byte_end": 137915839,
+       "n_members_parsed": 852,
+       "error": null
+      },
+      {
+       "tar": 7,
+       "byte_start": 134365184,
+       "byte_end": 141365183,
+       "n_members_parsed": 836,
+       "error": null
+      },
+      {
+       "tar": 8,
+       "byte_start": 187230208,
+       "byte_end": 194230207,
+       "n_members_parsed": 678,
+       "error": null
+      },
+      {
+       "tar": 8,
+       "byte_start": 284033536,
+       "byte_end": 291033535,
+       "n_members_parsed": 683,
+       "error": null
+      },
+      {
+       "tar": 8,
+       "byte_start": 170265088,
+       "byte_end": 177265087,
+       "n_members_parsed": 981,
+       "error": null
+      },
+      {
+       "tar": 8,
+       "byte_start": 407989248,
+       "byte_end": 414989247,
+       "n_members_parsed": 683,
+       "error": null
+      },
+      {
+       "tar": 8,
+       "byte_start": 299781632,
+       "byte_end": 306781631,
+       "n_members_parsed": 680,
+       "error": null
+      },
+      {
+       "tar": 10,
+       "byte_start": 559490048,
+       "byte_end": 566490047,
+       "n_members_parsed": 708,
+       "error": null
+      },
+      {
+       "tar": 10,
+       "byte_start": 411829760,
+       "byte_end": 418829759,
+       "n_members_parsed": 1142,
+       "error": null
+      },
+      {
+       "tar": 10,
+       "byte_start": 462365696,
+       "byte_end": 469365695,
+       "n_members_parsed": 1041,
+       "error": null
+      },
+      {
+       "tar": 10,
+       "byte_start": 433502720,
+       "byte_end": 440502719,
+       "n_members_parsed": 1048,
+       "error": null
+      },
+      {
+       "tar": 10,
+       "byte_start": 141575680,
+       "byte_end": 148575679,
+       "n_members_parsed": 724,
+       "error": null
+      },
+      {
+       "tar": 11,
+       "byte_start": 321638912,
+       "byte_end": 328638911,
+       "n_members_parsed": 979,
+       "error": null
+      },
+      {
+       "tar": 11,
+       "byte_start": 453532160,
+       "byte_end": 460532159,
+       "n_members_parsed": 769,
+       "error": null
+      },
+      {
+       "tar": 11,
+       "byte_start": 23046144,
+       "byte_end": 30046143,
+       "n_members_parsed": 704,
+       "error": null
+      },
+      {
+       "tar": 11,
+       "byte_start": 357912576,
+       "byte_end": 364912575,
+       "n_members_parsed": 1009,
+       "error": null
+      },
+      {
+       "tar": 11,
+       "byte_start": 465877504,
+       "byte_end": 472877503,
+       "n_members_parsed": 802,
+       "error": null
+      },
+      {
+       "tar": 14,
+       "byte_start": 526224896,
+       "byte_end": 533224895,
+       "n_members_parsed": 667,
+       "error": null
+      },
+      {
+       "tar": 14,
+       "byte_start": 421517824,
+       "byte_end": 428517823,
+       "n_members_parsed": 1067,
+       "error": null
+      },
+      {
+       "tar": 14,
+       "byte_start": 592882176,
+       "byte_end": 599882175,
+       "n_members_parsed": 605,
+       "error": null
+      },
+      {
+       "tar": 14,
+       "byte_start": 171841536,
+       "byte_end": 178841535,
+       "n_members_parsed": 711,
+       "error": null
+      },
+      {
+       "tar": 14,
+       "byte_start": 298929152,
+       "byte_end": 305929151,
+       "n_members_parsed": 787,
+       "error": null
+      },
+      {
+       "tar": 15,
+       "byte_start": 286061568,
+       "byte_end": 293061567,
+       "n_members_parsed": 582,
+       "error": null
+      },
+      {
+       "tar": 15,
+       "byte_start": 582338560,
+       "byte_end": 589338559,
+       "n_members_parsed": 793,
+       "error": null
+      },
+      {
+       "tar": 15,
+       "byte_start": 593640448,
+       "byte_end": 600640447,
+       "n_members_parsed": 807,
+       "error": null
+      },
+      {
+       "tar": 15,
+       "byte_start": 447582208,
+       "byte_end": 454582207,
+       "n_members_parsed": 897,
+       "error": null
+      },
+      {
+       "tar": 15,
+       "byte_start": 324873216,
+       "byte_end": 331873215,
+       "n_members_parsed": 872,
+       "error": null
+      },
+      {
+       "tar": 17,
+       "byte_start": 530047488,
+       "byte_end": 537047487,
+       "n_members_parsed": 850,
+       "error": null
+      },
+      {
+       "tar": 17,
+       "byte_start": 266945024,
+       "byte_end": 273945023,
+       "n_members_parsed": 753,
+       "error": null
+      },
+      {
+       "tar": 17,
+       "byte_start": 450946560,
+       "byte_end": 457946559,
+       "n_members_parsed": 876,
+       "error": null
+      },
+      {
+       "tar": 17,
+       "byte_start": 558018048,
+       "byte_end": 565018047,
+       "n_members_parsed": 1283,
+       "error": null
+      },
+      {
+       "tar": 17,
+       "byte_start": 204085248,
+       "byte_end": 211085247,
+       "n_members_parsed": 765,
+       "error": null
+      },
+      {
+       "tar": 18,
+       "byte_start": 360592896,
+       "byte_end": 367592895,
+       "n_members_parsed": 801,
+       "error": null
+      },
+      {
+       "tar": 18,
+       "byte_start": 46875648,
+       "byte_end": 53875647,
+       "n_members_parsed": 645,
+       "error": null
+      },
+      {
+       "tar": 18,
+       "byte_start": 17839616,
+       "byte_end": 24839615,
+       "n_members_parsed": 645,
+       "error": null
+      },
+      {
+       "tar": 18,
+       "byte_start": 413768192,
+       "byte_end": 420768191,
+       "n_members_parsed": 837,
+       "error": null
+      },
+      {
+       "tar": 18,
+       "byte_start": 19422208,
+       "byte_end": 26422207,
+       "n_members_parsed": 645,
+       "error": null
+      },
+      {
+       "tar": 19,
+       "byte_start": 105401344,
+       "byte_end": 112401343,
+       "n_members_parsed": 793,
+       "error": null
+      },
+      {
+       "tar": 19,
+       "byte_start": 476775936,
+       "byte_end": 483775935,
+       "n_members_parsed": 802,
+       "error": null
+      },
+      {
+       "tar": 19,
+       "byte_start": 6265856,
+       "byte_end": 13265855,
+       "n_members_parsed": 709,
+       "error": null
+      },
+      {
+       "tar": 19,
+       "byte_start": 223531008,
+       "byte_end": 230531007,
+       "n_members_parsed": 776,
+       "error": null
+      },
+      {
+       "tar": 19,
+       "byte_start": 358678016,
+       "byte_end": 365678015,
+       "n_members_parsed": 726,
+       "error": null
+      },
+      {
+       "tar": 20,
+       "byte_start": 537979392,
+       "byte_end": 544979391,
+       "n_members_parsed": 812,
+       "error": null
+      },
+      {
+       "tar": 20,
+       "byte_start": 590569472,
+       "byte_end": 597569471,
+       "n_members_parsed": 813,
+       "error": null
+      },
+      {
+       "tar": 20,
+       "byte_start": 426167296,
+       "byte_end": 433167295,
+       "n_members_parsed": 810,
+       "error": null
+      },
+      {
+       "tar": 20,
+       "byte_start": 495937536,
+       "byte_end": 502937535,
+       "n_members_parsed": 818,
+       "error": null
+      },
+      {
+       "tar": 20,
+       "byte_start": 391463424,
+       "byte_end": 398463423,
+       "n_members_parsed": 814,
+       "error": null
+      },
+      {
+       "tar": 21,
+       "byte_start": 466521600,
+       "byte_end": 473521599,
+       "n_members_parsed": 791,
+       "error": null
+      },
+      {
+       "tar": 21,
+       "byte_start": 70230528,
+       "byte_end": 77230527,
+       "n_members_parsed": 814,
+       "error": null
+      },
+      {
+       "tar": 21,
+       "byte_start": 166216192,
+       "byte_end": 173216191,
+       "n_members_parsed": 813,
+       "error": null
+      },
+      {
+       "tar": 21,
+       "byte_start": 102891008,
+       "byte_end": 109891007,
+       "n_members_parsed": 817,
+       "error": null
+      },
+      {
+       "tar": 21,
+       "byte_start": 124681216,
+       "byte_end": 131681215,
+       "n_members_parsed": 816,
+       "error": null
+      },
+      {
+       "tar": 22,
+       "byte_start": 574558720,
+       "byte_end": 581558719,
+       "n_members_parsed": 740,
+       "error": null
+      },
+      {
+       "tar": 22,
+       "byte_start": 466562560,
+       "byte_end": 473562559,
+       "n_members_parsed": 744,
+       "error": null
+      },
+      {
+       "tar": 22,
+       "byte_start": 498030592,
+       "byte_end": 505030591,
+       "n_members_parsed": 701,
+       "error": null
+      },
+      {
+       "tar": 22,
+       "byte_start": 127516672,
+       "byte_end": 134516671,
+       "n_members_parsed": 831,
+       "error": null
+      },
+      {
+       "tar": 22,
+       "byte_start": 527556608,
+       "byte_end": 534556607,
+       "n_members_parsed": 745,
+       "error": null
+      },
+      {
+       "tar": 23,
+       "byte_start": 529081344,
+       "byte_end": 536081343,
+       "n_members_parsed": 844,
+       "error": null
+      },
+      {
+       "tar": 23,
+       "byte_start": 645570048,
+       "byte_end": 652570047,
+       "n_members_parsed": 831,
+       "error": null
+      },
+      {
+       "tar": 23,
+       "byte_start": 617333760,
+       "byte_end": 624333759,
+       "n_members_parsed": 847,
+       "error": null
+      },
+      {
+       "tar": 23,
+       "byte_start": 590361600,
+       "byte_end": 597361599,
+       "n_members_parsed": 842,
+       "error": null
+      },
+      {
+       "tar": 23,
+       "byte_start": 376066048,
+       "byte_end": 383066047,
+       "n_members_parsed": 1192,
+       "error": null
+      },
+      {
+       "tar": 24,
+       "byte_start": 313717760,
+       "byte_end": 320717759,
+       "n_members_parsed": 1361,
+       "error": null
+      },
+      {
+       "tar": 24,
+       "byte_start": 314173952,
+       "byte_end": 321173951,
+       "n_members_parsed": 1356,
+       "error": null
+      },
+      {
+       "tar": 24,
+       "byte_start": 297962496,
+       "byte_end": 304962495,
+       "n_members_parsed": 1024,
+       "error": null
+      },
+      {
+       "tar": 24,
+       "byte_start": 379028992,
+       "byte_end": 386028991,
+       "n_members_parsed": 950,
+       "error": null
+      },
+      {
+       "tar": 24,
+       "byte_start": 566190080,
+       "byte_end": 573190079,
+       "n_members_parsed": 801,
+       "error": null
+      },
+      {
+       "tar": 26,
+       "byte_start": 346649600,
+       "byte_end": 353649599,
+       "n_members_parsed": 730,
+       "error": null
+      },
+      {
+       "tar": 26,
+       "byte_start": 282942464,
+       "byte_end": 289942463,
+       "n_members_parsed": 729,
+       "error": null
+      },
+      {
+       "tar": 26,
+       "byte_start": 578328064,
+       "byte_end": 585328063,
+       "n_members_parsed": 615,
+       "error": null
+      },
+      {
+       "tar": 26,
+       "byte_start": 534020096,
+       "byte_end": 541020095,
+       "n_members_parsed": 621,
+       "error": null
+      },
+      {
+       "tar": 26,
+       "byte_start": 114652160,
+       "byte_end": 121652159,
+       "n_members_parsed": 642,
+       "error": null
+      },
+      {
+       "tar": 28,
+       "byte_start": 407671296,
+       "byte_end": 414671295,
+       "n_members_parsed": 701,
+       "error": null
+      },
+      {
+       "tar": 28,
+       "byte_start": 183433728,
+       "byte_end": 190433727,
+       "n_members_parsed": 712,
+       "error": null
+      },
+      {
+       "tar": 28,
+       "byte_start": 396101632,
+       "byte_end": 403101631,
+       "n_members_parsed": 710,
+       "error": null
+      },
+      {
+       "tar": 28,
+       "byte_start": 273907712,
+       "byte_end": 280907711,
+       "n_members_parsed": 724,
+       "error": null
+      },
+      {
+       "tar": 28,
+       "byte_start": 113313792,
+       "byte_end": 120313791,
+       "n_members_parsed": 1129,
+       "error": null
+      },
+      {
+       "tar": 30,
+       "byte_start": 351416320,
+       "byte_end": 358416319,
+       "n_members_parsed": 881,
+       "error": null
+      },
+      {
+       "tar": 30,
+       "byte_start": 618287104,
+       "byte_end": 625287103,
+       "n_members_parsed": 632,
+       "error": null
+      },
+      {
+       "tar": 30,
+       "byte_start": 238452224,
+       "byte_end": 245452223,
+       "n_members_parsed": 964,
+       "error": null
+      },
+      {
+       "tar": 30,
+       "byte_start": 586528256,
+       "byte_end": 593528255,
+       "n_members_parsed": 681,
+       "error": null
+      },
+      {
+       "tar": 30,
+       "byte_start": 92623872,
+       "byte_end": 99623871,
+       "n_members_parsed": 778,
+       "error": null
+      },
+      {
+       "tar": 31,
+       "byte_start": 606707712,
+       "byte_end": 613707711,
+       "n_members_parsed": 1185,
+       "error": null
+      },
+      {
+       "tar": 31,
+       "byte_start": 530760704,
+       "byte_end": 537760703,
+       "n_members_parsed": 699,
+       "error": null
+      },
+      {
+       "tar": 31,
+       "byte_start": 535262208,
+       "byte_end": 542262207,
+       "n_members_parsed": 701,
+       "error": null
+      },
+      {
+       "tar": 31,
+       "byte_start": 7815680,
+       "byte_end": 14815679,
+       "n_members_parsed": 752,
+       "error": null
+      },
+      {
+       "tar": 31,
+       "byte_start": 485031936,
+       "byte_end": 492031935,
+       "n_members_parsed": 701,
+       "error": null
+      },
+      {
+       "tar": 34,
+       "byte_start": 95376384,
+       "byte_end": 102376383,
+       "n_members_parsed": 884,
+       "error": null
+      },
+      {
+       "tar": 34,
+       "byte_start": 22110720,
+       "byte_end": 29110719,
+       "n_members_parsed": 593,
+       "error": null
+      },
+      {
+       "tar": 34,
+       "byte_start": 43573248,
+       "byte_end": 50573247,
+       "n_members_parsed": 531,
+       "error": null
+      },
+      {
+       "tar": 34,
+       "byte_start": 91025920,
+       "byte_end": 98025919,
+       "n_members_parsed": 759,
+       "error": null
+      },
+      {
+       "tar": 34,
+       "byte_start": 39070208,
+       "byte_end": 46070207,
+       "n_members_parsed": 621,
+       "error": null
+      },
+      {
+       "tar": 36,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000036.tar 0 status=404"
+      },
+      {
+       "tar": 36,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000036.tar 0 status=404"
+      },
+      {
+       "tar": 36,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000036.tar 0 status=404"
+      },
+      {
+       "tar": 36,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000036.tar 0 status=404"
+      },
+      {
+       "tar": 36,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000036.tar 0 status=404"
+      },
+      {
+       "tar": 37,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000037.tar 0 status=404"
+      },
+      {
+       "tar": 37,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000037.tar 0 status=404"
+      },
+      {
+       "tar": 37,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000037.tar 0 status=404"
+      },
+      {
+       "tar": 37,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000037.tar 0 status=404"
+      },
+      {
+       "tar": 37,
+       "byte_start": 0,
+       "byte_end": 6999999,
+       "n_members_parsed": 0,
+       "error": "RuntimeError: range fetch failed https://huggingface.co/datasets/kohbanye/crossdocked2020/resolve/main/ligands/000037.tar 0 status=404"
+      }
+     ],
+     "failures": {
+      "n": 20,
+      "detail": "all 20 failed ranges were tar shard 000035, which returns HTTP 404 on this dataset revision; the other 38 shards served 206 normally",
+      "impact": "reduces coverage by ~8.7% of planned ranges; no bias correction attempted beyond the remaining 38 shards"
+     },
+     "CAVEAT": "This is a documented public preprocessing of CrossDocked2020, NOT the exact training-split files behind crossdocked_fullatom_cond.ckpt, which are not published as a SMILES list. 1749 of the 5211 sampled ligands are independently confirmed present in the official split_by_name.pt train list; results are reported against both the full sample and that confirmed-train subset, and the two agree closely."
+    },
+    "geom_drugs": {
+     "purpose": "training-corpus proxy for the FlowMol3 batch (FlowMol3 is trained on GEOM-Drugs)",
+     "source_url": "https://huggingface.co/datasets/raulsofia/geom_drugs/resolve/main/5confs/train/train_smiles.smi",
+     "dataset": "HuggingFace raulsofia/geom_drugs (5confs/train/train_smiles.smi)",
+     "license": "cc-by-4.0",
+     "file_size_bytes": 223799092,
+     "access_method": "HTTP Range requests at randomly drawn byte offsets; partial first and last lines discarded so only whole SMILES lines are kept",
+     "seed": 4242,
+     "n_reads": 60,
+     "read_len_bytes": 400000,
+     "bytes_read": 24000000,
+     "fraction_of_file_read": 0.1072,
+     "n_lines_read": 125997,
+     "n_parse_failures": 0,
+     "sample_size_unique_ligands": 24197,
+     "canonicalization": "source is fully-explicit-H atom-mapped SMILES; parsed with Chem.MolFromSmiles then RemoveHs then MolToSmiles",
+     "byte_ranges_sampled": [
+      {
+       "tar": null,
+       "byte_start": 1085614,
+       "byte_end": 1485613,
+       "n_members_parsed": 2362,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 6426376,
+       "byte_end": 6826375,
+       "n_members_parsed": 2307,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 7241208,
+       "byte_end": 7641207,
+       "n_members_parsed": 2082,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 7637351,
+       "byte_end": 8037350,
+       "n_members_parsed": 2209,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 16384778,
+       "byte_end": 16784777,
+       "n_members_parsed": 1951,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 32185446,
+       "byte_end": 32585445,
+       "n_members_parsed": 1825,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 32537122,
+       "byte_end": 32937121,
+       "n_members_parsed": 2078,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 34031419,
+       "byte_end": 34431418,
+       "n_members_parsed": 2124,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 35368416,
+       "byte_end": 35768415,
+       "n_members_parsed": 1964,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 38137323,
+       "byte_end": 38537322,
+       "n_members_parsed": 2054,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 41830399,
+       "byte_end": 42230398,
+       "n_members_parsed": 1817,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 42246868,
+       "byte_end": 42646867,
+       "n_members_parsed": 1931,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 45031427,
+       "byte_end": 45431426,
+       "n_members_parsed": 2031,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 45159453,
+       "byte_end": 45559452,
+       "n_members_parsed": 2040,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 46020844,
+       "byte_end": 46420843,
+       "n_members_parsed": 2080,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 48275019,
+       "byte_end": 48675018,
+       "n_members_parsed": 1853,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 49636453,
+       "byte_end": 50036452,
+       "n_members_parsed": 1801,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 62735337,
+       "byte_end": 63135336,
+       "n_members_parsed": 2093,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 63814184,
+       "byte_end": 64214183,
+       "n_members_parsed": 2182,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 71929213,
+       "byte_end": 72329212,
+       "n_members_parsed": 1986,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 73626099,
+       "byte_end": 74026098,
+       "n_members_parsed": 2040,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 73850440,
+       "byte_end": 74250439,
+       "n_members_parsed": 2096,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 82420784,
+       "byte_end": 82820783,
+       "n_members_parsed": 2172,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 85622326,
+       "byte_end": 86022325,
+       "n_members_parsed": 1925,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 86119979,
+       "byte_end": 86519978,
+       "n_members_parsed": 2037,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 86164728,
+       "byte_end": 86564727,
+       "n_members_parsed": 2042,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 90256095,
+       "byte_end": 90656094,
+       "n_members_parsed": 1724,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 90317430,
+       "byte_end": 90717429,
+       "n_members_parsed": 1737,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 90434499,
+       "byte_end": 90834498,
+       "n_members_parsed": 1830,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 92439256,
+       "byte_end": 92839255,
+       "n_members_parsed": 2076,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 95442966,
+       "byte_end": 95842965,
+       "n_members_parsed": 2092,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 101723607,
+       "byte_end": 102123606,
+       "n_members_parsed": 2128,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 104760640,
+       "byte_end": 105160639,
+       "n_members_parsed": 2312,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 105905248,
+       "byte_end": 106305247,
+       "n_members_parsed": 2036,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 108348948,
+       "byte_end": 108748947,
+       "n_members_parsed": 2272,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 111586934,
+       "byte_end": 111986933,
+       "n_members_parsed": 2429,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 119606589,
+       "byte_end": 120006588,
+       "n_members_parsed": 1988,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 125942180,
+       "byte_end": 126342179,
+       "n_members_parsed": 1913,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 127890646,
+       "byte_end": 128290645,
+       "n_members_parsed": 2129,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 130159553,
+       "byte_end": 130559552,
+       "n_members_parsed": 1954,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 132513336,
+       "byte_end": 132913335,
+       "n_members_parsed": 2066,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 135769968,
+       "byte_end": 136169967,
+       "n_members_parsed": 2380,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 138390213,
+       "byte_end": 138790212,
+       "n_members_parsed": 2147,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 138711757,
+       "byte_end": 139111756,
+       "n_members_parsed": 2385,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 150259452,
+       "byte_end": 150659451,
+       "n_members_parsed": 2082,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 152919454,
+       "byte_end": 153319453,
+       "n_members_parsed": 2280,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 154026006,
+       "byte_end": 154426005,
+       "n_members_parsed": 2264,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 161416805,
+       "byte_end": 161816804,
+       "n_members_parsed": 2208,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 162991734,
+       "byte_end": 163391733,
+       "n_members_parsed": 2550,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 165513476,
+       "byte_end": 165913475,
+       "n_members_parsed": 2484,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 168906535,
+       "byte_end": 169306534,
+       "n_members_parsed": 2498,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 179410356,
+       "byte_end": 179810355,
+       "n_members_parsed": 2204,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 180367409,
+       "byte_end": 180767408,
+       "n_members_parsed": 2085,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 180413293,
+       "byte_end": 180813292,
+       "n_members_parsed": 2051,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 184831314,
+       "byte_end": 185231313,
+       "n_members_parsed": 2013,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 192676760,
+       "byte_end": 193076759,
+       "n_members_parsed": 2184,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 198171734,
+       "byte_end": 198571733,
+       "n_members_parsed": 2109,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 204855251,
+       "byte_end": 205255250,
+       "n_members_parsed": 1983,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 211126905,
+       "byte_end": 211526904,
+       "n_members_parsed": 1995,
+       "error": null
+      },
+      {
+       "tar": null,
+       "byte_start": 218418768,
+       "byte_end": 218818767,
+       "n_members_parsed": 2327,
+       "error": null
+      }
+     ],
+     "failures": {
+      "n": 0,
+      "detail": []
+     },
+     "CAVEAT": "This is the published GEOM-Drugs train SMILES list from a third-party mirror of the standard 5-conformer preprocessing, sampled rather than read in full; it is not guaranteed byte-identical to the split FlowMol3 itself trained on.",
+     "sampling_bias_note": "random byte offsets rather than a file prefix, so the sample is not positionally clustered"
+    }
+   },
+   "source": {
+    "file": "corpus_sample_crossdocked.smi",
+    "version_id": "3b7d7c2b-c176-4da9-a8c4-2aa452d75740",
+    "sha256_16": "e2a47053f80277ca"
+   }
+  },
+  "distribution_diffsbdd": {
+   "value": {
+    "max_tanimoto_vs_train_rdkit": {
+     "min": 0.1390728476821192,
+     "q25": 0.399373232439043,
+     "median": 0.46642772310824565,
+     "q75": 0.5833831020805395,
+     "max": 0.8894865525672372,
+     "mean": 0.4919507692719528,
+     "n": 20
+    },
+    "max_tanimoto_vs_train_morgan": {
+     "min": 0.1764705882352941,
+     "q25": 0.2,
+     "median": 0.21440051430408225,
+     "q75": 0.23849721706864557,
+     "max": 0.6666666666666666,
+     "mean": 0.2469475276708411,
+     "n": 20
+    },
+    "max_tanimoto_vs_trainsplit_confirmed_rdkit": {
+     "min": 0.1390728476821192,
+     "q25": 0.39172017121455316,
+     "median": 0.4452875660144803,
+     "q75": 0.5336241689742929,
+     "max": 0.7778330019880716,
+     "mean": 0.451823039287136,
+     "n": 20
+    },
+    "max_tanimoto_vs_trainsplit_confirmed_morgan": {
+     "min": 0.1379310344827586,
+     "q25": 0.18892159486218893,
+     "median": 0.20317460317460317,
+     "q75": 0.23167903525046377,
+     "max": 0.6666666666666666,
+     "mean": 0.2352474263973007,
+     "n": 20
+    },
+    "tanimoto_vs_caffeine_rdkit": {
+     "min": 0.0229885057471264,
+     "q25": 0.11779247751180913,
+     "median": 0.21212756634111066,
+     "q75": 0.2742935291223263,
+     "max": 0.3627809722948248,
+     "mean": 0.1995184272930271,
+     "n": 20
+    },
+    "tanimoto_vs_caffeine_morgan": {
+     "min": 0.027027027027027,
+     "q25": 0.07554945054945053,
+     "median": 0.08989898989898984,
+     "q75": 0.10406976744186046,
+     "max": 0.1363636363636363,
+     "mean": 0.0891075449064909,
+     "n": 20
+    }
+   },
+   "source": {
+    "file": "novelty_diffsbdd.csv",
+    "version_id": "b52e619b-337b-40f3-a03d-be848e523526",
+    "sha256_16": "412603955246238b"
+   }
+  },
+  "distribution_flowmol3": {
+   "value": {
+    "max_tanimoto_vs_train_rdkit": {
+     "min": 0.4183006535947712,
+     "q25": 0.5225100380201115,
+     "median": 0.5838621618243589,
+     "q75": 0.6448444369024198,
+     "max": 0.7432432432432432,
+     "mean": 0.5823912045623754,
+     "n": 12
+    },
+    "max_tanimoto_vs_train_morgan": {
+     "min": 0.2028985507246377,
+     "q25": 0.351034692635423,
+     "median": 0.3951340098881082,
+     "q75": 0.4127503852080123,
+     "max": 0.5892857142857143,
+     "mean": 0.39342302108478283,
+     "n": 12
+    },
+    "tanimoto_vs_caffeine_rdkit": {
+     "min": 0.0664375715922107,
+     "q25": 0.15052340759237662,
+     "median": 0.24932181305536566,
+     "q75": 0.2949348159003392,
+     "max": 0.3351519875292283,
+     "mean": 0.2222052612112816,
+     "n": 12
+    },
+    "tanimoto_vs_caffeine_morgan": {
+     "min": 0.05,
+     "q25": 0.08106575963718812,
+     "median": 0.1018573113207547,
+     "q75": 0.11623798756359523,
+     "max": 0.1964285714285714,
+     "mean": 0.1032406584876772,
+     "n": 12
+    }
+   },
+   "source": {
+    "file": "novelty_flowmol3.csv",
+    "version_id": "59c5d89b-c2e5-4d1e-ae1d-b15f42894c16",
+    "sha256_16": "8ec4f439c081c539"
+   }
+  },
+  "the_gap_quantified": {
+   "value": {
+    "rdkit_topological": 2.2,
+    "morgan_r2_2048": 2.38
+   },
+   "source": {
+    "file": "novelty_diffsbdd.csv",
+    "version_id": "b52e619b-337b-40f3-a03d-be848e523526",
+    "sha256_16": "412603955246238b"
+   },
+   "definition": "median-of-max Tanimoto to the training corpus, divided by median Tanimoto to caffeine",
+   "note": "Similarity to the training corpus runs 2.2x (topological) to 2.4x (Morgan) higher than the caffeine-based number the chapter prints as novelty. And because median-of-max has not saturated with corpus size, the true gap is larger."
+  }
+ },
+ "F5_model_inventory": {
+  "_question": "What are the real licences, runtimes and versions behind the models the chapter uses?",
+  "_answer": "Four cases where the weights licence differs from the code licence, one of them unstated entirely. Six runtimes are unrecoverable and recorded as null.",
+  "weights_more_restrictive_than_code": {
+   "value": [
+    "FlowMol3",
+    "DiffSBDD",
+    "Boltz-2 via hosted NIM",
+    "DiffDock via hosted NIM"
+   ],
+   "source": {
+    "file": "model_inventory.json",
+    "version_id": "7158f4f1-9327-4f2d-824e-fc0bc9a8d70c",
+    "sha256_16": "c12977b25d8296ce"
+   },
+   "priority": "FlowMol3 is the highest-priority fix: the chapter must not imply its weights are MIT"
+  },
+  "licensing_surprises": {
+   "value": [
+    "FlowMol3 WEIGHTS LICENCE IS UNSTATED. The weights ship from a bare HTTP directory listing at bits.csb.pitt.edu whose readme.md documents layout and a wget command only; a regex for licence/copyright/terms over that readme returns zero matches. The repo's MIT LICENSE covers source, not the separately-hosted checkpoints. The chapter should not imply FlowMol3 weights are MIT.",
+    "DiffSBDD weights are CC-BY-4.0 while its code is MIT (Zenodo 8183747). Attribution-on-redistribution applies to the weights and their adaptations; MIT's notice clause is not the same obligation.",
+    "Boltz-2 reached through the hosted NIM is NOT MIT-licensed to the reader. NVIDIA's API Trial Terms of Service limit use to internal testing and evaluation, not production, absent a paid Subscription, and the Community Model License forbids using the model or its outputs to develop or improve other AI models without written NVIDIA approval. The identical model from GitHub/HuggingFace is MIT for academic and commercial use. Same science, different rights, depending only on how you call it.",
+    "The DiffDock NIM does not serve the MIT repo's weights. Its model card states the served model was trained by NVIDIA on PLINDER + SAIR (486,000 complexes); the MIT link is 'Additional Information' about architecture provenance. Chapter results from this endpoint are not reproducible from gcorso/DiffDock checkpoints.",
+    "Both NIM model cards name their governing model licence INCONSISTENTLY between the card body and the page banner (Boltz-2: 'Open Model Agreement' vs 'Community Model License'; DiffDock: 'Open Model License' vs 'AI Foundation Models Community License'). These differ materially - the Open Model License is permissive with a NOTICE requirement, the Community licence adds the no-training-other-models restriction and an AI Enterprise requirement for production. A reader cannot resolve which controls from the page alone.",
+    "FlowMol3's observed timestep sweep took 1240.3 s (20.7 min) on 8-core CPU, not the '~90 min CPU' recorded in intermediates_inventory.json. The 90 min figure was a pre-run planning estimate made when the batch was still 16-20 molecules; the shipped run used 12. Cite 20.7 min."
+   ],
+   "source": {
+    "file": "model_inventory.json",
+    "version_id": "7158f4f1-9327-4f2d-824e-fc0bc9a8d70c",
+    "sha256_16": "c12977b25d8296ce"
+   }
+  },
+  "divergences": {
+   "value": [
+    {
+     "model": "FlowMol3",
+     "code": "MIT",
+     "weights": "UNSTATED",
+     "severity": "high",
+     "why": "Absence of a grant is not a permissive grant. A reader redistributing or building on the checkpoints has no stated permission to rely on. Strictly more restrictive in effect than the MIT code licence, because MIT's explicit grant does not reach these files.",
+     "evidence": "bits.csb.pitt.edu/files/FlowMol/trained_models_v3.1/readme.md fetched this session: 2283 chars, zero licence/copyright/terms matches."
+    },
+    {
+     "model": "DiffSBDD",
+     "code": "MIT",
+     "weights": "CC-BY-4.0",
+     "severity": "medium",
+     "why": "CC-BY-4.0 adds an attribution-and-indicate-changes obligation on redistribution of the weights and adaptations that MIT does not impose in the same form. Both remain commercial-friendly.",
+     "evidence": "Zenodo REST record 8183747 metadata.license = {'id': 'cc-by-4.0'}; metadata.rights = null."
+    },
+    {
+     "model": "Boltz-2 via hosted NIM",
+     "code": "MIT (repo)",
+     "weights": "NVIDIA service terms (API Trial ToS + Community/Open Model licence)",
+     "severity": "high",
+     "why": "The hosted path is materially more restrictive than the repo: testing-and-evaluation-only without a Subscription, and a prohibition on using outputs to develop or improve other AI models without written approval. The repo grants academic and commercial use outright.",
+     "evidence": "NVIDIA API Trial Terms of Service PDF, 9 pages, read this session; NVIDIA Community Model License text read this session."
+    },
+    {
+     "model": "DiffDock via hosted NIM",
+     "code": "MIT (repo)",
+     "weights": "NVIDIA licence over NVIDIA-trained weights",
+     "severity": "high",
+     "why": "Not a licence divergence over the same artefact but something a reader is more likely to get wrong: different weights entirely, under NVIDIA terms, served over a trial API that is not for production absent a subscription.",
+     "evidence": "build.nvidia.com/mit/diffdock model card: 'the model v2.2.0 is trained by NVIDIA using PLINDER and SAIR'."
+    }
+   ],
+   "source": {
+    "file": "model_inventory.json",
+    "version_id": "7158f4f1-9327-4f2d-824e-fc0bc9a8d70c",
+    "sha256_16": "c12977b25d8296ce"
+   }
+  },
+  "flags": {
+   "value": [
+    "FlowMol3 WEIGHTS LICENCE IS UNSTATED. The weights ship from a bare HTTP directory listing at bits.csb.pitt.edu whose readme.md documents layout and a wget command only; a regex for licence/copyright/terms over that readme returns zero matches. The repo's MIT LICENSE covers source, not the separately-hosted checkpoints. The chapter should not imply FlowMol3 weights are MIT.",
+    "DiffSBDD weights are CC-BY-4.0 while its code is MIT (Zenodo 8183747). Attribution-on-redistribution applies to the weights and their adaptations; MIT's notice clause is not the same obligation.",
+    "Boltz-2 reached through the hosted NIM is NOT MIT-licensed to the reader. NVIDIA's API Trial Terms of Service limit use to internal testing and evaluation, not production, absent a paid Subscription, and the Community Model License forbids using the model or its outputs to develop or improve other AI models without written NVIDIA approval. The identical model from GitHub/HuggingFace is MIT for academic and commercial use. Same science, different rights, depending only on how you call it.",
+    "The DiffDock NIM does not serve the MIT repo's weights. Its model card states the served model was trained by NVIDIA on PLINDER + SAIR (486,000 complexes); the MIT link is 'Additional Information' about architecture provenance. Chapter results from this endpoint are not reproducible from gcorso/DiffDock checkpoints.",
+    "Both NIM model cards name their governing model licence INCONSISTENTLY between the card body and the page banner (Boltz-2: 'Open Model Agreement' vs 'Community Model License'; DiffDock: 'Open Model License' vs 'AI Foundation Models Community License'). These differ materially - the Open Model License is permissive with a NOTICE requirement, the Community licence adds the no-training-other-models restriction and an AI Enterprise requirement for production. A reader cannot resolve which controls from the page alone.",
+    "FlowMol3's observed timestep sweep took 1240.3 s (20.7 min) on 8-core CPU, not the '~90 min CPU' recorded in intermediates_inventory.json. The 90 min figure was a pre-run planning estimate made when the batch was still 16-20 molecules; the shipped run used 12. Cite 20.7 min.",
+    "RFdiffusion is the only model in the table whose licence explicitly covers its weights, and it is BSD rather than MIT. Its LICENSE says the copyright and licence 'covers both the source code and model weights referenced for download in the README file.'",
+    "ProteinMPNN and ESMFold have NO separable runtimes: they ran fused with the scRMSD computation in one Modal job (340.087 s for 24 backbones x 4 sequences). The chapter must not attribute a per-model time to either.",
+    "ESMFold's checkpoint is 8.44 GB for pytorch_model.bin alone - two orders of magnitude larger than DiffSBDD's 17.86 MB. A reader budgeting disk or a first-run download will be surprised if the chapter presents these models as interchangeable in footprint.",
+    "RFdiffusion's weights host (files.ipd.uw.edu) is plain HTTP, not HTTPS, in the README's own wget commands.",
+    "Two RFdiffusion/Boltz-2 numbers exist per run and both are real but measure different scopes: in-job wall clock (artifact job_wall_s, Modal container time) vs scheduler end-to-end (compute ledger). Boltz-2 MSA run = 161 s in-job vs 212 s end-to-end. State which is meant.",
+    "The DiffSBDD checkpoint used is one of eight in Zenodo 8183747 (sizes 16.3-77.6 MB). Naming only 'the DiffSBDD checkpoint' is ambiguous; crossdocked_fullatom_cond.ckpt is the one behind the chapter's figures."
+   ],
+   "source": {
+    "file": "model_inventory.json",
+    "version_id": "7158f4f1-9327-4f2d-824e-fc0bc9a8d70c",
+    "sha256_16": "c12977b25d8296ce"
+   }
+  },
+  "models": {
+   "value": {
+    "FlowMol3": {
+     "code_license": "MIT (Copyright (c) 2023 University of Pittsburgh)",
+     "weights_license": "UNSTATED - no licence statement of any kind accompanies the weights at their distribution point",
+     "license_source_url": {
+      "code": "https://raw.githubusercontent.com/Dunni3/FlowMol/main/LICENSE",
+      "weights": "https://bits.csb.pitt.edu/files/FlowMol/trained_models_v3.1/ (and its readme.md)"
+     },
+     "checked_date": {
+      "code": "2026-07-27",
+      "weights": "2026-07-27"
+     },
+     "version": "flowmol 0.1 (pyproject.toml), repo commit 77cae22174b7 (2026-04-26); requires-python >=3.10,<3.11",
+     "checkpoint_name": "trained_models_v3.1/flowmol3/checkpoints/last.ckpt (+ config.yaml), via flowmol.load_pretrained('flowmol3')",
+     "checkpoint_size_mb": 68.02,
+     "observed_runtime_s": {
+      "full_timestep_sweep_total": 1240.3,
+      "per_T": {
+       "10": 27.3,
+       "25": 65.4,
+       "50": 152.4,
+       "100": 302.6,
+       "250": 690.5
+      },
+      "model_load": 1.0
+     },
+     "device": "local CPU, 8 cores, 8.2 GB RAM, no GPU (Linux WSL2 x86_64)",
+     "batch_size": "12 molecules per timestep setting, n_atoms fixed across T = [40,54,42,52,59,39,43,44,45,35,36,42] (mean 44.25)",
+     "notes": "Weights licence is the one genuine gap in the table. The v3.1 weights directory is a plain Apache directory listing served over HTTP; its readme.md documents only the directory layout, the 23 model variants and a wget command, and contains ZERO occurrences of licence/copyright/terms (regex-checked this session). The repo's MIT LICENSE covers the source tree; it makes no statement about the separately-hosted checkpoints. Contrast RFdiffusion, which explicitly extends its licence to the weights. Do not assert the weights are MIT. RUNTIME PROVENANCE: recovered from the producing run's stdout markers ([T=100] 302.6s ... [ALL DONE] total 1240.3s), and all five (n_valid, mean_qed) pairs from that stdout were re-verified against the published flowmol3_metrics.csv this session - exact match on all 5 rows, so these timings belong to the run that made the figure. Checkpoint size is the distribution point's HTTP Content-Length."
+    },
+    "DiffSBDD": {
+     "code_license": "MIT (Copyright (c) 2022 Arne Schneuing, Yuanqi Du, Charles Harris)",
+     "weights_license": "CC-BY-4.0 (Zenodo record 8183747 licence field: {'id': 'cc-by-4.0'})",
+     "license_source_url": {
+      "code": "https://raw.githubusercontent.com/arneschneuing/DiffSBDD/main/LICENSE",
+      "weights": "https://zenodo.org/api/records/8183747 (DOI 10.5281/zenodo.8183747)"
+     },
+     "checked_date": {
+      "code": "2026-07-27",
+      "weights": "2026-07-27"
+     },
+     "version": "repo commit 5d0d38d16c89 (2025-06-25)",
+     "checkpoint_name": "crossdocked_fullatom_cond.ckpt (Zenodo 8183747, one of 8 checkpoints in the record)",
+     "checkpoint_size_mb": 17.86,
+     "observed_runtime_s": {
+      "denovo_20_ligands": 285.9,
+      "inpaint_10_ligands": 1368.1,
+      "optimize_qed": null
+     },
+     "device": "local CPU, 8 cores, 8.2 GB RAM, no GPU",
+     "batch_size": {
+      "denovo": "20 requested / 20 returned, timesteps=100 (diffusion_T=500)",
+      "inpaint": "10 requested, timesteps=50, resamplings=8",
+      "optimize": "population_size=8, evolution_steps=3, top_k=3, timesteps=50"
+     },
+     "notes": "DIVERGENCE: weights are CC-BY-4.0 while code is MIT. Both are permissive and commercial-friendly, but CC-BY-4.0 imposes an attribution requirement on redistribution of the WEIGHTS (and of adaptations) that MIT's notice-retention clause does not equate to: a reader shipping a fine-tuned DiffSBDD checkpoint must give attribution and indicate changes. Zenodo's 'rights' field is null, so cc-by-4.0 is the sole licence signal. SIZE CROSS-CHECK: 17861341 bytes agrees exactly across three independent sources - the local artifact store copy, the Zenodo REST API file record, and a live HTTP Content-Length. optimize runtime is null: diffsbdd_optimize_metrics.json records objective/population/steps/QED trajectory but has no timing key (full key list enumerated this session), and no wall clock for it survives elsewhere."
+    },
+    "RFdiffusion": {
+     "code_license": "BSD (Copyright (c) 2023 University of Washington, Institute for Protein Design)",
+     "weights_license": "BSD - SAME licence, stated explicitly to cover the weights",
+     "license_source_url": {
+      "code": "https://raw.githubusercontent.com/RosettaCommons/RFdiffusion/main/LICENSE",
+      "weights": "https://raw.githubusercontent.com/RosettaCommons/RFdiffusion/main/LICENSE (controlling sentence) ; files served from http://files.ipd.uw.edu/pub/RFdiffusion/"
+     },
+     "checked_date": {
+      "code": "2026-07-27",
+      "weights": "2026-07-27"
+     },
+     "version": "repo HEAD at check date 86507b6538f5 (2026-07-15); the exact commit baked into the Modal image was not recorded - image_ref im-SoE80oCiwIeGkb3qlDIYKa, spec_sha ff53e00ef83847d4",
+     "checkpoint_name": "Base_ckpt.pt (hydrated into Modal volume claude-science-rfdiffusion-weights)",
+     "checkpoint_size_mb": 483.62,
+     "observed_runtime_s": {
+      "scaling_24_backbones_60_90_120_150res_T50": 887.495,
+      "denovo_5x80res_T50_end_to_end": 301.69,
+      "denovo_5x80res_T50_in_container": 249,
+      "denovo_2x80res_T25": 109.708
+     },
+     "device": "Modal A100 (remote GPU); local box has no GPU",
+     "batch_size": "24 backbones (6 each at 60/90/120/150 residues), T=50, for the designability curve; 5x80res T=50 for the figure backbones",
+     "notes": "CLEANEST CASE IN THE TABLE. Controlling sentence, quoted verbatim from the LICENSE: 'This copyright and license covers both the source code and model weights referenced for download in the README file.' That single sentence is what every other project here is missing. The two 5x80res numbers measure different things and both are real: 301.69 s is scheduler end-to-end wall (compute ledger job 9b8d9a93) and 249 s is the in-container runtime recorded in the Modal provider notes; the ~53 s difference is container start plus staging. Weights host files.ipd.uw.edu required a network-allowlist grant this session; size is its live HTTP Content-Length."
+    },
+    "ProteinMPNN": {
+     "code_license": "MIT (Copyright (c) 2022 Justas Dauparas)",
+     "weights_license": "MIT by containment - the weights are files inside the MIT-licensed repository, not a separate download",
+     "license_source_url": {
+      "code": "https://raw.githubusercontent.com/dauparas/ProteinMPNN/main/LICENSE",
+      "weights": "https://api.github.com/repos/dauparas/ProteinMPNN/contents/vanilla_model_weights"
+     },
+     "checked_date": {
+      "code": "2026-07-27",
+      "weights": "2026-07-27"
+     },
+     "version": "repo commit 8907e6671bfb (2023-06-27); the Modal image bakes /app/proteinmpnn @ 8907e66 - the pinned commit IS the current HEAD",
+     "checkpoint_name": "vanilla_model_weights/v_48_020.pt (the CLI default: --model_name default='v_48_020')",
+     "checkpoint_size_mb": 6.68,
+     "observed_runtime_s": null,
+     "device": "Modal A100 (remote GPU)",
+     "batch_size": "4 sequences per backbone x 24 backbones = 96 designs, sampling_temp 0.1",
+     "notes": "No separate weights-licence surface exists to diverge: all four vanilla checkpoints (v_48_002/010/020/030, 6681301 bytes each) live in the repo tree under its MIT LICENSE. The repo README contains zero licence-ish lines, so the LICENSE file is the only statement - which is sufficient here precisely because the weights are in-tree. RUNTIME IS NULL: ProteinMPNN ran inside a single fused Modal job with ESMFold and the scRMSD calculation (ledger job 8b54bb3f, 340.087 s total for 24 backbones); the job emitted no per-stage timing, and the stored result blob is truncated at ~2 KB, so the ProteinMPNN share cannot be separated. Do not divide 340 by anything."
+    },
+    "ESMFold": {
+     "code_license": "MIT (Copyright (c) Meta Platforms, Inc. and affiliates)",
+     "weights_license": "MIT (HuggingFace facebook/esmfold_v1 cardData.license = 'mit', tag 'license:mit')",
+     "license_source_url": {
+      "code": "https://raw.githubusercontent.com/facebookresearch/esm/main/LICENSE",
+      "weights": "https://huggingface.co/api/models/facebook/esmfold_v1 and https://huggingface.co/facebook/esmfold_v1/raw/main/README.md"
+     },
+     "checked_date": {
+      "code": "2026-07-27",
+      "weights": "2026-07-27"
+     },
+     "version": "facebook/esmfold_v1, HF revision 75a3841ee059df2bf4d56688166c8fb459ddd97a (lastModified 2023-03-22); run via transformers 4.46.3; esm repo commit 2b369911bb5b",
+     "checkpoint_name": "pytorch_model.bin (HF facebook/esmfold_v1)",
+     "checkpoint_size_mb": 8442.06,
+     "observed_runtime_s": null,
+     "device": "Modal A100 (remote GPU); first run downloads ~2.5 GB+ from HF at job time",
+     "batch_size": "96 refolds (4 ProteinMPNN sequences x 24 backbones)",
+     "notes": "Weights licence checked independently of the code and it does match: the HF model card front-matter is exactly 'license: mit'. One adjacent trap for the book: the esm README puts the ESM Metagenomic Atlas DATA under CC BY 4.0, which is a different artefact from the esmfold_v1 weights - do not let the CC BY 4.0 mention bleed into a weights claim. RUNTIME IS NULL for the same reason as ProteinMPNN: fused into ledger job 8b54bb3f (340.087 s combined). SIZE: 8442.06 MB is the live Content-Length of the single pytorch_model.bin; the repo's total usedStorage is 16.88 GB because it holds more than one serialisation."
+    },
+    "Boltz-2": {
+     "code_license": "MIT (Copyright (c) 2024 Jeremy Wohlwend, Gabriele Corso, Saro Passaro)",
+     "weights_license": "MIT - stated twice, in the repo README and on the HF weights repo",
+     "license_source_url": {
+      "code": "https://raw.githubusercontent.com/jwohlwend/boltz/main/LICENSE",
+      "weights": "https://raw.githubusercontent.com/jwohlwend/boltz/main/README.md ; https://huggingface.co/api/models/boltz-community/boltz-2"
+     },
+     "checked_date": {
+      "code": "2026-07-27",
+      "weights": "2026-07-27"
+     },
+     "version": "boltz[cuda]==2.2.1 (pyproject version = 2.2.1, present on PyPI); repo commit b1ebfc46ecf5",
+     "checkpoint_name": "boltz2_conf.ckpt + boltz2_aff.ckpt (HF boltz-community/boltz-2, revision 6fdef46d763f; hydrated into Modal volume claude-science-boltz-cache)",
+     "checkpoint_size_mb": {
+      "boltz2_conf.ckpt": 2286.56,
+      "boltz2_aff.ckpt": 2062.14
+     },
+     "observed_runtime_s": {
+      "msa_backed_run_recorded_in_artifact": 161,
+      "msa_backed_run_ledger_end_to_end": 212.0,
+      "single_sequence_run_recorded_in_artifact": 163,
+      "single_sequence_run_ledger_end_to_end": 222.636
+     },
+     "device": "Modal A100 (artifact records 'A100' for the MSA run and 'A100-40GB' for the single-sequence run)",
+     "batch_size": "diffusion_samples=5, recycling_steps=3, one 412-aa target + one ligand; MSA depth 17819",
+     "notes": "Weights licence is unambiguous and matches the code. Controlling sentence from the repo README: 'All the code and weights are provided under MIT license, making them freely available for both academic and commercial uses.' The HF weights repo independently declares 'license: mit'. This is the model a reader can most safely build on - but see the Boltz-2 NIM entry, because reaching the SAME model through the hosted endpoint replaces these MIT terms with NVIDIA's. Runtimes: the artifact-recorded job_wall_s (161/163 s) is the in-job measurement; the compute ledger's 212 s / 222.6 s for the same two jobs is scheduler end-to-end. Both observed, different scopes."
+    },
+    "DiffDock": {
+     "code_license": "MIT (Copyright (c) 2022 Gabriele Corso, Hannes Staerk, Bowen Jing)",
+     "weights_license": "MIT for the ORIGINAL repo weights - README: 'The code and model weights are released under MIT license.' NOT applicable to the NVIDIA-served weights (separate entry).",
+     "license_source_url": {
+      "code": "https://raw.githubusercontent.com/gcorso/DiffDock/main/LICENSE",
+      "weights": "https://raw.githubusercontent.com/gcorso/DiffDock/main/README.md (License section)"
+     },
+     "checked_date": {
+      "code": "2026-07-27",
+      "weights": "2026-07-27"
+     },
+     "version": "repo commit 85c49b60d3e0 (2025-05-02) - NOT the version actually used this pass; the hosted NIM was used instead",
+     "checkpoint_name": "n/a for this pass - no local DiffDock checkpoint was downloaded or run",
+     "checkpoint_size_mb": null,
+     "observed_runtime_s": null,
+     "device": "not run locally",
+     "batch_size": null,
+     "notes": "Recorded for completeness of the licensing picture only. The chapter's DiffDock results came from the hosted NIM, whose model is a DIFFERENT set of weights under DIFFERENT terms - see 'DiffDock NIM (hosted service)'. The repo also notes that MIT-licensed spyrmsd components are vendored in-tree."
+    },
+    "Boltz-2 NIM (hosted service)": {
+     "code_license": "n/a - a service, not distributed code. Underlying open-source project is MIT (jwohlwend/boltz).",
+     "weights_license": "SERVICE TERMS, NOT AN OPEN-SOURCE LICENCE. Two governing documents, and the model card names them INCONSISTENTLY: the card body says 'NVIDIA Open Model Agreement' while the page's governing-terms banner says 'NVIDIA Community Model License'. Hosting is governed by the NVIDIA API Trial Terms of Service.",
+     "license_source_url": {
+      "service_card": "https://build.nvidia.com/mit/boltz2",
+      "hosting_terms": "https://assets.ngc.nvidia.com/products/api-catalog/legal/NVIDIA%20API%20Trial%20Terms%20of%20Service.pdf",
+      "model_terms_named_in_banner": "https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-community-models-license/",
+      "model_terms_named_in_card_body": "https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-open-model-agreement/",
+      "additional_information_cited_by_nvidia": [
+       "https://www.apache.org/licenses/LICENSE-2.0",
+       "https://github.com/jwohlwend/boltz"
+      ]
+     },
+     "checked_date": {
+      "service_card": "2026-07-27",
+      "hosting_terms": "2026-07-27",
+      "model_terms": "2026-07-27"
+     },
+     "version": "served model 'Boltz2 v2.2.1' per the model card; NIM REST API version 1.5.0 (OpenAPI 3.1.0)",
+     "checkpoint_name": "not distributed - inference only via https://health.api.nvidia.com/v1/biology/mit/boltz2/predict",
+     "checkpoint_size_mb": null,
+     "observed_runtime_s": {
+      "smoke_test": 37.2,
+      "ledger_inference_call": 37.635
+     },
+     "device": "NVIDIA-hosted (remote); GPU model not disclosed to the caller",
+     "batch_size": "single request (smoke test)",
+     "notes": "THE MOST CONSEQUENTIAL ROW FOR A PUBLISHED BOOK. Reaching Boltz-2 through this endpoint does not give the reader boltz's MIT terms. Controlling sentence from the NVIDIA API Trial Terms of Service (9-page PDF, read this session): unless you purchase a Subscription, 'you may only use the API Service for internal testing and evaluation purposes, not in production.' The NVIDIA Community Model License additionally forbids using the model or ITS OUTPUTS 'to develop or improve any other AI models ... unless approved by NVIDIA in writing' - directly relevant to a drug-discovery reader who might want to train on predicted structures or affinities - and requires an NVIDIA AI Enterprise subscription to exercise the grants in production. Same science, different rights."
+    },
+    "DiffDock NIM (hosted service)": {
+     "code_license": "n/a - a service. Underlying open-source project is MIT (gcorso/DiffDock).",
+     "weights_license": "SERVICE TERMS, NOT AN OPEN-SOURCE LICENCE, over weights that are NOT the MIT repo weights. Card body: 'NVIDIA Open Model License'; governing-terms banner: 'NVIDIA AI Foundation Models Community License and MIT License'. Hosting governed by the NVIDIA API Trial Terms of Service.",
+     "license_source_url": {
+      "service_card": "https://build.nvidia.com/mit/diffdock",
+      "hosting_terms": "https://assets.ngc.nvidia.com/products/api-catalog/legal/NVIDIA%20API%20Trial%20Terms%20of%20Service.pdf",
+      "model_terms_named_in_card_body": "https://www.nvidia.com/en-us/agreements/enterprise-software/nvidia-open-model-license/",
+      "model_terms_named_in_banner": "https://docs.nvidia.com/ai-foundation-models-community-license.pdf",
+      "additional_information_cited_by_nvidia": "https://github.com/gcorso/DiffDock/blob/main/LICENSE"
+     },
+     "checked_date": {
+      "service_card": "2026-07-27",
+      "hosting_terms": "2026-07-27",
+      "model_terms": "2026-07-27"
+     },
+     "version": "served model 'DiffDock v2.3' per the model card; NIM REST API version 2.3.0; card states model v2.2.0 was trained by NVIDIA on PLINDER (450k) + SAIR (36k) = 486k protein-ligand complexes",
+     "checkpoint_name": "not distributed - inference only via https://health.api.nvidia.com/v1/biology/mit/diffdock",
+     "checkpoint_size_mb": null,
+     "observed_runtime_s": {
+      "redock_20_ligands_10_poses_each": 29.4,
+      "smoke_test": 1.4,
+      "ledger_inference_call": 2.295
+     },
+     "device": "NVIDIA-hosted (remote); GPU model not disclosed to the caller",
+     "batch_size": "20 ligands x 10 poses (num_poses=10, time_divisions=20, steps=18); 20/20 succeeded",
+     "notes": "DIFFERENT WEIGHTS, NOT JUST DIFFERENT TERMS. The card states the served model is 'trained by NVIDIA using PLINDER and SAIR', reusing the MIT architecture - so results from this endpoint are not reproducible from the gcorso/DiffDock checkpoints, and the MIT reference is only 'Additional Information' about the architecture's provenance. The card does say 'ready for commercial and non-commercial use', but the trial API it is served over is testing-and-evaluation-only absent a subscription. NVIDIA's Open Model License (card body) is the permissive one - commercially usable, derivatives allowed, with a 'Licensed by NVIDIA Corporation under the NVIDIA Open Model License' NOTICE requirement - whereas the AI Foundation Models Community License named in the banner is the restrictive one. A reader cannot tell from the page which controls; that ambiguity is the finding."
+    }
+   },
+   "source": {
+    "file": "model_inventory.json",
+    "version_id": "7158f4f1-9327-4f2d-824e-fc0bc9a8d70c",
+    "sha256_16": "c12977b25d8296ce"
+   },
+   "schema": "code_license, weights_license, license_source_url, checked_date, version, checkpoint_name, checkpoint_size_mb, observed_runtime_s, device, batch_size, notes"
+  },
+  "runtime_nulls": {
+   "value": [
+    "DiffSBDD optimize (QED evolutionary run): diffsbdd_optimize_metrics.json records objective, population_size=8, evolution_steps=3, top_k=3, timesteps=50 and the full QED trajectory, but contains no timing key; no wall clock survives in the compute ledger (it ran locally on CPU) or in the producing session. NULL, not estimated.",
+    "ProteinMPNN: never timed in isolation. It ran inside fused Modal job 8b54bb3f (ProteinMPNN 4 seq/backbone + ESMFold refold + scRMSD, 340.087 s end-to-end for 24 backbones). The job printed no per-stage timings and the stored result blob is truncated at ~2 KB, so the ProteinMPNN share is unrecoverable.",
+    "ESMFold: same fused job 8b54bb3f; no separable refold time. The earlier 3-backbone version of the same pipeline (job 0a1e518f, 114.831 s) is likewise fused.",
+    "DiffDock (original open-source repo): never run this pass. Chapter results came from the hosted NIM instead, so no local runtime, device, batch size or checkpoint size exists to report.",
+    "FlowMol3 model-weight download time: not recorded. Weights auto-download inside flowmol.load_pretrained('flowmol3'); only the 1.0 s post-cache load was printed.",
+    "ESMFold first-run HF download (~2.5 GB+ per the Modal provider notes): never timed as a separate measurement."
+   ],
+   "source": {
+    "file": "model_inventory.json",
+    "version_id": "7158f4f1-9327-4f2d-824e-fc0bc9a8d70c",
+    "sha256_16": "c12977b25d8296ce"
+   },
+   "note": "measured absences with reasons, never estimates"
+  },
+  "flowmol3_runtime_correction": {
+   "value": {
+    "observed_s": 1240.3,
+    "observed_min": 20.7,
+    "stale_estimate": "~90 min CPU"
+   },
+   "source": {
+    "file": "model_inventory.json",
+    "version_id": "7158f4f1-9327-4f2d-824e-fc0bc9a8d70c",
+    "sha256_16": "c12977b25d8296ce"
+   },
+   "note": "intermediates_inventory.json carried a pre-run planning estimate made when the batch was 16-20 molecules; the shipped run used 12"
+  },
+  "hosted_service_terms_are_a_separate_surface": {
+   "value": "The NVIDIA-hosted NIM endpoints used this pass are services, not the open-source repos. Their trial terms permit internal testing and evaluation rather than production, and the served DiffDock weights are NVIDIA-trained on PLINDER+SAIR rather than the MIT repo's checkpoints.",
+   "source": {
+    "file": "model_inventory.json",
+    "version_id": "7158f4f1-9327-4f2d-824e-fc0bc9a8d70c",
+    "sha256_16": "c12977b25d8296ce"
+   }
+  },
+  "boltz2_nim_licence_reverification": {
+   "value": "Independently re-fetched build.nvidia.com/mit/boltz2/modelcard this session and confirmed both strings on the live page: the card body reads 'Use of this model is governed by the NVIDIA Open Model Agreement' (linking nvidia.com/.../nvidia-open-model-agreement/), while a separate element links nvidia.com/.../nvidia-community-models-license/ as 'NVIDIA Community Model License'. The card also cites Apache 2.0 and the upstream MIT repo under ADDITIONAL INFORMATION. The inconsistency is real and is NVIDIA's, not a transcription error on our side.",
+   "source": {
+    "file": "model_inventory.json",
+    "version_id": "7158f4f1-9327-4f2d-824e-fc0bc9a8d70c"
+   },
+   "checked": "2026-07-27"
+  }
+ },
+ "F6_redocking_cross_check": {
+  "_question": "Does an independent docking method reproduce the generator's own pose? (new experiment added this pass)",
+  "_answer": "No, and the two pose sources fail the physical checks in opposite ways.",
+  "rmsd_top_pose_median_A": {
+   "value": 4.39,
+   "source": {
+    "file": "diffdock_redock_posebusters.csv",
+    "version_id": "6c2cd80d-75cf-4795-8edd-cb94e1468363",
+    "sha256_16": "08c4dd491cb2d8e7"
+   },
+   "definition": "symmetry-corrected RMSD between the generator's pose and DiffDock's top-ranked pose, no alignment (both already in the receptor frame)"
+  },
+  "rmsd_closest_of_10_median_A": {
+   "value": 3.357,
+   "source": {
+    "file": "diffdock_redock_posebusters.csv",
+    "version_id": "6c2cd80d-75cf-4795-8edd-cb94e1468363",
+    "sha256_16": "08c4dd491cb2d8e7"
+   }
+  },
+  "n_within_2A": {
+   "value": {
+    "top_pose": 0,
+    "any_of_10": 2,
+    "n_total": 20
+   },
+   "source": {
+    "file": "diffdock_redock_posebusters.csv",
+    "version_id": "6c2cd80d-75cf-4795-8edd-cb94e1468363",
+    "sha256_16": "08c4dd491cb2d8e7"
+   }
+  },
+  "same_pocket_though": {
+   "value": {
+    "n_redock_centroid_within_5A_of_reference": 19,
+    "generated_median_A": 0.63,
+    "redocked_median_A": 1.77
+   },
+   "source": {
+    "file": "diffdock_redock_posebusters.csv",
+    "version_id": "6c2cd80d-75cf-4795-8edd-cb94e1468363",
+    "sha256_16": "08c4dd491cb2d8e7"
+   },
+   "note": "the disagreement is about pose detail inside the site, not about finding the site"
+  },
+  "pb_valid_comparison": {
+   "value": {
+    "generated": "15/20",
+    "redocked": "8/20"
+   },
+   "source": {
+    "file": "diffdock_redock_posebusters.csv",
+    "version_id": "6c2cd80d-75cf-4795-8edd-cb94e1468363",
+    "sha256_16": "08c4dd491cb2d8e7"
+   },
+   "note": "the identical PoseBusters dock-config bar applied to both sources"
+  },
+  "opposite_failure_modes": {
+   "value": "The two pose sources fail in OPPOSITE ways. DiffSBDD's own poses are placed cleanly relative to the protein (100% on every intermolecular check) but carry internal geometry strain (bond_angles 85%, bond_lengths 90%). DiffDock's re-docked poses have clean internal geometry (100% bond lengths and angles, since DiffDock keeps a valid RDKit conformer and only moves it rigidly plus torsions) but violate minimum_distance_to_protein on 55% of ligands.",
+   "source": {
+    "file": "track_redock.json",
+    "version_id": "17af1040-e134-423f-988a-6176e4dcae8c",
+    "sha256_16": "c6aea0631c854116"
+   }
+  },
+  "diffdock_confidence": {
+   "value": {
+    "median": 0.0971,
+    "n_negative": 7,
+    "n_positive": 13,
+    "n_total": 20
+   },
+   "source": {
+    "file": "diffdock_redock_posebusters.csv",
+    "version_id": "6c2cd80d-75cf-4795-8edd-cb94e1468363",
+    "sha256_16": "08c4dd491cb2d8e7"
+   }
+  },
+  "verdict": {
+   "value": "Independent docking does NOT reproduce the generator's placement. No ligand's top-ranked DiffDock pose lands within 2 A of the DiffSBDD pose (median 4.39 A), and only 2 of 20 have ANY of 10 poses within 2 A. Re-docked poses do stay in the same pocket (19/20 centroids within 5 A of the co-crystal caffeine, median 1.77 A vs 0.63 A for the generated poses), so the disagreement is about pose detail inside the site, not about finding the site. DiffDock's own confidence is low: median top-pose confidence 0.10, and 7 of 20 negative.",
+   "source": {
+    "file": "track_redock.json",
+    "version_id": "17af1040-e134-423f-988a-6176e4dcae8c",
+    "sha256_16": "c6aea0631c854116"
+   }
+  },
+  "framing_caveat": {
+   "value": "This is a NEW experiment the current chapter does not set up. It is also not a redocking-accuracy benchmark: there is no experimental pose for a de novo ligand, so neither source can be called correct. The defensible claim is agreement/disagreement between two independent methods, not accuracy.",
+   "source": {
+    "file": "track_redock.json",
+    "version_id": "17af1040-e134-423f-988a-6176e4dcae8c",
+    "sha256_16": "c6aea0631c854116"
+   },
+   "note": "NOT a redocking-accuracy benchmark: no experimental pose exists for a de novo ligand, so neither source can be called correct"
+  }
+ },
+ "_figures": {
+  "fig_I_4_stepcount": {
+   "file_stem": "stepcount_thesis_figure",
+   "status": "REGENERATED with three samplers",
+   "version_ids": {
+    "png": "612383a5-90a2-42e0-8e71-52ae7f4c592b",
+    "svg": "079bcdbe-9c7f-4e63-a5c2-44582a3f8d21",
+    "pdf": "41f26d74-2c77-445f-8452-f94e781e582d"
+   },
+   "artifact_ids": {
+    "png": "9a51b824-8896-4a90-a561-a780f1326784",
+    "svg": "06df28a4-6f69-4ce8-8934-903141f9d36e",
+    "pdf": "c9a4dac0-5f56-4d7c-8c33-8e27716584b7"
+   }
+  },
+  "fig_I_validity": {
+   "file_stem": "fig_I_validity",
+   "status": "NEW",
+   "finding": "F2"
+  },
+  "fig_I_boltz2_comparison": {
+   "file_stem": "fig_I_boltz2_comparison",
+   "status": "NEW",
+   "finding": "F3",
+   "version_ids": {
+    "png": "1d6a0aa8-3a53-4747-a7c7-e8b4bcd1844e",
+    "svg": "5b7be5de-fd06-4905-842f-f60e6ba83364",
+    "pdf": "4f4c6c96-447d-49b6-8640-1d183667ab5e"
+   }
+  },
+  "fig_I_boltz2_complex": {
+   "file_stem": "fig_I_boltz2_complex",
+   "status": "NEW",
+   "finding": "F3",
+   "note": "real ray-traced PyMOL render, not a matplotlib approximation",
+   "version_ids": {
+    "png": "43ca5820-c150-42c5-923e-67d13a307b91",
+    "svg": "155e78ab-bb59-4489-a595-55ee923ff0aa",
+    "pdf": "f3ea5a18-811a-4960-9faa-8841dd08865b"
+   }
+  },
+  "fig_I_redock": {
+   "file_stem": "fig_I_redock",
+   "status": "NEW",
+   "finding": "F6",
+   "version_ids": {
+    "png": "1f588f05-08a2-40c3-afe6-dc6802c8c075",
+    "svg": "a719f23f-975c-47c7-8465-e14f278b7bf7",
+    "pdf": "6ea4ce29-a87c-49ad-80de-feb1e4ec2c09"
+   }
+  },
+  "_numbering": {
+   "highest_existing_in_tracked_docx": "I.15 (Boltz-2 showcase, added in the previous pass)",
+   "labels_used_this_pass": {
+    "validity": "I.7b",
+    "boltz2_comparison": "I.16",
+    "redock": "I.17",
+    "complex_render": "I.18 (rendered, not inserted)"
+   },
+   "note": "I.16 and I.17 are the next free integers, so only the validity figure carries a suffixed label. Renumbering is optional; see Part 4c of DOCX_FIGURE_SWAP_AND_RENUMBER_GUIDE.md."
+  }
+ },
+ "_source_files": {
+  "track_sampler.json": {
+   "file": "track_sampler.json",
+   "version_id": "ad4b1356-d9f8-487c-ae6c-467e68bbe464",
+   "sha256_16": "4d9e23e7dc3e9918"
+  },
+  "track_validity.json": {
+   "file": "track_validity.json",
+   "version_id": "cd2b0359-bea7-4371-bfe3-1efa8235db81",
+   "sha256_16": "4a806261e306c4a5"
+  },
+  "track_novelty.json": {
+   "file": "track_novelty.json",
+   "version_id": "91bfe704-c557-4045-a9e3-b16ad378d966",
+   "sha256_16": "df37abd5af5e15b7"
+  },
+  "track_inventory.json": {
+   "file": "track_inventory.json",
+   "version_id": "09695715-9c7d-4aac-beb6-58aebc1cf305",
+   "sha256_16": "6e8b95b32aac380d"
+  },
+  "track_boltz.json": {
+   "file": "track_boltz.json",
+   "version_id": "ba51ca86-fdda-4475-942e-5178a72caee1",
+   "sha256_16": "9d747f8517028584"
+  },
+  "track_redock.json": {
+   "file": "track_redock.json",
+   "version_id": "17af1040-e134-423f-988a-6176e4dcae8c",
+   "sha256_16": "c6aea0631c854116"
+  },
+  "toy_sampler_sweep.csv": {
+   "file": "toy_sampler_sweep.csv",
+   "version_id": "2fef6578-3c13-4042-861b-65e6c44fac69",
+   "sha256_16": "5374402b664cbd52"
+  },
+  "toy_eta_sweep.csv": {
+   "file": "toy_eta_sweep.csv",
+   "version_id": "0c26c241-2f21-4072-a37a-0c386b47f2d7",
+   "sha256_16": "73151bdfeb87ab30"
+  },
+  "posebusters_flowmol3.csv": {
+   "file": "posebusters_flowmol3.csv",
+   "version_id": "8cdc2459-cc79-4fd0-ad4c-58e1b7fbeca4",
+   "sha256_16": "b729067ab17a4029"
+  },
+  "posebusters_diffsbdd.csv": {
+   "file": "posebusters_diffsbdd.csv",
+   "version_id": "e01d4e94-24d2-4df7-a97c-60cab6aebc86",
+   "sha256_16": "de1062e5c6d1630a"
+  },
+  "posecheck_diffsbdd.csv": {
+   "file": "posecheck_diffsbdd.csv",
+   "version_id": "70dfddae-98d4-486f-b058-02291d3c92a0",
+   "sha256_16": "b5616469c013cecd"
+  },
+  "reos_flowmol3.csv": {
+   "file": "reos_flowmol3.csv",
+   "version_id": "9f374859-1877-491d-92b1-a04192688d9e",
+   "sha256_16": "e3f6348e49633651"
+  },
+  "novelty_diffsbdd.csv": {
+   "file": "novelty_diffsbdd.csv",
+   "version_id": "b52e619b-337b-40f3-a03d-be848e523526",
+   "sha256_16": "412603955246238b"
+  },
+  "novelty_flowmol3.csv": {
+   "file": "novelty_flowmol3.csv",
+   "version_id": "59c5d89b-c2e5-4d1e-ae1d-b15f42894c16",
+   "sha256_16": "8ec4f439c081c539"
+  },
+  "diversity_metadata.json": {
+   "file": "diversity_metadata.json",
+   "version_id": "cb55bfdf-10c9-429f-9b80-eaf9ad062f46",
+   "sha256_16": "98d6a5da48b685aa"
+  },
+  "model_inventory.json": {
+   "file": "model_inventory.json",
+   "version_id": "7158f4f1-9327-4f2d-824e-fc0bc9a8d70c",
+   "sha256_16": "c12977b25d8296ce"
+  },
+  "boltz2_comparison.csv": {
+   "file": "boltz2_comparison.csv",
+   "version_id": "b2987811-5fe9-420a-9ddb-b421b2318441",
+   "sha256_16": "bbf25e53535a905c"
+  },
+  "diffdock_redock_posebusters.csv": {
+   "file": "diffdock_redock_posebusters.csv",
+   "version_id": "6c2cd80d-75cf-4795-8edd-cb94e1468363",
+   "sha256_16": "08c4dd491cb2d8e7"
+  }
+ },
+ "_contradictions_with_current_draft": [
+  {
+   "id": "C1",
+   "severity": "HIGH - legal claim in a commercially published book",
+   "chapter_text": "\"FlowMol3 ships pretrained weights under a permissive MIT license, and the library fetches them for us on first use.\"",
+   "location": "section I.3, 'Loading and Sampling from a Pretrained Model'",
+   "what_we_found": "The FlowMol repo's LICENSE is MIT and covers the SOURCE. The weights are served separately from a bare HTTP directory at bits.csb.pitt.edu/files/FlowMol/trained_models_v3.1/. Its readme.md (2283 bytes, fetched and grepped this session) contains ZERO occurrences of licence, copyright, terms, permission or redistribut; the directory listing contains no LICENSE file. The weights licence is UNSTATED, not MIT.",
+   "asset_key": "F5_model_inventory.weights_more_restrictive_than_code",
+   "fix": "Say the CODE is MIT and that the pretrained weights are distributed separately without an accompanying licence statement. Do not attribute MIT to the weights."
+  },
+  {
+   "id": "C2",
+   "severity": "HIGH - the metric is not what the word means",
+   "chapter_text": "\"Panel (c) shows novelty as Tanimoto similarity to caffeine\" and \"On novelty, the result is what we hoped for: a median Tanimoto similarity to caffeine of just 0.21\"",
+   "location": "section I.5, twice",
+   "what_we_found": "0.21 reproduces exactly (0.2121 recomputed) but measures dissimilarity to the REFERENCE LIGAND. Against a sampled training corpus, median-of-max Tanimoto is 0.4664 under the same fingerprint, 2.2x higher; 0.4453 restricted to ligands confirmed in DiffSBDD's own published train split. Under Morgan r=2 the gap is 2.4x. Median-of-max is still climbing with corpus size, so those are lower bounds.",
+   "asset_key": "F4_novelty_and_diversity.the_gap_quantified",
+   "fix": "Call 0.21 what it is (dissimilarity to the reference ligand) and add the corpus comparison as the novelty claim. This makes the chapter's own sidebar argument land harder."
+  },
+  {
+   "id": "C3",
+   "severity": "MEDIUM - unreproducible as printed",
+   "chapter_text": "\"a pairwise diversity of 0.809 means the model is not quietly drawing the same molecule twenty times\"",
+   "location": "section I.5",
+   "what_we_found": "0.8089776623453144 reproduces bit-for-bit, but ONLY under Chem.RDKFingerprint at RDKit defaults (fpSize=2048, minPath=1, maxPath=7, nBitsPerHash=2) - a path-based fingerprint. Under Morgan r=2/2048, which is what a reader would assume for a diversity number, the same batch scores 0.9175.",
+   "asset_key": "F4_novelty_and_diversity.diversity_diffsbdd",
+   "fix": "Name the fingerprint and the formula in the sentence or a footnote. The number is correct; it is just not reproducible without its definition."
+  },
+  {
+   "id": "C4",
+   "severity": "MEDIUM - the claim is narrower than the sentence",
+   "chapter_text": "\"all 20 are chemically valid (100%), and every one is a single connected molecule rather than a scatter of disconnected pieces (100% connected)\"",
+   "location": "section I.5",
+   "what_we_found": "Both hold, and PoseBusters confirms all_atoms_connected at 100%. But those checks test the molecular GRAPH. On the physical bar, 15 of 20 DiffSBDD ligands pass the full protein-aware suite (bond_angles 85%, bond_lengths 90%), and UFF strain has a median of 134.5 kcal/mol against the co-crystal caffeine's 0.39 - 347x. FlowMol3's batch passes 12/12 with a median strain of 8.2.",
+   "asset_key": "F2_physical_validity",
+   "fix": "Keep the 100% but scope it to graph validity, then add the physical-plausibility result. The chapter's own 'valid and connected is a low bar' sentence already sets this up."
+  },
+  {
+   "id": "C5",
+   "severity": "MEDIUM - number does not match its own source",
+   "chapter_text": "\"the diffusion model at the same eight steps is still stranded at 0.388, more than thirty times larger\" and \"the diffusion samples at the same budget (0.371)\"",
+   "location": "section I.3",
+   "what_we_found": "0.371 is the published CSV's seed-mean and 0.388 its seed-3 value, so the draft is internally consistent with toy_stepcount_metrics.csv. But the PINNED checkpoint gives 0.0407 at 8 steps - roughly 9x lower. The published sweep trained its DDPM inline; the cached checkpoint is a different, better-converged run. Separately, the PUBLISHED FIGURE's panel (b) label reads 0.10, which matches no seed in its own CSV (range 0.335-0.403).",
+   "asset_key": "F1_sampler_decomposition.energy_at_8_steps",
+   "fix": "Cite the new drift-free assets/toy_sampler_sweep.csv and update the matched-budget numbers to 0.041 (ancestral) against 0.010 (flow matching), a ~4x gap at 8 steps rather than 30x. The 4x CROSSING claim is unaffected and confirmed."
+  },
+  {
+   "id": "C6",
+   "severity": "LOW - framing, and the fix strengthens the claim",
+   "chapter_text": "\"flow matching hit target quality in about 8 steps against diffusion's 32, a roughly fourfold saving\"",
+   "location": "section I.7 recap and I.3",
+   "what_we_found": "Confirmed exactly on the pinned checkpoint (crossings 8 and 32). The reviewer's concern was that the comparison mixes a stochastic diffusion sampler with a deterministic ODE. Measured: making the diffusion sampler deterministic does NOT shrink the gap - DDIM at eta=0 never reaches the band within 200 levels, and the eta sweep shows removing noise COSTS 20.8x at a fixed 8-step budget.",
+   "asset_key": "F1_sampler_decomposition.sampling_noise_component",
+   "fix": "Keep 4x and add one sentence: the advantage survives holding the sampler family fixed, so it is about path geometry rather than an artifact of comparing sampler families."
+  },
+  {
+   "id": "C7",
+   "severity": "INFO - not in the draft, needed before the new figure lands",
+   "chapter_text": "(no current text) - the chapter's Boltz-2 section reports the FlowMol3 ligand's numbers but does not state a binder threshold",
+   "location": "section I.7",
+   "what_we_found": "Across 7 molecules under two independent Boltz-2 implementations, ONLY the co-crystal caffeine clears the 0.5 binder threshold (0.622/0.617). The best generated ligand reaches 0.444. Pocket conditioning did beat unconditioned generation 4.9x on this metric (0.444 vs 0.091) without producing a predicted binder.",
+   "asset_key": "F3_boltz2_controlled_comparison",
+   "fix": "State the threshold explicitly and keep the ranking-not-potency guard: affinity_pred_value must not be converted to an IC50 for molecules the binary head does not call binders."
+  },
+  {
+   "id": "C8",
+   "severity": "HIGH - prints a number that its own model says is meaningless",
+   "chapter_text": "\"The affinity head (panel b) returns a binder probability of just 0.09, well below the 0.5 call line, and a predicted IC50 of roughly 15 uM (log10 IC50/uM = 1.17).\"",
+   "location": "section I.7, paragraph after Figure I.14",
+   "what_we_found": "Both numbers reproduce (0.0928 and 1.1657 from boltz_a2a_msa_summary.json; our independent rerun gives 0.0906 and 1.1239). But the sentence prints the regression head's IC50 for a molecule the SAME model's binary head places below the call line, which is the off-label use the chapter was corrected on. Direct evidence that the number is meaningless there: caffeine, which the binary head DOES call a binder at 0.622, gets pred_value 1.3978 = 25.0 uM. So the non-binder's pred_value implies a TIGHTER IC50 (13.3 uM) than the real co-crystal ligand's. The regression head is not calibrated below the gate.",
+   "asset_key": "F3_boltz2_controlled_comparison.interpretation_constraint",
+   "fix": "Keep the binder probability and DROP the IC50 conversion, or state explicitly that the regression head is not meaningful below the call line and give the caffeine comparison as the reason. Tracked change applied: the IC50 clause is deleted and replaced."
+  }
+ ]
+}
