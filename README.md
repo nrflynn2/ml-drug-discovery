@@ -25,7 +25,7 @@ Encounter any issues? Please let me know -- I can't fix a problem if I am not aw
 * [Chapter 10: Generative Models for De Novo Design](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH10_FLYNN_ML4DD.ipynb)
 * [Chapter 11: Graph Neural Networks for Drug Target Affinity Prediction](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH11_FLYNN_ML4DD.ipynb)
 * [Chapter 12: Transformer Architectures for Protein Structure Prediction](https://github.com/nrflynn2/ml-drug-discovery/tree/main/CH12_FLYNN_ML4DD)
-* [Chapter 13: Multimodal AI Systems for End-to-End Drug Discovery Pipelines](https://www.manning.com/books/build-ai-drug-discovery-pipelines)
+* [Chapter 13: Multimodal AI Systems for End-to-End Drug Discovery Pipelines](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH13_FLYNN_ML4DD.ipynb)
 
 #### Appendices
 * [Appendix A: Glossary](https://livebook.manning.com/book/build-ai-drug-discovery-pipelines/appendix-a)
