@@ -1,6 +1,6 @@
 # "Build AI Drug Discovery Pipelines" - Code and Data Repository
 
-### 👋 Welcome to the Build AI Drug Discovery Pipelines Repository
+### Welcome to the Build AI Drug Discovery Pipelines Repository
 
 This repository contains code and data for [Build AI Drug Discovery Pipelines (Manning Publications)](https://www.manning.com/books/build-ai-drug-discovery-pipelines). The companion material within this repository covers introductory topics at the intersection of machine learning, deep learning, and drug discovery applied to real world scenarios in each chapter. The code and notebooks are released under the Apache 2.0 license. 
 
@@ -36,9 +36,9 @@ Encounter any issues? Please let me know -- I can't fix a problem if I am not aw
 * Appendix F: Chapter References
 * Appendix G: Chapter Exercises
 * Appendix H: Computational Drug Target Discovery
-* Appendix I: Diffusion &amp; Flow Matching Applications
+* [Appendix I: Diffusion &amp; Flow Matching with FlowMol3, DiffSBDD, RFdiffusion, &amp; Boltz-2](https://github.com/nrflynn2/ml-drug-discovery/tree/main/APPENDIX_I_FLYNN_ML4DD)
 
-### 💻 Getting Started
+### Getting Started
 
 #### Option 1: Google Colab (No Installation Required)
 
@@ -76,11 +76,11 @@ conda env create -f ml4dd2025.yml && conda activate ml4dd2025
 
 Prefer classic pip? `pip install -e ".[advanced]"` works too. For detailed instructions and troubleshooting, see [INSTALL.md](INSTALL.md).
 
-### 👥 Contribution & Support
+### Contribution & Support
 
 Feel free to contribute, raise issues, or propose enhancements to make this repository a comprehensive resource for everyone venturing into machine learning, drug discovery, and related applications.
 
-### 🔎 Citations
+### Citations
 
 If you wish to cite the book, you may use the following:
 
