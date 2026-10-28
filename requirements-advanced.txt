@@ -1,4 +1,4 @@
-# Advanced ML Environment for ML4DD (Chapters 5-8)
+# Advanced ML Environment for ML4DD (Chapters 4, 6; Supplemental Chapters 2-5)
 # Includes core packages + advanced ML and deep learning
 # Estimated install time: 5-8 minutes on Google Colab
 

@@ -16,9 +16,9 @@ validate *nbs:
 pair nb:
     jupytext --set-formats ipynb,py:percent {{nb}}
 
-# Pair every top-level chapter notebook + Appendix C in one go.
+# Pair every top-level chapter + supplemental chapter notebook + Appendix C in one go.
 pair-all:
-    for nb in CH*_FLYNN_ML4DD.ipynb APPENDIX_C_FLYNN_ML4DD.ipynb; do \
+    for nb in CH*_FLYNN_ML4DD.ipynb SUPP*_FLYNN_ML4DD.ipynb APPENDIX_C_FLYNN_ML4DD.ipynb; do \
         jupytext --set-formats ipynb,py:percent "$nb"; \
     done
 

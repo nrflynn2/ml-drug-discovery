@@ -8,7 +8,7 @@
 #       format_version: '1.3'
 #       jupytext_version: 1.19.4
 #   kernelspec:
-#     display_name: ch12-protein-transformer-310
+#     display_name: ch07-protein-transformer-310
 #     language: python
 #     name: python3
 # ---
@@ -36,15 +36,15 @@
 # <hr style="border:0;border-top:1px solid #A20025;opacity:.55;margin:0 0 22px;">
 
 # %% [markdown]
-# <div style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#A20025;margin:0 0 12px;">Chapter 12</div>
+# <div style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#A20025;margin:0 0 12px;">Chapter 7</div>
 #
 # <h1 style="font-family:Georgia,'Iowan Old Style','Palatino Linotype',serif;font-weight:500;font-size:33px;line-height:1.12;margin:0 0 16px;color:#1A1416;letter-spacing:-.01em;">Training a Protein Language Model with Transformers</h1>
 #
 # <hr style="border:0;border-top:1px solid #A20025;opacity:.55;margin:0 0 4px;">
 #
-# <em style="color:#6B6461;font-size:14.5px;">Runnable code for Chapter 12; read alongside the book.</em>
+# <em style="color:#6B6461;font-size:14.5px;">Runnable code for Chapter 7; read alongside the book.</em>
 #
-# <a href="https://colab.research.google.com/github/nrflynn2/ml-drug-discovery/blob/main/CH12_FLYNN_ML4DD/notebooks/CH12-protein-transformers.ipynb" target="_blank"><img src="https://img.shields.io/badge/Open%20in-Colab-A20025?logo=googlecolab&logoColor=white" alt="Open in Colab" style="height:20px;vertical-align:middle;"></a>
+# <a href="https://colab.research.google.com/github/nrflynn2/ml-drug-discovery/blob/main/CH07_FLYNN_ML4DD/notebooks/CH07-protein-transformers.ipynb" target="_blank"><img src="https://img.shields.io/badge/Open%20in-Colab-A20025?logo=googlecolab&logoColor=white" alt="Open in Colab" style="height:20px;vertical-align:middle;"></a>
 #
 # In this notebook, we'll walk through the process of training a small protein language
 # model using the Transformer architecture. This model learns representations of protein
@@ -63,8 +63,8 @@
 # <h2 style="font-family:Georgia,'Iowan Old Style','Palatino Linotype',serif;font-weight:500;font-size:23px;margin:34px 0 10px;color:#1A1416;"><span style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:13px;color:#A20025;font-weight:500;">§0&#8195;</span>Setup and Imports</h2>
 #
 # <div style="font-size:14px;margin:0 0 6px;">
-# <div style="display:flex;gap:14px;padding:9px 0;border-bottom:1px solid #EFEBE8;"><strong style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#A20025;min-width:96px;">Local&#8195;&#8195;</strong><span>The Chapter 12 code is a self-contained package. From <code>CH12_FLYNN_ML4DD/</code>, run <code>pip install -e ".[notebooks]"</code> (Python 3.12).</span></div>
-# <div style="display:flex;gap:14px;padding:9px 0;"><strong style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#A20025;min-width:96px;">Colab&#8195;&#8195;</strong><span>Clone the repository, then <code>pip install -e "ml-drug-discovery/CH12_FLYNN_ML4DD[notebooks]"</code>; a GPU runtime is recommended.</span></div>
+# <div style="display:flex;gap:14px;padding:9px 0;border-bottom:1px solid #EFEBE8;"><strong style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#A20025;min-width:96px;">Local&#8195;&#8195;</strong><span>The Chapter 7 code is a self-contained package. From <code>CH07_FLYNN_ML4DD/</code>, run <code>pip install -e ".[notebooks]"</code> (Python 3.12).</span></div>
+# <div style="display:flex;gap:14px;padding:9px 0;"><strong style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#A20025;min-width:96px;">Colab&#8195;&#8195;</strong><span>Clone the repository, then <code>pip install -e "ml-drug-discovery/CH07_FLYNN_ML4DD[notebooks]"</code>; a GPU runtime is recommended.</span></div>
 # </div>
 #
 # First, let's import the necessary libraries and modules:

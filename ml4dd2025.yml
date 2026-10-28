@@ -1,8 +1,8 @@
 name: ml4dd2025
-# Chapter 9 conda "island". Chapter 9 (structure-based drug design with active
+# Chapter 5 conda "island". Chapter 5 (structure-based drug design with active
 # learning) needs openmm / pdbfixer / vina, which do not install reliably via
 # pip. Everything else in the book uses the uv/pip path (see README / INSTALL).
-# Trimmed to what Chapter 9 actually imports; the kernel name is kept as
+# Trimmed to what Chapter 5 actually imports; the kernel name is kept as
 # `ml4dd2025` to match the notebook kernelspec.
 channels:
   - conda-forge
@@ -23,14 +23,14 @@ dependencies:
   - pdbfixer>=1.10
   - vina>=1.2.5
 
-  # Remaining Chapter 9 dependencies via pip for the latest wheels
+  # Remaining Chapter 5 dependencies via pip for the latest wheels
   - pip
   - pip:
       # Deep learning (active-learning surrogate model)
       - torch>=2.4.1
       - scikit-learn>=1.6.0
 
-      # Docking / structure helpers used in Chapter 9
+      # Docking / structure helpers used in Chapter 5
       - meeko>=0.5.0
       - mdtraj>=1.10.2
       - prolif>=2.0.3

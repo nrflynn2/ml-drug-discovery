@@ -22,7 +22,7 @@ committed artifact) rather than raising the timeout.
 
 Usage (must run inside the chapter env, e.g. via uv):
     uv run python tools/execute_notebook.py CH02_FLYNN_ML4DD.ipynb
-    uv run python tools/execute_notebook.py CH08_FLYNN_ML4DD.ipynb --timeout 1800
+    uv run python tools/execute_notebook.py SUPP04_FLYNN_ML4DD.ipynb --timeout 1800
 
 Exit codes: 0 = executed clean, 1 = an executed cell raised, 2 = usage/env error.
 """

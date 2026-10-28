@@ -3,7 +3,7 @@
 #
 # Usage:  bash tools/bootstrap_env.sh [core|advanced|full]   (default: advanced)
 #
-# Chapter 9 needs the conda island instead — see the note printed at the end.
+# Chapter 5 needs the conda island instead — see the note printed at the end.
 set -euo pipefail
 
 TIER="${1:-advanced}"
@@ -44,10 +44,10 @@ cat <<'EOF'
 Environment ready.  Activate it with:
     source .venv/bin/activate
 
-Chapter 9 (openmm / pdbfixer / vina) uses the conda island:
+Chapter 5 (openmm / pdbfixer / vina) uses the conda island:
     conda env create -f ml4dd2025.yml && conda activate ml4dd2025
 
-Chapter 12 is a self-contained package:
-    cd CH12_FLYNN_ML4DD && uv pip install -e ".[notebooks]"
+Chapter 7 is a self-contained package:
+    cd CH07_FLYNN_ML4DD && uv pip install -e ".[notebooks]"
 ============================================================
 EOF

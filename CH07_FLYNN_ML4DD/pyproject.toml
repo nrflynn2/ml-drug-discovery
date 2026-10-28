@@ -1,5 +1,5 @@
 [project]
-name = "ch12-protein-transformer"
+name = "ch07-protein-transformer"
 version = "0.1.0"
 description = "Production-quality implementations of Transformer-based protein models for educational purposes"
 readme = "README.md"
@@ -21,7 +21,7 @@ classifiers = [
 ]
 
 # Aligned with the book's root environment (Python 3.12). torchvision/torchaudio
-# are intentionally absent: no Chapter 12 code imports them. The old
+# are intentionally absent: no Chapter 7 code imports them. The old
 # requirements.txt pinned an inconsistent trio (torch 2.8.0 with torchvision
 # 0.17.2 / torchaudio 2.2.2 / triton 2.2.0), which cannot resolve together.
 # SECURITY: floors are set at-or-above the first patched version for every
@@ -41,7 +41,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# Interactive notebooks (Ch12 + Appendix D tutorials): pretrained ESM-2 via
+# Interactive notebooks (Ch07 + Appendix D tutorials): pretrained ESM-2 via
 # Hugging Face transformers, BioPython for sequence handling, plus viz/widgets.
 notebooks = [
     "jupyterlab>=4.5.9",
@@ -61,7 +61,7 @@ tuning = [
 
 # Complete development environment
 dev = [
-    "ch12-protein-transformer[notebooks,tuning]",
+    "ch07-protein-transformer[notebooks,tuning]",
     "black>=24.0.0",
     "ruff>=0.6.0",
 ]

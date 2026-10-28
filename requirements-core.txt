@@ -1,4 +1,4 @@
-# Core Environment for ML4DD (Chapters 1-4)
+# Core Environment for ML4DD (Chapters 1-3, 8; Supplemental Chapter 1)
 # Fast setup for basic ML, QSAR, and similarity-based screening
 # Estimated install time: 3-5 minutes on Google Colab
 

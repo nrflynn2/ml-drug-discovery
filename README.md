@@ -13,19 +13,21 @@ Encounter any issues? Please let me know -- I can't fix a problem if I am not aw
 #### 💊 Part 1: Fundamentals of Cheminformatics & Machine Learning
 * [Chapter 1: The Drug Discovery Process](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH01_FLYNN_ML4DD.ipynb)
 * [Chapter 2: Ligand-based Screening: Filtering & Similarity Searching](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH02_FLYNN_ML4DD.ipynb)
-* [Chapter 3: Ligand-based Screening: Machine Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH03_FLYNN_ML4DD.ipynb)
-* [Chapter 4: Solubility Deep Dive with Linear Models](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH04_FLYNN_ML4DD.ipynb)
-* [Chapter 5: Classification: Cytochrome P450 Inhibition](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH05_FLYNN_ML4DD.ipynb)
-* [Chapter 6: Case Study: Small Molecule Binding to an RNA Target](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH06_FLYNN_ML4DD.ipynb)
-* [Chapter 7: Unsupervised Learning: Repurposing Drugs, Curating Compounds, & Screening Fragments](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH07_FLYNN_ML4DD.ipynb)
+* [Chapter 3: Solubility Deep Dive with Linear Models](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH03_FLYNN_ML4DD.ipynb)
+* [Chapter 4: Case Study: Small Molecule Binding to an RNA Target](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH04_FLYNN_ML4DD.ipynb)
 
 #### 🧬 Part 2: Deep Learning for Molecules & Structural Biology
-* [Chapter 8: Introduction to Deep Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH08_FLYNN_ML4DD.ipynb)
-* [Chapter 9: Structure-based Drug Design with Active Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH09_FLYNN_ML4DD.ipynb)
-* [Chapter 10: Generative Models for De Novo Design](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH10_FLYNN_ML4DD.ipynb)
-* [Chapter 11: Graph Neural Networks for Drug Target Affinity Prediction](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH11_FLYNN_ML4DD.ipynb)
-* [Chapter 12: Transformer Architectures for Protein Structure Prediction](https://github.com/nrflynn2/ml-drug-discovery/tree/main/CH12_FLYNN_ML4DD)
-* [Chapter 13: Multimodal AI Systems for End-to-End Drug Discovery Pipelines](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH13_FLYNN_ML4DD.ipynb)
+* [Chapter 5: Structure-based Drug Design with Active Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH05_FLYNN_ML4DD.ipynb)
+* [Chapter 6: Generative Models for De Novo Design](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH06_FLYNN_ML4DD.ipynb)
+* [Chapter 7: Transformer Architectures for Protein Structure Prediction](https://github.com/nrflynn2/ml-drug-discovery/tree/main/CH07_FLYNN_ML4DD)
+* [Chapter 8: Multimodal AI Systems for End-to-End Drug Discovery Pipelines](https://github.com/nrflynn2/ml-drug-discovery/blob/main/CH08_FLYNN_ML4DD.ipynb)
+
+#### 🌐 Supplemental Chapters (online edition)
+* [Supplemental Chapter 1: Ligand-based Screening: Machine Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/SUPP01_FLYNN_ML4DD.ipynb)
+* [Supplemental Chapter 2: Classification: Cytochrome P450 Inhibition](https://github.com/nrflynn2/ml-drug-discovery/blob/main/SUPP02_FLYNN_ML4DD.ipynb)
+* [Supplemental Chapter 3: Unsupervised Learning: Repurposing Drugs, Curating Compounds, & Screening Fragments](https://github.com/nrflynn2/ml-drug-discovery/blob/main/SUPP03_FLYNN_ML4DD.ipynb)
+* [Supplemental Chapter 4: Introduction to Deep Learning](https://github.com/nrflynn2/ml-drug-discovery/blob/main/SUPP04_FLYNN_ML4DD.ipynb)
+* [Supplemental Chapter 5: Graph Neural Networks for Drug Target Affinity Prediction](https://github.com/nrflynn2/ml-drug-discovery/blob/main/SUPP05_FLYNN_ML4DD.ipynb)
 
 #### Appendices
 * [Appendix A: Glossary](https://livebook.manning.com/book/build-ai-drug-discovery-pipelines/appendix-a)
@@ -38,6 +40,31 @@ Encounter any issues? Please let me know -- I can't fix a problem if I am not aw
 * Appendix H: Computational Drug Target Discovery
 * [Appendix I: Diffusion &amp; Flow Matching with FlowMol3, DiffSBDD, RFdiffusion, &amp; Boltz-2](https://github.com/nrflynn2/ml-drug-discovery/tree/main/APPENDIX_I_FLYNN_ML4DD)
 
+#### Reading the early-access (MEAP) edition?
+
+The early-access edition had 13 chapters. For the final release, 8 chapters are in the printed
+book and 5 moved online as supplemental chapters, so the notebooks and their `data/`,
+`artifacts/`, and `figures/` folders were renumbered to match. The appendices did not change.
+
+| Early-access chapter | Final edition | Notebook | Data/artifact/figure folder |
+|---|---|---|---|
+| 1 | Chapter 1 | `CH01_FLYNN_ML4DD.ipynb` | `ch01` |
+| 2 | Chapter 2 | `CH02_FLYNN_ML4DD.ipynb` | `ch02` |
+| 3 | Supplemental Chapter 1 | `SUPP01_FLYNN_ML4DD.ipynb` | `supp01` |
+| 4 | Chapter 3 | `CH03_FLYNN_ML4DD.ipynb` | `ch03` |
+| 5 | Supplemental Chapter 2 | `SUPP02_FLYNN_ML4DD.ipynb` | `supp02` |
+| 6 | Chapter 4 | `CH04_FLYNN_ML4DD.ipynb` | `ch04` |
+| 7 | Supplemental Chapter 3 | `SUPP03_FLYNN_ML4DD.ipynb` | `supp03` |
+| 8 | Supplemental Chapter 4 | `SUPP04_FLYNN_ML4DD.ipynb` | `supp04` |
+| 9 | Chapter 5 | `CH05_FLYNN_ML4DD.ipynb` | `ch05` |
+| 10 | Chapter 6 | `CH06_FLYNN_ML4DD.ipynb` | `ch06` |
+| 11 | Supplemental Chapter 5 | `SUPP05_FLYNN_ML4DD.ipynb` | `supp05` |
+| 12 | Chapter 7 | `CH07_FLYNN_ML4DD/` | `CH07_FLYNN_ML4DD/data` |
+| 13 | Chapter 8 | `CH08_FLYNN_ML4DD.ipynb` | `ch08` |
+
+If your copy of the book still uses the old chapter numbers in its paths, use the frozen
+13-chapter layout at the [`meap-13-chapters`](https://github.com/nrflynn2/ml-drug-discovery/tree/meap-13-chapters) tag.
+
 ### Getting Started
 
 #### Option 1: Google Colab (No Installation Required)
@@ -45,7 +72,7 @@ Encounter any issues? Please let me know -- I can't fix a problem if I am not aw
 Open any notebook in Colab and run the installation cells at the top! <a href="https://colab.research.google.com/github/nrflynn2/ml-drug-discovery/blob/main/" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 Each notebook includes a Colab install cell that pip-installs only the packages that chapter needs
-(3-10 minutes). **Chapter 9** is the exception: its docking stack needs conda-only tools, so it uses a
+(3-10 minutes). **Chapter 5** is the exception: its docking stack needs conda-only tools, so it uses a
 conda install cell on Colab.
 
 #### Option 2: Local Installation with uv (recommended)
@@ -63,16 +90,16 @@ We provide **tiered installs** so you install only what a chapter needs:
 
 | Tier | Chapters | Command |
 |------|----------|---------|
-| **Core** — basic ML & QSAR | 1–4 | `uv sync` |
-| **Advanced** — boosting, deep learning, GNNs | 5–8, 10, 11, Appendix C | `uv sync --extra advanced` |
-| **Full** — + pip-installable docking/MD helpers | adds Chapter 9 helpers | `uv sync --extra full` |
+| **Core** — basic ML & QSAR | 1–3, 8; Supplemental 1 | `uv sync` |
+| **Advanced** — boosting, deep learning, GNNs | 4, 6; Supplemental 2–5; Appendix C | `uv sync --extra advanced` |
+| **Full** — + pip-installable docking/MD helpers | adds Chapter 5 helpers | `uv sync --extra full` |
 
-**Chapter 9** additionally needs conda-only tools (openmm, vina, pdbfixer):
+**Chapter 5** additionally needs conda-only tools (openmm, vina, pdbfixer):
 ```bash
 conda env create -f ml4dd2025.yml && conda activate ml4dd2025
 ```
 
-**Chapter 12** is a self-contained package — see [`CH12_FLYNN_ML4DD/`](CH12_FLYNN_ML4DD).
+**Chapter 7** is a self-contained package — see [`CH07_FLYNN_ML4DD/`](CH07_FLYNN_ML4DD).
 
 Prefer classic pip? `pip install -e ".[advanced]"` works too. For detailed instructions and troubleshooting, see [INSTALL.md](INSTALL.md).
 

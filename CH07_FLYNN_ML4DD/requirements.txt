@@ -1,10 +1,10 @@
-# Chapter 12 - Protein Transformers (Python 3.12)
+# Chapter 7 - Protein Transformers (Python 3.12)
 # Lean, consistent requirements regenerated from pyproject.toml.
 #
 # The previous file was a full transitive environment freeze that pinned an
 # inconsistent torch/torchvision/torchaudio/triton set (torch 2.8.0 with
 # torchvision 0.17.2 / torchaudio 2.2.2 / triton 2.2.0) which cannot install
-# together. torchvision/torchaudio are not imported by any Ch12 code and were
+# together. torchvision/torchaudio are not imported by any Ch07 code and were
 # removed. For the package plus a chosen extra instead, use:
 #     pip install -e ".[notebooks]"     (or  uv pip install -e ".[notebooks]")
 #

@@ -1601,7 +1601,7 @@ advanced = [
     { name = "xgboost" },
     { name = "xlrd" },
 ]
-ch12 = [
+ch07 = [
     { name = "biopython" },
     { name = "cmocean" },
     { name = "ipywidgets" },
@@ -1648,16 +1648,16 @@ full = [
 
 [package.metadata]
 requires-dist = [
-    { name = "biopython", marker = "extra == 'ch12'", specifier = ">=1.83" },
+    { name = "biopython", marker = "extra == 'ch07'", specifier = ">=1.83" },
     { name = "black", marker = "extra == 'dev'", specifier = ">=24.0.0" },
     { name = "catboost", marker = "extra == 'advanced'", specifier = ">=1.2.7" },
-    { name = "cmocean", marker = "extra == 'ch12'", specifier = ">=4.0.3" },
+    { name = "cmocean", marker = "extra == 'ch07'", specifier = ">=4.0.3" },
     { name = "dimorphite-dl", marker = "extra == 'advanced'", specifier = ">=2.0.0" },
     { name = "gemmi", marker = "extra == 'full'", specifier = ">=0.7.0" },
     { name = "imbalanced-learn", marker = "extra == 'advanced'", specifier = ">=0.13.0" },
     { name = "ipykernel", specifier = ">=6.29.0" },
     { name = "ipywidgets", specifier = ">=8.1.0" },
-    { name = "ipywidgets", marker = "extra == 'ch12'", specifier = ">=8.1.0" },
+    { name = "ipywidgets", marker = "extra == 'ch07'", specifier = ">=8.1.0" },
     { name = "joblib", specifier = ">=1.4.0" },
     { name = "jupyterlab", specifier = ">=4.5.9" },
     { name = "jupytext", marker = "extra == 'dev'", specifier = ">=1.16.0" },
@@ -1677,7 +1677,7 @@ requires-dist = [
     { name = "plotly", marker = "extra == 'advanced'", specifier = ">=5.24.1" },
     { name = "prolif", marker = "extra == 'full'", specifier = ">=2.0.3" },
     { name = "py3dmol", marker = "extra == 'advanced'", specifier = ">=2.4.2" },
-    { name = "pyarrow", marker = "extra == 'ch12'", specifier = ">=23.0.1" },
+    { name = "pyarrow", marker = "extra == 'ch07'", specifier = ">=23.0.1" },
     { name = "pytest", marker = "extra == 'dev'", specifier = ">=8.0.0" },
     { name = "pyyaml", marker = "extra == 'advanced'", specifier = ">=6.0.2" },
     { name = "rdkit", specifier = ">=2024.3.2" },
@@ -1694,12 +1694,12 @@ requires-dist = [
     { name = "torch", marker = "extra == 'advanced'", specifier = ">=2.10.0" },
     { name = "torch-geometric", marker = "extra == 'advanced'", specifier = ">=2.6.1" },
     { name = "tqdm", specifier = ">=4.67.1" },
-    { name = "transformers", marker = "extra == 'ch12'", specifier = ">=4.44.0" },
+    { name = "transformers", marker = "extra == 'ch07'", specifier = ">=4.44.0" },
     { name = "umap-learn", marker = "extra == 'advanced'", specifier = ">=0.5.7" },
     { name = "xgboost", marker = "extra == 'advanced'", specifier = ">=2.1.4" },
     { name = "xlrd", marker = "extra == 'advanced'", specifier = ">=2.0.1" },
 ]
-provides-extras = ["advanced", "ch12", "full", "dev"]
+provides-extras = ["advanced", "ch07", "full", "dev"]
 
 [[package]]
 name = "mmtf-python"

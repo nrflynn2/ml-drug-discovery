@@ -16,10 +16,10 @@ keywords = ["machine-learning", "drug-discovery", "cheminformatics", "deep-learn
 
 # ---------------------------------------------------------------------------
 # Tiered installs (managed with uv; see README/INSTALL). Base = "core" tier.
-#   uv sync                     -> core        (Chapters 1-4)
-#   uv sync --extra advanced    -> + Ch 5-8, 10, 11, Appendix C
-#   uv sync --extra full        -> + Ch 9 pip-installable docking/MD helpers
-#   Chapter 9 also needs the conda island (openmm/pdbfixer/vina); see ml4dd2025.yml
+#   uv sync                     -> core        (Chapters 1-3, 8; Supplemental Chapter 1)
+#   uv sync --extra advanced    -> + Ch 4, 6; Supplemental Ch 2-5; Appendix C
+#   uv sync --extra full        -> + Ch 5 pip-installable docking/MD helpers
+#   Chapter 5 also needs the conda island (openmm/pdbfixer/vina); see ml4dd2025.yml
 #
 # Version notes (validated with `uv lock` on Python 3.12):
 #   * numpy: the old `<2.0.0` cap came solely from `mordred` (dropped, unused).
@@ -56,7 +56,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-# Advanced ML / DL (Chapters 5-8, 10, 11, Appendix C)
+# Advanced ML / DL (Chapters 4, 6; Supplemental Chapters 2-5; Appendix C)
 advanced = [
     "catboost>=1.2.7",
     "lightgbm>=4.6.0",
@@ -73,9 +73,9 @@ advanced = [
     # only build on Python <3.10). numba 0.60+ ships 3.12 wheels.
     "numba>=0.60.0",
     "minisom>=2.3.5",
-    # NOTE: scikit-multilearn is unmaintained and imported only in Chapter 5.
+    # NOTE: scikit-multilearn is unmaintained and imported only in Supplemental Chapter 2.
     # Validate it imports under scikit-learn >=1.6 / numpy 2; if broken, pin the
-    # last working combo for Ch5 or reimplement with sklearn MultiOutputClassifier.
+    # last working combo for Supplemental Ch 2 or reimplement with sklearn MultiOutputClassifier.
     "scikit-multilearn>=0.2.0",
     "statsmodels>=0.14.4",
     "imbalanced-learn>=0.13.0",
@@ -91,12 +91,12 @@ advanced = [
     "pyyaml>=6.0.2",
 ]
 
-# Chapter 12 notebooks (ESM-2 via Hugging Face, BioPython sequences, parquet IO).
-# Mirrors CH12_FLYNN_ML4DD/pyproject.toml's [notebooks] extra so the QA environment can
-# run the ch12 notebooks without a second venv. Declared here on purpose: these were
+# Chapter 7 notebooks (ESM-2 via Hugging Face, BioPython sequences, parquet IO).
+# Mirrors CH07_FLYNN_ML4DD/pyproject.toml's [notebooks] extra so the QA environment can
+# run the ch07 notebooks without a second venv. Declared here on purpose: these were
 # once installed ad-hoc and `uv sync` silently PRUNED them (they weren't in uv.lock),
-# which would have broken ch12 again. `pyarrow` carries its security floor.
-ch12 = [
+# which would have broken ch07 again. `pyarrow` carries its security floor.
+ch07 = [
     "transformers>=4.44.0",
     "biopython>=1.83",
     "pyarrow>=23.0.1",
@@ -104,7 +104,7 @@ ch12 = [
     "ipywidgets>=8.1.0",
 ]
 
-# Full pip-installable set: advanced + Ch 9 docking/MD helpers that DO install via
+# Full pip-installable set: advanced + Ch 5 docking/MD helpers that DO install via
 # pip. The hard conda-only trio (openmm/pdbfixer/vina) is separate (see below).
 full = [
     "ml-drug-discovery[advanced]",
@@ -115,7 +115,7 @@ full = [
     "meeko>=0.5.0",
 ]
 
-# NOTE: Chapter 9 also needs openmm / pdbfixer / vina. Those are NOT pip-installable
+# NOTE: Chapter 5 also needs openmm / pdbfixer / vina. Those are NOT pip-installable
 # (conda-forge only), so they are intentionally NOT declared as an extra here —
 # install them via the conda island in ml4dd2025.yml. Keeping them out lets
 # `uv lock` / `uv sync` resolve cleanly.
@@ -136,7 +136,7 @@ Documentation = "https://www.manning.com/books/build-ai-drug-discovery-pipelines
 
 # The repo is a collection of notebooks + data dirs, not a src-layout package.
 # Install only the top-level helper module (utils.py); do NOT auto-discover
-# data/ figures/ artifacts/ qa_reports/ CH12_FLYNN_ML4DD/ as packages.
+# data/ figures/ artifacts/ qa_reports/ CH07_FLYNN_ML4DD/ as packages.
 [tool.setuptools]
 py-modules = ["utils"]
 

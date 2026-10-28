@@ -24,14 +24,14 @@ WARNINGS (reported, do not fail by default; use --strict to fail):
   * A trailing manuscript callout marker (``  #A`` / ``#B`` / ``#C`` at end of a
     line) that happens to be valid Python but is a book-build artifact.
 
-Note on false positives: ``>>>`` inside a docstring (e.g. CH10's Vocab examples)
+Note on false positives: ``>>>`` inside a docstring (e.g. CH06's Vocab examples)
 is valid Python and parses fine — it is intentionally *not* flagged. Only a
 ``>>>`` that reaches the parser as code (statement level) trips an ERROR.
 
 Usage
 -----
     python tools/validate_notebooks.py                  # all repo notebooks
-    python tools/validate_notebooks.py CH08_FLYNN_ML4DD.ipynb ...
+    python tools/validate_notebooks.py SUPP04_FLYNN_ML4DD.ipynb ...
     python tools/validate_notebooks.py --strict         # warnings also fail
     python tools/validate_notebooks.py --json           # machine-readable
 
@@ -126,7 +126,7 @@ def validate_notebook(path: Path) -> dict:
 def default_targets() -> list[Path]:
     root = Path(__file__).resolve().parent.parent
     targets = sorted(root.glob("*.ipynb"))
-    targets += sorted((root / "CH12_FLYNN_ML4DD" / "notebooks").glob("*.ipynb"))
+    targets += sorted((root / "CH07_FLYNN_ML4DD" / "notebooks").glob("*.ipynb"))
     return targets
 
 
