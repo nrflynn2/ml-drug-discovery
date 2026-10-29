@@ -1,5 +1,5 @@
 """
-Chapter 12: Protein Language Models with Transformers
+Chapter 7: Protein Language Models with Transformers
 
 Source code package for Transformer-based protein models.
 """

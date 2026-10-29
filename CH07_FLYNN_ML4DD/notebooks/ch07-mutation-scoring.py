@@ -35,15 +35,15 @@
 # <hr style="border:0;border-top:1px solid #A20025;opacity:.55;margin:0 0 22px;">
 
 # %% [markdown] id="dde82c97"
-# <div style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#A20025;margin:0 0 12px;">Chapter 12</div>
+# <div style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#A20025;margin:0 0 12px;">Chapter 7</div>
 #
 # <h1 style="font-family:Georgia,'Iowan Old Style','Palatino Linotype',serif;font-weight:500;font-size:33px;line-height:1.12;margin:0 0 16px;color:#1A1416;letter-spacing:-.01em;">Mutation Effect Prediction with ESM-2</h1>
 #
 # <hr style="border:0;border-top:1px solid #A20025;opacity:.55;margin:0 0 4px;">
 #
-# <em style="color:#6B6461;font-size:14.5px;">Runnable code for Chapter 12; read alongside the book.</em>
+# <em style="color:#6B6461;font-size:14.5px;">Runnable code for Chapter 7; read alongside the book.</em>
 #
-# <a href="https://colab.research.google.com/github/nrflynn2/ml-drug-discovery/blob/main/CH12_FLYNN_ML4DD/notebooks/ch12-mutation-scoring.ipynb" target="_blank"><img src="https://img.shields.io/badge/Open%20in-Colab-A20025?logo=googlecolab&logoColor=white" alt="Open in Colab" style="height:20px;vertical-align:middle;"></a>
+# <a href="https://colab.research.google.com/github/nrflynn2/ml-drug-discovery/blob/main/CH07_FLYNN_ML4DD/notebooks/ch07-mutation-scoring.ipynb" target="_blank"><img src="https://img.shields.io/badge/Open%20in-Colab-A20025?logo=googlecolab&logoColor=white" alt="Open in Colab" style="height:20px;vertical-align:middle;"></a>
 #
 # Predicting how mutations affect protein function is a fundamental challenge in protein engineering,
 # drug design, and understanding disease. Traditional approaches require expensive experiments for each
@@ -82,8 +82,8 @@
 # <h2 style="font-family:Georgia,'Iowan Old Style','Palatino Linotype',serif;font-weight:500;font-size:23px;margin:34px 0 10px;color:#1A1416;"><span style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:13px;color:#A20025;font-weight:500;">§0&#8195;</span>Setup and Installation</h2>
 #
 # <div style="font-size:14px;margin:0 0 6px;">
-# <div style="display:flex;gap:14px;padding:9px 0;border-bottom:1px solid #EFEBE8;"><strong style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#A20025;min-width:96px;">Local&#8195;&#8195;</strong><span>The Chapter 12 code is a self-contained package. From <code>CH12_FLYNN_ML4DD/</code>, run <code>pip install -e ".[notebooks]"</code> (Python 3.12).</span></div>
-# <div style="display:flex;gap:14px;padding:9px 0;"><strong style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#A20025;min-width:96px;">Colab&#8195;&#8195;</strong><span>Clone the repository, then <code>pip install -e "ml-drug-discovery/CH12_FLYNN_ML4DD[notebooks]"</code>; a GPU runtime is recommended.</span></div>
+# <div style="display:flex;gap:14px;padding:9px 0;border-bottom:1px solid #EFEBE8;"><strong style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#A20025;min-width:96px;">Local&#8195;&#8195;</strong><span>The Chapter 7 code is a self-contained package. From <code>CH07_FLYNN_ML4DD/</code>, run <code>pip install -e ".[notebooks]"</code> (Python 3.12).</span></div>
+# <div style="display:flex;gap:14px;padding:9px 0;"><strong style="font-family:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#A20025;min-width:96px;">Colab&#8195;&#8195;</strong><span>Clone the repository, then <code>pip install -e "ml-drug-discovery/CH07_FLYNN_ML4DD[notebooks]"</code>; a GPU runtime is recommended.</span></div>
 # </div>
 #
 # First, let's install all required packages and set up our environment.
@@ -144,7 +144,7 @@ for _m in (np, pd, torch, transformers, matplotlib):
 
 # Pick the best available device. `torch.accelerator` covers CUDA, Apple MPS and
 # XPU with one API, so this notebook is not CUDA-only (it matches the
-# `get_device()` helper in src/utils.py that the rest of Chapter 12 uses).
+# `get_device()` helper in src/utils.py that the rest of Chapter 7 uses).
 device = torch.device(
     torch.accelerator.current_accelerator() if torch.accelerator.is_available() else "cpu"
 )

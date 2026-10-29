@@ -14,11 +14,11 @@ Install only what a chapter needs:
 
 | Tier | Chapters | How |
 |------|----------|-----|
-| **Core** — basic ML & QSAR | 1–4 | base install |
-| **Advanced** — boosting, deep learning, GNNs | 5–8, 10, 11, Appendix C | `advanced` extra |
-| **Full** — + pip-installable docking/MD helpers | adds Chapter 9 helpers | `full` extra |
-| **Chapter 9 conda island** | 9 (openmm/pdbfixer/vina) | conda `ml4dd2025.yml` |
-| **Chapter 12** | 12 | its own `CH12_FLYNN_ML4DD/` package |
+| **Core** — basic ML & QSAR | 1–3, 8; Supplemental 1 | base install |
+| **Advanced** — boosting, deep learning, GNNs | 4, 6; Supplemental 2–5; Appendix C | `advanced` extra |
+| **Full** — + pip-installable docking/MD helpers | adds Chapter 5 helpers | `full` extra |
+| **Chapter 5 conda island** | 5 (openmm/pdbfixer/vina) | conda `ml4dd2025.yml` |
+| **Chapter 7** | 7 | its own `CH07_FLYNN_ML4DD/` package |
 
 ## Method 1: uv (recommended)
 
@@ -33,16 +33,16 @@ cd ml-drug-discovery
 uv venv --python 3.12
 source .venv/bin/activate            # Windows: .venv\Scripts\activate
 
-uv sync                     # core     (Chapters 1–4)
-uv sync --extra advanced    # + Chapters 5–8, 10, 11, Appendix C
-uv sync --extra full        # + Chapter 9 pip-installable docking/MD helpers
+uv sync                     # core     (Chapters 1–3, 8; Supplemental Chapter 1)
+uv sync --extra advanced    # + Chapters 4, 6; Supplemental Chapters 2–5; Appendix C
+uv sync --extra full        # + Chapter 5 pip-installable docking/MD helpers
 
 # Or run without activating:  uv run --extra advanced jupyter lab
 ```
 
-> Chapter 9 also needs conda-only tools (openmm, pdbfixer, vina). See Method 2.
+> Chapter 5 also needs conda-only tools (openmm, pdbfixer, vina). See Method 2.
 
-## Method 2: Conda island for Chapter 9
+## Method 2: Conda island for Chapter 5
 
 Molecular-dynamics/docking packages (openmm, pdbfixer, vina) install reliably only via conda:
 
@@ -59,20 +59,20 @@ source .venv/bin/activate
 pip install -e ".[advanced]"         # or ".[full]", or "." for core only
 ```
 
-## Chapter 12
+## Chapter 7
 
-Chapter 12 is a self-contained package under `CH12_FLYNN_ML4DD/`:
+Chapter 7 is a self-contained package under `CH07_FLYNN_ML4DD/`:
 
 ```bash
-cd CH12_FLYNN_ML4DD
+cd CH07_FLYNN_ML4DD
 uv venv --python 3.12 && source .venv/bin/activate
 uv pip install -e ".[notebooks]"     # ESM-2 (transformers), BioPython, viz/widgets
 ```
 
 ## Google Colab
 
-Open any notebook in Colab and run its install cell at the top. Non-Chapter-9 notebooks use a fast
-pip install for that chapter's tier; Chapter 9 uses `condacolab` for the openmm/vina/pdbfixer stack.
+Open any notebook in Colab and run its install cell at the top. Notebooks other than Chapter 5 use a fast
+pip install for that chapter's tier; Chapter 5 uses `condacolab` for the openmm/vina/pdbfixer stack.
 
 ## Reproducibility
 

@@ -1,4 +1,4 @@
-# Chapter 12: Protein Language Models with Transformers
+# Chapter 7: Protein Language Models with Transformers
 
 This repository contains production-quality, instructional implementations of Transformer-based protein models for the textbook chapter on "Transformers for Protein Structure Prediction."
 
@@ -13,7 +13,7 @@ This codebase demonstrates three key applications of Transformers to protein seq
 ## Repository Structure
 
 ```
-ch12-protein-transformer/
+ch07-protein-transformer/
 ├── src/                          # Core source code
 │   ├── __init__.py
 │   ├── model.py                  # Transformer architecture components
@@ -24,7 +24,7 @@ ch12-protein-transformer/
 │   ├── train.py                  # Train antibody classifier
 │   ├── evaluate.py               # Model evaluation
 │   └── tune.py                   # Hyperparameter tuning
-├── notebooks/                    # Interactive tutorials corresponding to material from Chapter 12 and Appendix D
+├── notebooks/                    # Interactive tutorials corresponding to material from Chapter 7 and Appendix D
 ├── data/                         # Dataset files
 │   ├── bcr_train.parquet
 │   ├── bcr_test.parquet
@@ -39,7 +39,7 @@ ch12-protein-transformer/
 ## Installation
 
 This project supports multiple installation methods to accommodate different workflows.
-We recommend following the analagous installation instructions for the book repository as a whole and then walking through the Python notebooks while reading Chapter 12 and Appendix D in the book.
+We recommend following the analagous installation instructions for the book repository as a whole and then walking through the Python notebooks while reading Chapter 7 and Appendix D in the book.
 
 ## Quick Start
 

@@ -159,10 +159,10 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# ch06 Mordred descriptors: downloaded from Figshare by the notebook, not shipped.
+# ch04 Mordred descriptors: downloaded from Figshare by the notebook, not shipped.
 # https://figshare.com/articles/dataset/Machine_Learning_Informs_RNA-Binding_Chemical_Space/20401974
-data/ch06/Mordred_BindingDB_3D.csv
-data/ch06/Mordred_ROBIN_RNA_Binder_3D.csv
+data/ch04/Mordred_BindingDB_3D.csv
+data/ch04/Mordred_ROBIN_RNA_Binder_3D.csv
 
 # Monograph template pass debris (tools/monograph/apply_template.py):
 # apply_template.py --in-place writes .bak; without --in-place it writes *_monograph.ipynb.
